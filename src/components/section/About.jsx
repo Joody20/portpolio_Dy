@@ -20,7 +20,7 @@ const About = () => {
     <>
       <GlobalStyle />
       <Section>
-        <Title>ABOUT ME</Title>
+        <Title>About Me</Title>
         <ProfileImage
           src={isHovered ? myIconHover : myIcon} // 상태에 따라 이미지 변경
           alt="내 임티"
@@ -34,7 +34,7 @@ const About = () => {
         </Keywords>
 
         <InterViewWrapper>
-          <InterViewTitle>InterView.</InterViewTitle>
+          <InterViewTitle>Interview.</InterViewTitle>
           <Box>
             <InTitle>Q. 자신의 성격은 어떠하다고 생각하는지?</InTitle>
             <InDescription>

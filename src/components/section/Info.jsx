@@ -35,7 +35,7 @@ const Info = () => {
       <GlobalStyle />
       <Section>
         <EduWrapper>
-          <Title>EDUCATION</Title>
+          <Title>Education</Title>
           <Rectangle>
             <StyledImage src={Kwlogo} alt="Kwangwoon University Logo" />
             <p>2020.02 ~ 2025.02</p>
@@ -100,7 +100,7 @@ const Info = () => {
             </SkillIconsContainer>
           </Rectangle2>
           <Rectangle2>
-            <Medium>ETC.</Medium>
+            <Medium>Etc.</Medium>
             <SkillIconsContainer>
               <Skillicon src={ga} alt="html 이모티콘" />
               <Skillicon src={notion} alt="css 이모티콘" />

@@ -58,6 +58,7 @@ import { useMediaQuery } from "react-responsive";
 import Home from "./section/Home";
 import About from "./section/About";
 import Info from "./section/Info";
+import Projects from "./section/Projects";
 
 function Layout() {
   const isTabletUp = useMediaQuery({
@@ -67,6 +68,8 @@ function Layout() {
   const aboutRef = useRef(null); // About 섹션을 참조하기 위한 useRef
 
   const infoRef = useRef(null);
+
+  const ProjectsRef = useRef(null);
 
   const scrollToAbout = () => {
     if (aboutRef.current) {
@@ -82,12 +85,15 @@ function Layout() {
       <main>
         <Home />
         {/* About 섹션을 참조하는 요소 */}
-        <div ref={aboutRef}>
+        <section ref={aboutRef}>
           <About />
-        </div>
-        <div ref={infoRef}>
+        </section>
+        <section ref={infoRef}>
           <Info />
-        </div>
+        </section>
+        <section ref={ProjectsRef}>
+          <Projects />
+        </section>
       </main>
     </>
   );

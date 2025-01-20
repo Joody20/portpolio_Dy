@@ -54,13 +54,14 @@ export const Title = styled(motion.h2)`
   margin: 0;
   line-height: 1;
   position: absolute;
-  top: -30px;
+  top: 10px;
   z-index: 0;
   white-space: nowrap;
   -webkit-text-stroke: 2px #fff;
+  letter-spacing: -5px;
   @media ${(props) => props.theme.tabletMedium} {
     font-size: 220px;
-    top: -140px;
+    top: -160px;
   }
 `;
 

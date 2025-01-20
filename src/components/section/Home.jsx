@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useAnimation } from "framer-motion";
 import {
   GlobalStyle,
@@ -33,6 +33,31 @@ const Home = () => {
   const githubLinkControls = useAnimation();
   const mailLinkControls = useAnimation();
 
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  // 스크롤 비활성화 핸들러
+  const handleWheel = useCallback(
+    (event) => {
+      if (isAnimating) {
+        event.preventDefault();
+      }
+    },
+    [isAnimating]
+  );
+
+  useEffect(() => {
+    if (isAnimating) {
+      window.addEventListener("wheel", handleWheel, { passive: false });
+    } else {
+      window.removeEventListener("wheel", handleWheel);
+    }
+
+    // 클린업
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, [isAnimating, handleWheel]);
+
   useEffect(() => {
     Promise.all([
       titleNameControls.start({
@@ -63,7 +88,6 @@ const Home = () => {
               y: 0,
               transition: { duration: 0.5, delay: 0.5 },
             });
-            // GitHubLink animation
             githubLinkControls.start({
               opacity: 1,
               y: 0,
@@ -82,6 +106,7 @@ const Home = () => {
           scale: 1.2,
           transition: { duration: 0.8, delay: 1.1 },
         });
+        setIsAnimating(false); // 애니메이션 완료 후 스크롤 활성화
       });
   }, [
     titleControls,
@@ -159,14 +184,7 @@ const Home = () => {
           animate={photoControls}
           initial={{ scale: 1 }}
         />
-        <ScrollToTopButton
-          onClick={() => {
-            const nextSection = document.querySelector("#next-section");
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-        >
+        <ScrollToTopButton onClick={scrollToNextSection}>
           <img src={UpArrowImage} alt="Scroll Up" />
         </ScrollToTopButton>
         <CircleButton>
