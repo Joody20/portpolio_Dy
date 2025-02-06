@@ -138,62 +138,71 @@ const Home = () => {
           </TitleName>
           <Title animate={titleControls} initial={{ opacity: 0, scale: 0.8 }}>
             Front-End
+            <br />
+            Developer
           </Title>
         </TitleWrapper>
       </Section>
-      <NextSection id="next-section">
-        <motion.div animate={githubLinkControls} initial={{ opacity: 0 }}>
-          <StyledGitHubLink
-            href="https://github.com/Joody20"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </StyledGitHubLink>
-        </motion.div>
-        <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
-          <MailLink
-            href="https://github.com/Joody20"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            G-mail
-          </MailLink>
-        </motion.div>
-        <SectionTitle>Front-End</SectionTitle>
-        <Subtitle>
-          프론트엔드 개발자 <span>주다영</span>입니다.
-        </Subtitle>
-        <DescriptionWrapper>
-          <DescriptionLine
-            animate={descriptionLine1Controls}
-            initial={{ opacity: 0, y: 50 }}
-          >
-            클라이언트를 <span>최우선</span>으로 생각하는 마인드,
-          </DescriptionLine>
-          <DescriptionLine
-            animate={descriptionLine2Controls}
-            initial={{ opacity: 0, y: 50 }}
-          >
-            많은 사람들에게 감동을 주는 <span>성실한</span> 개발자입니다.
-          </DescriptionLine>
-        </DescriptionWrapper>
-        <Photo
-          src={photo}
-          alt="Profile"
-          animate={photoControls}
-          initial={{ scale: 1 }}
-        />
-        <ScrollToTopButton onClick={scrollToNextSection}>
-          <img src={UpArrowImage} alt="Scroll Up" />
-        </ScrollToTopButton>
-        <CircleButton>
-          <img src={feedback} alt="Icon" />
-        </CircleButton>
-        <ScrollDownArrow onClick={scrollToNextSection}>
-          <img src={DownArrowImage} alt="Scroll Down" />
-        </ScrollDownArrow>
-      </NextSection>
+      <motion.div
+        initial={{ scale: 1 }}
+        animate={{ scale: 1.1 }}
+        transition={{ duration: 5, ease: "easeInOut" }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <NextSection id="next-section">
+          <motion.div animate={githubLinkControls} initial={{ opacity: 0 }}>
+            <StyledGitHubLink
+              href="https://github.com/Joody20"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </StyledGitHubLink>
+          </motion.div>
+          <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
+            <MailLink
+              href="https://github.com/Joody20"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              G-mail
+            </MailLink>
+          </motion.div>
+          <SectionTitle>Front-End</SectionTitle>
+          <Subtitle>
+            프론트엔드 개발자 <span>주다영</span>입니다.
+          </Subtitle>
+          <DescriptionWrapper>
+            <DescriptionLine
+              animate={descriptionLine1Controls}
+              initial={{ opacity: 0, y: 50 }}
+            >
+              클라이언트를 <span>최우선</span>으로 생각하는 마인드,
+            </DescriptionLine>
+            <DescriptionLine
+              animate={descriptionLine2Controls}
+              initial={{ opacity: 0, y: 50 }}
+            >
+              많은 사람들에게 감동을 주는 <span>성실한</span> 개발자입니다.
+            </DescriptionLine>
+          </DescriptionWrapper>
+          <Photo
+            src={photo}
+            alt="Profile"
+            animate={photoControls}
+            initial={{ scale: 1 }}
+          />
+          <ScrollDownArrow onClick={scrollToNextSection}>
+            <img src={DownArrowImage} alt="Scroll Down" />
+          </ScrollDownArrow>
+        </NextSection>
+      </motion.div>
+      <ScrollToTopButton onClick={scrollToNextSection}>
+        <img src={UpArrowImage} alt="Scroll Up" />
+      </ScrollToTopButton>
+      <CircleButton>
+        <img src={feedback} alt="Icon" />
+      </CircleButton>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GlobalStyle,
   Section,
@@ -6,28 +6,28 @@ import {
   ProjectContainer,
   ProjectCard,
   ProjectTitle,
+  ProjectDate,
   ProjectDescription,
-  ButtonContainer,
-  LeftArrow,
-  RightArrow,
+  ModalOverlay,
+  ModalContent,
+  CloseButton,
 } from "../../styles/Projects/Projects.style";
-import council from "../../assets/images/council.png";
-import myintro from "../../assets/images/myintro.png";
-import alba from "../../assets/images/alba.png";
+import { project1 } from "../../data/ProjectsData/project1";
+import { project2 } from "../../data/ProjectsData/project2";
+import { project3 } from "../../data/ProjectsData/project3";
+import { project4 } from "../../data/ProjectsData/project4";
+
+const projects = [...project1, ...project2, ...project3, ...project4]; // 모든 프로젝트 데이터 합치기
 
 const Projects = () => {
-  const scrollContainer = React.useRef(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const scrollLeft = () => {
-    if (scrollContainer.current) {
-      scrollContainer.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
+  const openModal = (project) => {
+    setSelectedProject(project);
   };
 
-  const scrollRight = () => {
-    if (scrollContainer.current) {
-      scrollContainer.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
+  const closeModal = () => {
+    setSelectedProject(null);
   };
 
   return (
@@ -35,62 +35,33 @@ const Projects = () => {
       <GlobalStyle />
       <Section>
         <Title>Projects</Title>
-        <LeftArrow onClick={scrollLeft}>{"<"}</LeftArrow>
-        <ProjectContainer ref={scrollContainer}>
-          <ProjectCard>
-            <div className="image-container">
-              <img src={council} alt="Project 1" />
-            </div>
-            <div className="content">
-              <ProjectTitle>학생회 및 학부생 웹 서비스</ProjectTitle>
-              <ProjectDescription>
-                이 프로젝트는 학생회 / 학부생들이 이용할 수 있는 웹서비스 2개를
-                구현하여 관리자 모드 및 사용자 모드를 구분하여 저희 학부생들과
-                학생회의 원활한 소통을 위해 개발하였습니다.
-              </ProjectDescription>
-              <ButtonContainer>
-                <a href="#">사이트 바로가기</a>
-                <a href="#">자세히 보기</a>
-              </ButtonContainer>
-            </div>
-          </ProjectCard>
-          <ProjectCard>
-            <div className="image-container">
-              <img src={alba} alt="Project 1" />
-            </div>
-            <div className="content">
-              <ProjectTitle>아르바이트생들을 위한 웹서비스</ProjectTitle>
-              <ProjectDescription>
-                아르바이트생들의 후기들을 작성하여 서로 소통하며 아르바이트를
-                지원하게 될 때 정보를 가지고 지원을 할 수 있게 하기 위해
-                개발하였습니다.
-              </ProjectDescription>
-              <ButtonContainer>
-                <a href="#">사이트 바로가기</a>
-                <a href="#">자세히 보기</a>
-              </ButtonContainer>
-            </div>
-          </ProjectCard>
-          <ProjectCard>
-            <div className="image-container">
-              <img src={myintro} alt="Project 1" />
-            </div>
-            <div className="content">
-              <ProjectTitle>자기소개 및 방명록 작성 개인프로젝트</ProjectTitle>
-              <ProjectDescription>
-                저에 대한 여러 정보들을 본 후 방명록을 작성하여 많은 새로운
-                사람들과 소통할 수 있는 웹을
-                개발하였습니다.하하하하하하하하하하ㅏ하하하하ㅏ
-              </ProjectDescription>
-              <ButtonContainer>
-                <a href="#">사이트 바로가기</a>
-                <a href="#">자세히 보기</a>
-              </ButtonContainer>
-            </div>
-          </ProjectCard>
+        <ProjectContainer>
+          {projects.map((project, index) => (
+            <ProjectCard key={index} onClick={() => openModal(project)}>
+              <div className="image-container">
+                <img src={project.image} alt={project.title} />
+              </div>
+              <div className="content">
+                <ProjectTitle>{project.title}</ProjectTitle>
+                {project.date && <ProjectDate>{project.date}</ProjectDate>}
+                <ProjectDescription>{project.description}</ProjectDescription>
+              </div>
+            </ProjectCard>
+          ))}
         </ProjectContainer>
-        <RightArrow onClick={scrollRight}>{">"}</RightArrow>
       </Section>
+
+      {selectedProject && (
+        <ModalOverlay onClick={closeModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <h2>{selectedProject.title}</h2>
+            {selectedProject.date && <p>{selectedProject.date}</p>}
+            <p>{selectedProject.description}</p>
+            <p>{selectedProject.details}</p>
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </>
   );
 };

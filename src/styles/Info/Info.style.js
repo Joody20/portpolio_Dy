@@ -16,7 +16,7 @@ export const Section = styled.section`
   flex-direction: column; /* 세로 정렬을 위해 column으로 변경 */
   align-items: center;
   justify-content: flex-start; /* 상단 정렬 */
-  background-color: #2f1f1b;
+  background-color: #1b1c1d;
   position: relative;
   width: 100%;
   padding-top: 40px; /* 상단 여백 추가 */
@@ -45,7 +45,7 @@ export const Title = styled.h2`
 `;
 
 export const Rectangle = styled.div`
-  background-color: #44332e;
+  background-color: #2a2a2b;
   color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -75,7 +75,7 @@ export const Rectangle = styled.div`
     li {
       font-size: 16px;
       margin-bottom: 13px;
-      color: #8c7c78;
+      color: #c2c2c2;
     }
     span {
       font-size: 12px;
@@ -119,7 +119,7 @@ export const Title2 = styled.h2`
 `;
 
 export const Rectangle2 = styled.div`
-  background-color: #44332e;
+  background-color: #2a2a2b;
   color: #fff;
   padding: 20px;
   border-radius: 10px;

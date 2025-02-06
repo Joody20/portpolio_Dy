@@ -16,7 +16,7 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #2f1f1b;
+  background-color: #1b1c1d;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -33,12 +33,13 @@ export const Title = styled.h2`
 `;
 
 export const ProfileImage = styled.img`
-  width: 350px; /* 이미지 크기 조정 */
-  height: 350px; /* 이미지 크기 조정 */
+  width: 400px; /* 이미지 크기 조정 */
+  height: 400px;
   border-radius: 50%; /* 원형으로 만들기 */
   object-fit: cover; /* 이미지 비율 유지 */
-  position: absolute; /* 독립적인 위치 지정 */
-  top: 80px; /* 원하시는 위치로 설정 */
+  position: absolute; /* 절대 위치 지정 */
+  top: 280px; /* 원하는 위치 설정 */
+  left: 140px; /* 왼쪽 정렬 */
   transition: transform 0.3s ease; /* 부드러운 전환 효과 */
 
   &:hover {
@@ -51,8 +52,9 @@ export const Keywords = styled.p`
   font-weight: 600;
   color: #fff;
   text-align: center;
-  position: relative; /* 자연스러운 위치 지정 */
-  top: 440px; /* 이미지를 위한 간격 설정 */
+  position: absolute; /* 절대 위치 지정 */
+  top: 690px; /* 원하는 위치 설정 */
+  left: 170px; /* 왼쪽 정렬 */
   span {
     margin-right: 8px; /* 각 키워드 사이 간격 */
   }
@@ -61,10 +63,8 @@ export const Keywords = styled.p`
 export const InterViewWrapper = styled.div`
   display: flex;
   flex-direction: column; /* 세로로 나열 */
-  align-items: flex-start; /* 왼쪽 정렬 */
+  align-items: flex-end; /* 전체를 오른쪽 정렬 */
   width: 100%; /* 화면 크기에 맞게 조정 */
-  max-width: 1000px; /* 최대 너비 설정 */
-  margin-top: 500px;
   padding: 20px; /* 내부 여백 추가 */
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 `;
@@ -74,20 +74,25 @@ export const InterViewTitle = styled.h2`
   font-weight: bold;
   color: #fff;
   margin-bottom: 20px; /* 간격 조정 */
+  margin-right: 130px;
 `;
 
 export const Box = styled.div`
-  width: 100%;
-  background-color: #44332e;
+  width: 800px; /* 내용에 맞게 너비 조정 */
+  max-width: 800px; /* 최대 너비 설정 */
+  background-color: #2a2a2b;
   border-top-right-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column; /* 세로 배치 */
   justify-content: flex-start;
+  /* align-items: flex-end; Box 내부 요소도 오른쪽 정렬 */
   padding: 20px; /* 패딩 추가 */
   color: #2f1f1b;
   font-size: 20px;
   margin-bottom: 20px; /* 아래 요소와 간격 */
+  align-self: flex-end; /* 부모 기준으로 오른쪽 정렬 */
+  margin-right: 130px;
 `;
 
 export const InTitle = styled.p`

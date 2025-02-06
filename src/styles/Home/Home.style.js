@@ -18,7 +18,7 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #f5f2ee;
+  background-color: #fff9f0;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -48,40 +48,43 @@ export const TitleName = styled(motion.h2)`
 `;
 
 export const Title = styled(motion.h2)`
-  font-weight: bold;
-  font-size: 140px;
-  color: #fff;
+  font-weight: 700;
+  font-size: 220px;
+  color: #fff9f0;
   margin: 0;
   line-height: 1;
   position: absolute;
   top: 10px;
   z-index: 0;
   white-space: nowrap;
-  -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 1px #121212;
   letter-spacing: -5px;
   @media ${(props) => props.theme.tabletMedium} {
-    font-size: 220px;
-    top: -160px;
+    font-size: 350px;
+    top: -280px;
   }
 `;
 
 export const NextSection = styled.section`
+  background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
-  background-color: #f5f2ee;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0;
-  margin: 0;
   position: relative;
+  overflow: hidden;
+  width: 100%;
 `;
 
 export const GitHubLink = styled.a`
   position: absolute;
-  top: 45px;
-  left: 30px;
+  top: 70px;
+  left: 100px;
   gap: 0.25rem;
   flex-direction: column;
   z-index: 20;
@@ -138,8 +141,8 @@ export const GitHubLink = styled.a`
 
 export const MailLink = styled.a`
   position: absolute;
-  top: 45px;
-  left: 100px;
+  top: 70px;
+  left: 180px;
   gap: 0.25rem;
   flex-direction: column;
   z-index: 20;
@@ -197,13 +200,14 @@ export const MailLink = styled.a`
 export const SectionTitle = styled.h1`
   font-size: 10rem;
   font-weight: 900;
-  color: #fff;
+  color: #fff9f0;
   position: absolute;
-  top: 20px;
+  top: 1px;
   transform: translateY(-50%);
   z-index: 0;
   white-space: nowrap;
   letter-spacing: -2px;
+  -webkit-text-stroke: 1px #121212;
 `;
 
 export const Subtitle = styled.h1`
@@ -249,7 +253,7 @@ export const Photo = styled(motion.img)`
 
 export const ScrollDownArrow = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
