@@ -50,9 +50,9 @@ export const Rectangle = styled.div`
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 600px; /* 최대 너비 제한 */
+  max-width: 550px; /* 최대 너비 제한 */
   width: 100%; /* 부모 요소에 맞게 확장 */
-  height: 340px;
+  height: 360px;
   display: flex;
   flex-direction: column;
 

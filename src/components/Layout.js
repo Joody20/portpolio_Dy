@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import Home from "./section/Home";
 import About from "./section/About";
 import Info from "./section/Info";
@@ -7,9 +7,9 @@ import Projects from "./section/Projects";
 import Footer from "./section/Footer";
 
 function Layout() {
-  const isTabletUp = useMediaQuery({
-    query: "(min-width:1024px)",
-  });
+  // const isTabletUp = useMediaQuery({
+  //   query: "(min-width:1024px)",
+  // });
 
   const aboutRef = useRef(null);
   const infoRef = useRef(null);
@@ -40,14 +40,14 @@ function Layout() {
     };
   }, []);
 
-  const scrollToAbout = () => {
-    if (aboutRef.current) {
-      window.scrollTo({
-        top: aboutRef.current.offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
+  // const scrollToAbout = () => {
+  //   if (aboutRef.current) {
+  //     window.scrollTo({
+  //       top: aboutRef.current.offsetTop,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // };
 
   return (
     <>

@@ -22,6 +22,19 @@ export const Section = styled.section`
   width: 100%;
 `;
 
+export const Header = styled.header`
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1000;
+`;
 export const Title = styled.h2`
   font-weight: 900;
   font-size: 60px;
