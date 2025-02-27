@@ -20,6 +20,7 @@ import {
 } from "../../styles/Home/Home.style";
 import { motion } from "framer-motion";
 import photo from "../../assets/images/dayeong_img.webp";
+import photo1 from "../../assets/images/my.PNG";
 import DownArrowImage from "../../assets/images/down-arrow.png";
 import UpArrowImage from "../../assets/images/arrow.png";
 import feedback from "../../assets/images/feedback.png";
@@ -187,7 +188,7 @@ const Home = () => {
             </DescriptionLine>
           </DescriptionWrapper>
           <Photo
-            src={photo}
+            src={photo1}
             alt="Profile"
             animate={photoControls}
             initial={{ scale: 1 }}
