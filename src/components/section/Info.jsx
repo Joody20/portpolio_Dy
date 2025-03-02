@@ -24,7 +24,7 @@ import mysql from "../../assets/images/mySQL copy.png";
 import mongodb from "../../assets/images/mongodb.png";
 import nodejs from "../../assets/images/nodejs.png";
 import aws from "../../assets/images/aws.jpeg";
-import notion from "../../assets/images/노션.jpeg";
+import notion from "../../assets/images/notion.jpeg";
 import ga from "../../assets/images/GA.png";
 import docker from "../../assets/images/docker2.png";
 import github from "../../assets/images/github.png";
