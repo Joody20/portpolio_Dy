@@ -162,7 +162,7 @@ const Home = () => {
           </motion.div>
           <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
             <MailLink
-              href="https://github.com/Joody20"
+              href="mailto:judayeong10@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
             >

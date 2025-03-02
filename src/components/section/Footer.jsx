@@ -89,7 +89,7 @@ const Footer = () => {
         {/* Mail Link Animation */}
 
         <MailLink
-          href="mailto:example@gmail.com"
+          href="mailto:judayeong10@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >
