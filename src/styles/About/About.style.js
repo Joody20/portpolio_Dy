@@ -122,8 +122,12 @@ export const InDescription = styled.p`
   position: relative;
   text-align: left;
   margin-top: 10px; /* Add more space from the title */
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 300;
   line-height: 1.6;
   word-break: keep-all;
+
+  span {
+    font-weight: bold;
+  }
 `;

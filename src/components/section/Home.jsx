@@ -19,7 +19,7 @@ import {
   MailLink,
 } from "../../styles/Home/Home.style";
 import { motion } from "framer-motion";
-import photo from "../../assets/images/dayeong_img.webp";
+// import photo from "../../assets/images/dayeong_img.webp";
 import photo1 from "../../assets/images/my.PNG";
 import DownArrowImage from "../../assets/images/down-arrow.png";
 import UpArrowImage from "../../assets/images/arrow.png";
@@ -201,7 +201,12 @@ const Home = () => {
       <ScrollToTopButton onClick={scrollToNextSection}>
         <img src={UpArrowImage} alt="Scroll Up" />
       </ScrollToTopButton>
-      <CircleButton>
+      <CircleButton
+        as="a"
+        href="https://forms.gle/7ULp66h1fhoASRdq6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={feedback} alt="Icon" />
       </CircleButton>
     </>
