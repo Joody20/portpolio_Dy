@@ -6,6 +6,7 @@ import {
   TitleWrapper,
   TitleName,
   Title,
+  ColoredSpan,
   NextSection,
   GitHubLink as StyledGitHubLink,
   SectionTitle,
@@ -135,12 +136,18 @@ const Home = () => {
             animate={titleNameControls}
             initial={{ opacity: 0, y: 50 }}
           >
-            프론트엔드 개발자 <span>주다영</span> 입니다.
+            안녕하세요, 미래의 올네인{" "}
+            <ColoredSpan>
+              <span className="char-1">주</span>
+              <span className="char-2">다</span>
+              <span className="char-3">영</span>
+            </ColoredSpan>{" "}
+            입니다:)
           </TitleName>
           <Title animate={titleControls} initial={{ opacity: 0, scale: 0.8 }}>
-            Front-End
+            <span className="cj">CJ</span> <span className="o">O</span>LIVE
             <br />
-            Developer
+            <span className="n">N</span>ET<span className="w">W</span>ORKS
           </Title>
         </TitleWrapper>
       </Section>
@@ -169,22 +176,32 @@ const Home = () => {
               G-mail
             </MailLink>
           </motion.div>
-          <SectionTitle>Front-End</SectionTitle>
+          <SectionTitle>
+            <span className="b">B</span>usiness <span className="s">S</span>
+            ystem <span className="e">E</span>ngineer
+          </SectionTitle>
           <Subtitle>
-            프론트엔드 개발자 <span>주다영</span>입니다.
+            미래의 올네인{" "}
+            <ColoredSpan>
+              <span className="char-1">주</span>
+              <span className="char-2">다</span>
+              <span className="char-3">영</span>
+            </ColoredSpan>{" "}
+            입니다.
           </Subtitle>
           <DescriptionWrapper>
             <DescriptionLine
               animate={descriptionLine1Controls}
               initial={{ opacity: 0, y: 50 }}
             >
-              클라이언트를 <span>최우선</span>으로 생각하는 마인드,
+              <span>끊임없는 도전</span>과 <span>자기 혁신</span>으로,
+              <span> IT 기술</span>과 <span>비즈니스</span>를 연결하여
             </DescriptionLine>
             <DescriptionLine
               animate={descriptionLine2Controls}
               initial={{ opacity: 0, y: 50 }}
             >
-              많은 사람들에게 감동을 주는 <span>성실한</span> 개발자입니다.
+              고객에게 <span>최상의 경험</span>을 제공하는 개발자입니다.
             </DescriptionLine>
           </DescriptionWrapper>
           <Photo

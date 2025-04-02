@@ -12,7 +12,8 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Section = styled.section`
-  background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg");
+  /*background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg");*/
+  background-color: #f7f7f7;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -64,7 +65,7 @@ export const Title = styled(motion.h2)`
   top: 10px;
   z-index: 0;
   white-space: nowrap;
-  -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 1px #121212;
   letter-spacing: -5px;
   @media ${(props) => props.theme.tabletMedium} {
     font-size: 220px;

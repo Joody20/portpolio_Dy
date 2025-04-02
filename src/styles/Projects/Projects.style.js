@@ -17,7 +17,7 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #fff9f0;
+  background-color: #f7f7f7;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -50,7 +50,7 @@ export const ProjectContainer = styled.div`
 `;
 
 export const ProjectCard = styled.div`
-  background-color: #fff9f0;
+  background-color: #f7f7f7;
   width: calc(25% - 20px);
   height: 400px;
   padding: 0;
