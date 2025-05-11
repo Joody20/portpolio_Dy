@@ -18,6 +18,8 @@ const Footer = () => {
   const titleNameControls = useAnimation();
 
   useEffect(() => {
+    const target = footerRef.current;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,11 +36,8 @@ const Footer = () => {
             });
           };
 
-          // Set initial values for animation
           titleNameControls.set({ opacity: 0, y: -50 });
           titleControls.set({ opacity: 0, y: -100 });
-          // githubLinkControls.set({ opacity: 0, y: 20 });
-          // mailLinkControls.set({ opacity: 0, y: 20 });
           animateElements();
         }
       },
@@ -48,13 +47,13 @@ const Footer = () => {
       }
     );
 
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
+    if (target) {
+      observer.observe(target);
     }
 
     return () => {
-      if (footerRef.current) {
-        observer.unobserve(footerRef.current);
+      if (target) {
+        observer.unobserve(target);
       }
     };
   }, [titleNameControls, titleControls, githubLinkControls, mailLinkControls]);
@@ -89,11 +88,11 @@ const Footer = () => {
         {/* Mail Link Animation */}
 
         <MailLink
-          href="mailto:judayeong10@gmail.com"
+          href="mailto:loveed123@naver.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          G-mail
+          Mail
         </MailLink>
       </Section>
     </>

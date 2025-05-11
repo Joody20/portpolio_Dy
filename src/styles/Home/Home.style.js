@@ -81,6 +81,20 @@ export const NextSection = styled.section`
   width: 100%;
 `;
 
+export const NextSectionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8vh 2rem;
+  gap: 2rem; // 요소 간 간격 (반응형 가능)
+
+  @media (max-width: 768px) {
+    padding: 5vh 1rem;
+    gap: 1.5rem;
+  }
+`;
+
 export const GitHubLink = styled.a`
   position: absolute;
   top: 70px;
@@ -198,12 +212,14 @@ export const MailLink = styled.a`
 `;
 
 export const SectionTitle = styled.h1`
-  font-size: 10rem;
+  font-size: clamp(5rem, 12vw, 10rem); /* 화면 크기에 따라 자동 조절 */
   font-weight: 900;
   color: #fff9f0;
   position: absolute;
-  top: 1px;
-  transform: translateY(-50%);
+  margin: 0;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%); /* X축 기준으로만 중앙 정렬 */
   z-index: 0;
   white-space: nowrap;
   letter-spacing: -2px;
@@ -211,14 +227,15 @@ export const SectionTitle = styled.h1`
 `;
 
 export const Subtitle = styled.h1`
-  font-size: 48px;
+  font-size: clamp(2rem, 4vw, 48px); /* 반응형 크기 조절 */
   font-weight: 400;
   color: #2f1f1b;
-  margin: 30px 0;
+  position: absolute;
+  top: 19%; /* 겹치는 정도 조정 */
+  left: 50%;
+  transform: translateX(-50%); /* X축 기준으로만 중앙 정렬 */
   z-index: 1;
-  position: relative;
-  top: 50px;
-  text-align: center;
+
   span {
     font-weight: bold;
     color: #2f1f1b;
@@ -226,16 +243,25 @@ export const Subtitle = styled.h1`
 `;
 
 export const DescriptionWrapper = styled.div`
-  position: relative;
-  top: 60px;
+  margin-top: 300px; // 위에서 적당히 공간 확보
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    margin-top: 80px;
+  }
 `;
 
 export const DescriptionLine = styled(motion.p)`
-  font-size: 20px;
+  font-size: clamp(1rem, 2vw, 20px); // 반응형 크기
   color: #5a524e;
-  margin: 0;
-  line-height: 1.5;
+  margin: 0.25rem 0;
+  line-height: 1.3;
   text-align: center;
+  padding: 0 1rem; // 좁은 화면에서 텍스트가 너무 붙지 않게
+
   span {
     font-weight: bold;
     color: #2f1f1b;
@@ -246,7 +272,6 @@ export const Photo = styled(motion.img)`
   width: auto;
   max-height: 500px;
   border-radius: 10px;
-  margin-top: 70px;
   position: relative;
   top: 50px;
 `;

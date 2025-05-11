@@ -7,6 +7,7 @@ import {
   TitleName,
   Title,
   NextSection,
+  NextSectionContent,
   GitHubLink as StyledGitHubLink,
   SectionTitle,
   Subtitle,
@@ -162,37 +163,41 @@ const Home = () => {
           </motion.div>
           <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
             <MailLink
-              href="mailto:judayeong10@gmail.com"
+              href="mailto:loveed123@naver.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              G-mail
+              Mail
             </MailLink>
           </motion.div>
-          <SectionTitle>Front-End</SectionTitle>
-          <Subtitle>
-            프론트엔드 개발자 <span>주다영</span>입니다.
-          </Subtitle>
-          <DescriptionWrapper>
-            <DescriptionLine
-              animate={descriptionLine1Controls}
-              initial={{ opacity: 0, y: 50 }}
-            >
-              클라이언트를 <span>최우선</span>으로 생각하는 마인드,
-            </DescriptionLine>
-            <DescriptionLine
-              animate={descriptionLine2Controls}
-              initial={{ opacity: 0, y: 50 }}
-            >
-              많은 사람들에게 감동을 주는 <span>성실한</span> 개발자입니다.
-            </DescriptionLine>
-          </DescriptionWrapper>
-          <Photo
-            src={photo1}
-            alt="Profile"
-            animate={photoControls}
-            initial={{ scale: 1 }}
-          />
+
+          <NextSectionContent>
+            <SectionTitle>Front-End</SectionTitle>
+            <Subtitle>
+              프론트엔드 개발자 <span>주다영</span>입니다.
+            </Subtitle>
+            <DescriptionWrapper>
+              <DescriptionLine
+                animate={descriptionLine1Controls}
+                initial={{ opacity: 0, y: 50 }}
+              >
+                클라이언트를 <span>최우선</span>으로 생각하는 마인드,
+              </DescriptionLine>
+              <DescriptionLine
+                animate={descriptionLine2Controls}
+                initial={{ opacity: 0, y: 50 }}
+              >
+                많은 사람들에게 감동을 주는 <span>성실한</span> 개발자입니다.
+              </DescriptionLine>
+            </DescriptionWrapper>
+            <Photo
+              src={photo1}
+              alt="Profile"
+              animate={photoControls}
+              initial={{ scale: 1 }}
+            />
+          </NextSectionContent>
+
           <ScrollDownArrow onClick={scrollToNextSection}>
             <img src={DownArrowImage} alt="Scroll Down" />
           </ScrollDownArrow>
