@@ -1,3 +1,4 @@
+/*CJ올리브네트웍스 포트폴리오 */
 import React, { useEffect, useState, useCallback } from "react";
 import { useAnimation } from "framer-motion";
 import {
