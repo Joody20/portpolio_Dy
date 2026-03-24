@@ -1,19 +1,20 @@
-import port from "../../assets/images/jdy.png";
-import pro1_photo1 from "../../assets/images/port1.png";
+import port from "../../assets/images/port.png";
 import pro1_photo2 from "../../assets/images/port2.png";
 import pro1_photo3 from "../../assets/images/port3.png";
-import pro1_photo4 from "../../assets/images/port4.png";
+import pro1_photo4 from "../../assets/images/port6.png";
+import pro1_photo5 from "../../assets/images/port7.png";
+import pro1_photo6 from "../../assets/images/port5.png";
 import close_btn from "../../assets/images/close.png";
 import git from "../../assets/images/github.png";
 
 export const project1 = [
   {
     image: port,
-    title: "프론트엔드 포트폴리오",
+    title: "주다영 개인포트폴리오",
     date: "2024/12 ~ 진행중",
     des: "프론트엔드 개발자 포트폴리오",
     description:
-      "프론트엔드 개발자로 취업을 준비하며, 저의 스펙, 프로젝트, 기술 스택 등 핵심 정보를 한눈에 확인할 수 있도록 제작한 포트폴리오입니다. 사용자가 직관적으로 빠르게 내용을 파악할 수 있도록 설계했으며, 애니메이션 효과를 활용해 디자인적인 완성도를 높이는 데 집중했습니다.",
+      "개발자로 취업을 준비하며, 저의 스펙, 프로젝트, 기술 스택 등 핵심 정보를 한눈에 확인할 수 있도록 제작한 포트폴리오입니다. 사용자가 직관적으로 빠르게 내용을 파악할 수 있도록 설계했으며, 애니메이션 효과를 활용해 디자인적인 완성도를 높이는 데 집중했습니다.",
     github: "https://github.com/Joody20/portpolio_Dy",
     git: git,
     features: "▷ 주요 특징 및 기능",
@@ -26,9 +27,11 @@ export const project1 = [
     feat4:
       "프로젝트 클릭 시 모달 창이 띄워져, 상세한 프로젝트 정보 및 주요 성과를 효과적으로 전달할 수 있습니다.",
     window: "▷ 주요 화면",
-    photo1: pro1_photo1,
+    photo1: port,
     photo2: pro1_photo2,
     photo3: pro1_photo3,
+    photo5: pro1_photo5,
+    photo6: pro1_photo6,
     photo4: pro1_photo4,
     close: close_btn,
   },

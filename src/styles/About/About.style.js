@@ -64,12 +64,20 @@ export const Keywords = styled.p`
   font-size: 15px;
   font-weight: 600;
   color: #fff;
-  text-align: center;
   position: absolute; /* 절대 위치 지정 */
   top: 690px; /* 원하는 위치 설정 */
-  left: 170px; /* 왼쪽 정렬 */
+  left: 140px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  text-align: center;
+
   span {
-    margin-right: 8px; /* 각 키워드 사이 간격 */
+    display: inline-flex;
+    justify-content: center;
   }
 `;
 

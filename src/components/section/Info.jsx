@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   GlobalStyle,
   Section,
@@ -8,25 +8,24 @@ import {
   StyledImage,
   SkillWrapper,
   Title2,
-  Rectangle2,
-  Medium,
-  SkillIconsContainer,
-  Skillicon,
+  SkillMarquee,
+  SkillTrack,
+  SkillChip,
+  SkillIcon,
+  SkillName,
 } from "../../styles/Info/Info.style";
 import Kwlogo from "../../assets/images/KWLOGO.jpg";
-import codeit from "../../assets/images/codeit.png";
+import kakaoboot from "../../assets/images/kakaoboot.svg";
 import html from "../../assets/images/html.png";
 import css from "../../assets/images/css.png";
 import js from "../../assets/images/js.png";
 import react from "../../assets/images/react.png";
 import typescript from "../../assets/images/typescript.png";
-import mysql from "../../assets/images/mySQL copy.png";
-import mongodb from "../../assets/images/mongodb.png";
+import nextJs from "../../assets/images/nextJS.png";
+import mysql from "../../assets/images/mysql.svg";
 import nodejs from "../../assets/images/nodejs.png";
-import aws from "../../assets/images/aws.jpeg";
-import notion from "../../assets/images/notion.jpeg";
-import ga from "../../assets/images/GA.png";
-import docker from "../../assets/images/docker2.png";
+import notion from "../../assets/images/notion.png";
+import ga from "../../assets/images/googleAnalytics.png";
 import github from "../../assets/images/github.png";
 import figma from "../../assets/images/figma.png";
 import { motion, useAnimation } from "framer-motion";
@@ -36,18 +35,21 @@ const Info = () => {
   const boxRefs = useRef([]);
 
   // Intersection Observer 설정
-  const handleIntersection = (entries, observer) => {
-    entries.forEach((entry) => {
-      const target = entry.target;
-      if (entry.isIntersecting) {
-        target.classList.add("visible");
-        controls.start("visible");
-      } else {
-        target.classList.remove("visible");
-        controls.start("hidden");
-      }
-    });
-  };
+  const handleIntersection = useCallback(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+        if (entry.isIntersecting) {
+          target.classList.add("visible");
+          controls.start("visible");
+        } else {
+          target.classList.remove("visible");
+          controls.start("hidden");
+        }
+      });
+    },
+    [controls],
+  );
 
   useEffect(() => {
     const observerOptions = {
@@ -58,7 +60,7 @@ const Info = () => {
 
     const observer = new IntersectionObserver(
       handleIntersection,
-      observerOptions
+      observerOptions,
     );
 
     boxRefs.current.forEach((box) => observer.observe(box));
@@ -66,7 +68,7 @@ const Info = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [handleIntersection]);
 
   // refs 배열에 Box 요소 추가
   const addToRefs = (el) => {
@@ -97,6 +99,24 @@ const Info = () => {
       },
     },
   };
+
+  const skillItems = [
+    { icon: html, name: "HTML" },
+    { icon: css, name: "CSS" },
+    { icon: js, name: "JavaScript" },
+    { icon: react, name: "React" },
+    { icon: nextJs, name: "Next.js" },
+    { icon: typescript, name: "TypeScript" },
+    { icon: mysql, name: "MySQL" },
+    { icon: nodejs, name: "Node.js" },
+    { icon: ga, name: "GA" },
+    { icon: notion, name: "Notion" },
+    { icon: github, name: "GitHub" },
+    { icon: figma, name: "Figma" },
+  ];
+
+  const firstRowSkills = skillItems.slice(0, Math.ceil(skillItems.length / 2));
+  const secondRowSkills = skillItems.slice(Math.ceil(skillItems.length / 2));
 
   return (
     <>
@@ -138,20 +158,20 @@ const Info = () => {
             </motion.div>
             <motion.div ref={addToRefs} variants={itemVariants}>
               <Rectangle>
-                <StyledImage src={codeit} alt="코드잇" />
-                <p>2024.03 ~ 2024.08</p>
-                <h3>코드잇 파워부스트 1기</h3>
-                <p>@프론트엔드 개발자 과정</p>
+                <StyledImage src={kakaoboot} alt="카카오테크 부트캠프" />
+                <p>2025.09 ~ 2026.03</p>
+                <h3>카카오테크 부트캠프</h3>
+                <p>@풀스택 과정 3기</p>
                 <ul>
                   <li>▶︎ JavaScript, React, Next.js, TypeScript 등 학습</li>
                   <li>
-                    ▶︎ 20주 동안 매일 강도 높은 과제 수행 및 페어 프로그래밍과
-                    코드 리뷰 경험
+                    ▶︎ 6개월간의 교육과정 동안 팀 프로젝트 진행 및 개인 프로젝트
+                    진행
                   </li>
-                  <li>▶︎ 개인 프로젝트 3회</li>
+                  <li>▶︎ AI해커톤 및 부하테스트 진행</li>
                   <li>
-                    ▶︎ 스터디에 참여하여 개발 공부를 진행하고 동료들과 원활한
-                    소통과 커뮤니케이션을 촉진
+                    ▶︎ 서비스 전 과정을 직접 설계·구현하며, 풀스택 역량과 AI 활용
+                    능력을 함께 강화하는 부트캠프
                   </li>
                 </ul>
               </Rectangle>
@@ -161,41 +181,36 @@ const Info = () => {
           <SkillWrapper>
             <Title2>Skills</Title2>
             <motion.div ref={addToRefs} variants={itemVariants}>
-              <Rectangle2>
-                <Medium>Front-End</Medium>
-                <SkillIconsContainer>
-                  <Skillicon src={html} alt="html 이모티콘" />
-                  <Skillicon src={css} alt="css 이모티콘" />
-                  <Skillicon src={js} alt="js 이모티콘" />
-                  <Skillicon src={react} alt="react 이모티콘" />
-                  <Skillicon src={typescript} alt="typescript 이모티콘" />
-                </SkillIconsContainer>
-              </Rectangle2>
-            </motion.div>
-
-            <motion.div ref={addToRefs} variants={itemVariants}>
-              <Rectangle2>
-                <Medium>Back-End</Medium>
-                <SkillIconsContainer>
-                  <Skillicon src={mysql} alt="mysql 이모티콘" />
-                  <Skillicon src={mongodb} alt="mongodb 이모티콘" />
-                  <Skillicon src={nodejs} alt="nodejs 이모티콘" />
-                  <Skillicon src={docker} alt="docker 이모티콘" />
-                  <Skillicon src={aws} alt="aws 이모티콘" />
-                </SkillIconsContainer>
-              </Rectangle2>
-            </motion.div>
-
-            <motion.div ref={addToRefs} variants={itemVariants}>
-              <Rectangle2>
-                <Medium>Etc.</Medium>
-                <SkillIconsContainer>
-                  <Skillicon src={ga} alt="ga 이모티콘" />
-                  <Skillicon src={notion} alt="notion 이모티콘" />
-                  <Skillicon src={github} alt="github 이모티콘" />
-                  <Skillicon src={figma} alt="figma 이모티콘" />
-                </SkillIconsContainer>
-              </Rectangle2>
+              <SkillMarquee>
+                <SkillTrack>
+                  {[...firstRowSkills, ...firstRowSkills].map(
+                    (skill, index) => (
+                      <SkillChip key={`${skill.name}-${index}`}>
+                        <SkillIcon
+                          src={skill.icon}
+                          alt={`${skill.name} 아이콘`}
+                        />
+                        <SkillName>{skill.name}</SkillName>
+                      </SkillChip>
+                    ),
+                  )}
+                </SkillTrack>
+              </SkillMarquee>
+              <SkillMarquee>
+                <SkillTrack $reverse>
+                  {[...secondRowSkills, ...secondRowSkills].map(
+                    (skill, index) => (
+                      <SkillChip key={`${skill.name}-reverse-${index}`}>
+                        <SkillIcon
+                          src={skill.icon}
+                          alt={`${skill.name} 아이콘`}
+                        />
+                        <SkillName>{skill.name}</SkillName>
+                      </SkillChip>
+                    ),
+                  )}
+                </SkillTrack>
+              </SkillMarquee>
             </motion.div>
           </SkillWrapper>
         </motion.div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   GlobalStyle,
   Section,
@@ -20,38 +20,39 @@ const About = () => {
   const controls = useAnimation(); // animation control
   const boxRefs = useRef([]);
 
-  // Intersection Observer 설정
-  const handleIntersection = (entries, observer) => {
-    entries.forEach((entry) => {
-      const target = entry.target;
-      if (entry.isIntersecting) {
-        target.classList.add("visible");
-        controls.start("visible");
-      } else {
-        target.classList.remove("visible");
-        controls.start("hidden");
-      }
-    });
-  };
+  // Intersection Observer 설정 (useCallback 사용)
+  const handleIntersection = useCallback(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+        if (entry.isIntersecting) {
+          target.classList.add("visible");
+          controls.start("visible");
+        } else {
+          target.classList.remove("visible");
+          controls.start("hidden");
+        }
+      });
+    },
+    [controls],
+  ); // ✅ 의존성 배열 추가
 
   useEffect(() => {
     const observerOptions = {
-      root: null, // 뷰포트 기준
+      root: null,
       rootMargin: "0px",
-      threshold: 0, // 50% 이상 보이면 트리거
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver(
       handleIntersection,
-      observerOptions
+      observerOptions,
     );
 
     boxRefs.current.forEach((box) => observer.observe(box));
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+    return () => observer.disconnect();
+  }, [handleIntersection]); // ✅ `handleIntersection` 추가
 
   // refs 배열에 Box 요소 추가
   const addToRefs = (el) => {
@@ -95,9 +96,9 @@ const About = () => {
           onMouseLeave={() => setIsHovered(false)} // 마우스가 이미지 밖으로 나갈 때 상태 변경
         />
         <Keywords>
-          <span>#2001/10/19</span>
-          <span>#loved123@naver.com</span>
-          <span>#010-8337-2207</span>
+          <span>#성실함</span>
+          <span>#꾸준함</span>
+          <span>#T인척 하는 F</span>
         </Keywords>
 
         <motion.div
@@ -127,15 +128,16 @@ const About = () => {
 
             <motion.div ref={addToRefs} variants={itemVariants}>
               <Box>
-                <InTitle>Q. 프론트엔드 개발자가 되고자 하는 이유는?</InTitle>
+                <InTitle>Q. 개발자가 되고자 하는 이유는?</InTitle>
                 <InDescription>
                   웹 서비스 개발 팀 프로젝트를 진행하며,{" "}
                   <span>
                     사용자를 위한 서비스를 직접 설계하고 구현하는 과정
                   </span>
-                  에서 깊은 흥미를 느꼈습니다. 단순한 기능 구현을 넘어, 사용자가
+                  에서 깊은 흥미를 느꼈습니다. 단순한 기능 구현을 넘어, 사용자가{" "}
                   <span>
-                    직관적으로 사용할 수 있는 UI/UX를 고민하고 개발하는 과정
+                    직관적으로 사용할 수 있는 UI/UX를 고민하고 개발하는
+                    과정{" "}
                   </span>
                   자체가 큰 즐거움이었습니다. 이러한 경험을 계기로 프론트엔드
                   기술에 대한 관심이 더욱 깊어졌으며,{" "}
@@ -149,16 +151,15 @@ const About = () => {
 
             <motion.div ref={addToRefs} variants={itemVariants}>
               <Box>
-                <InTitle>Q. 어떤 프론트엔드가 되고자 노력할 것 인지?</InTitle>
+                <InTitle>Q. 어떤 개발자가 되고자 노력할 것 인지?</InTitle>
                 <InDescription>
                   저는
                   <span> 사용자의 입장에서 생각하며 최상의 경험을 제공</span>
-                  하는 프론트엔드 개발자가 되고 싶습니다. 직관적이고 편리한
-                  인터페이스를 구현하는 것은 물론,{" "}
-                  <span>새로운 기술과 아이디어</span>를 접목하여{" "}
-                  <span>창의적인 솔루션을 개발</span>하는 것에 가치를 두고
-                  있습니다. 또한, 끊임없이 변화하는 IT 환경 속에서 다양한 도전을
-                  기회로 삼아,{" "}
+                  하는 개발자가 되고 싶습니다. 직관적이고 편리한 인터페이스를
+                  구현하는 것은 물론, <span>새로운 기술과 아이디어</span>를
+                  접목하여 <span>창의적인 솔루션을 개발</span>하는 것에 가치를
+                  두고 있습니다. 또한, 끊임없이 변화하는 IT 환경 속에서 다양한
+                  도전을 기회로 삼아,{" "}
                   <span>
                     유연한 사고와 도전 정신으로 지속적으로 성장하는 개발자
                   </span>

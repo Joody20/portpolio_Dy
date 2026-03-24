@@ -18,10 +18,11 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #fff9f0;
+  background-color: #f7f7f7;
   position: relative;
   overflow: hidden;
   width: 100%;
+  /*#fff9f0 */
 `;
 
 export const TitleWrapper = styled.div`
@@ -35,22 +36,33 @@ export const TitleWrapper = styled.div`
 export const TitleName = styled(motion.h2)`
   font-weight: 400;
   font-size: 22px;
-  color: #2f1f1b;
+  color: #121212;
   margin: 0;
-  span {
-    font-weight: bold;
-    color: #2f1f1b;
-  }
   @media ${(props) => props.theme.tabletMedium} {
     font-size: 64px;
   }
   z-index: 1;
 `;
 
+export const ColoredSpan = styled.span`
+  .char-1 {
+    color: #0487d9; /* 첫 번째 글자 (주) */
+    font-weight: bold;
+  }
+  .char-2 {
+    color: #f28705; /* 두 번째 글자 (다) */
+    font-weight: bold;
+  }
+  .char-3 {
+    color: #f21628; /* 세 번째 글자 (영) */
+    font-weight: bold;
+  }
+`;
+
 export const Title = styled(motion.h2)`
   font-weight: 700;
   font-size: 220px;
-  color: #fff9f0;
+  color: #f7f7f7;
   margin: 0;
   line-height: 1;
   position: absolute;
@@ -59,14 +71,26 @@ export const Title = styled(motion.h2)`
   white-space: nowrap;
   -webkit-text-stroke: 1px #121212;
   letter-spacing: -5px;
+
+  span.o {
+    /*color: #0487d9; /* O - 파랑 */
+    -webkit-text-stroke: 2px #0487d9;
+  }
+  span.n {
+    -webkit-text-stroke: 2px #f21628; /* N - 빨강 */
+  }
+  span.w {
+    -webkit-text-stroke: 2px #f28705; /* W - 주황 */
+  }
+
   @media ${(props) => props.theme.tabletMedium} {
     font-size: 350px;
     top: -280px;
   }
 `;
-
 export const NextSection = styled.section`
-  background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg");
+  /*background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg"); */
+  background-color: #f7f7f7;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -212,9 +236,9 @@ export const MailLink = styled.a`
 `;
 
 export const SectionTitle = styled.h1`
-  font-size: clamp(5rem, 12vw, 10rem); /* 화면 크기에 따라 자동 조절 */
+  font-size: clamp(3rem, 8vw, 6.6rem); /* 화면 크기에 따라 자동 조절 */
   font-weight: 900;
-  color: #fff9f0;
+  color: #f7f7f7;
   position: absolute;
   margin: 0;
   top: 10%;
@@ -224,14 +248,24 @@ export const SectionTitle = styled.h1`
   white-space: nowrap;
   letter-spacing: -2px;
   -webkit-text-stroke: 1px #121212;
+
+  span.b {
+    -webkit-text-stroke: 2px #0487d9;
+  }
+  span.s {
+    -webkit-text-stroke: 2px #f28705;
+  }
+  span.e {
+    -webkit-text-stroke: 2px #f21628;
+  }
 `;
 
 export const Subtitle = styled.h1`
   font-size: clamp(2rem, 4vw, 48px); /* 반응형 크기 조절 */
   font-weight: 400;
-  color: #2f1f1b;
+  color: #121212;
   position: absolute;
-  top: 19%; /* 겹치는 정도 조정 */
+  top: 15%; /* 겹치는 정도 조정 */
   left: 50%;
   transform: translateX(-50%); /* X축 기준으로만 중앙 정렬 */
   z-index: 1;
@@ -241,24 +275,16 @@ export const Subtitle = styled.h1`
     color: #2f1f1b;
   }
 `;
-
 export const DescriptionWrapper = styled.div`
-  margin-top: 300px; // 위에서 적당히 공간 확보
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    margin-top: 80px;
-  }
+  position: relative;
+  top: 120px;
 `;
 
 export const DescriptionLine = styled(motion.p)`
-  font-size: clamp(1rem, 2vw, 20px); // 반응형 크기
-  color: #5a524e;
-  margin: 0.25rem 0;
-  line-height: 1.3;
+  font-size: 20px;
+  color: #121212;
+  margin: 0;
+  line-height: 1.5;
   text-align: center;
   padding: 0 1rem; // 좁은 화면에서 텍스트가 너무 붙지 않게
 
@@ -273,7 +299,7 @@ export const Photo = styled(motion.img)`
   max-height: 500px;
   border-radius: 10px;
   position: relative;
-  top: 50px;
+  top: 150px;
 `;
 
 export const ScrollDownArrow = styled.div`
