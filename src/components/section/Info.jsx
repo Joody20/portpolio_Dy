@@ -23,7 +23,7 @@ import react from "../../assets/images/react.png";
 import typescript from "../../assets/images/typescript.png";
 import nextJs from "../../assets/images/nextJS.png";
 import mysql from "../../assets/images/mysql.svg";
-import nodejs from "../../assets/images/nodeJS.png";
+import nodejs from "../../assets/images/nodejs.png";
 import notion from "../../assets/images/notion.png";
 import ga from "../../assets/images/ga.png";
 import github from "../../assets/images/github.png";

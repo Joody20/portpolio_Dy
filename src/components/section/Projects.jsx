@@ -154,7 +154,10 @@ const Projects = () => {
   }, [activeImageIndex, galleryImages.length]);
 
   const renderJourneySection = () => {
-    if (!selectedProject?.journey_title || !selectedProject?.journey_sections?.length) {
+    if (
+      !selectedProject?.journey_title ||
+      !selectedProject?.journey_sections?.length
+    ) {
       return null;
     }
 
@@ -169,7 +172,9 @@ const Projects = () => {
               <JourneySummary>{section.summary}</JourneySummary>
               <FeaturesList>
                 {section.points.map((point, index) => (
-                  <FeatureItem key={`${section.step}-point-${index}`}>{point}</FeatureItem>
+                  <FeatureItem key={`${section.step}-point-${index}`}>
+                    {point}
+                  </FeatureItem>
                 ))}
               </FeaturesList>
             </JourneyCard>
@@ -192,7 +197,9 @@ const Projects = () => {
         <FeaturesTitle>{selectedProject.troubleshooting_title}</FeaturesTitle>
         {selectedProject.troubleshooting_items.map((item, index) => (
           <TroubleCard key={`${selectedProject.title}-trouble-${index}`}>
-            <TroubleLayout $hasVisual={Boolean(item.image || item.images?.length)}>
+            <TroubleLayout
+              $hasVisual={Boolean(item.image || item.images?.length)}
+            >
               {item.image && (
                 <TroubleVisual>
                   <img src={item.image} alt={`${item.title} 관련 화면`} />
@@ -201,10 +208,15 @@ const Projects = () => {
               {!item.image && item.images?.length > 0 && (
                 <TroubleVisualGrid>
                   {item.images.map((image, imageIndex) => (
-                    <TroubleVisualItem key={`${item.title}-image-${imageIndex}`}>
+                    <TroubleVisualItem
+                      key={`${item.title}-image-${imageIndex}`}
+                    >
                       <TroubleVisualLabel>{image.label}</TroubleVisualLabel>
                       <TroubleVisual>
-                        <img src={image.src} alt={`${item.title} ${image.label}`} />
+                        <img
+                          src={image.src}
+                          alt={`${item.title} ${image.label}`}
+                        />
                       </TroubleVisual>
                     </TroubleVisualItem>
                   ))}
@@ -243,7 +255,10 @@ const Projects = () => {
   };
 
   const renderFeatureGroups = () => {
-    if (!selectedProject?.feature_groups_title || !selectedProject?.feature_groups?.length) {
+    if (
+      !selectedProject?.feature_groups_title ||
+      !selectedProject?.feature_groups?.length
+    ) {
       return null;
     }
 
@@ -252,11 +267,15 @@ const Projects = () => {
         <FeaturesTitle>{selectedProject.feature_groups_title}</FeaturesTitle>
         <FeatureGroupGrid>
           {selectedProject.feature_groups.map((group, index) => (
-            <FeatureGroupCard key={`${selectedProject.title}-feature-group-${index}`}>
+            <FeatureGroupCard
+              key={`${selectedProject.title}-feature-group-${index}`}
+            >
               <FeatureGroupTitle>{group.title}</FeatureGroupTitle>
               <FeaturesList>
                 {group.items.map((item, itemIndex) => (
-                  <FeatureItem key={`${group.title}-item-${itemIndex}`}>{item}</FeatureItem>
+                  <FeatureItem key={`${group.title}-item-${itemIndex}`}>
+                    {item}
+                  </FeatureItem>
                 ))}
               </FeaturesList>
             </FeatureGroupCard>
@@ -327,7 +346,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                   >
                     <ResourceLinkTag>Wiki</ResourceLinkTag>
-                    프로젝트 위키
+                    FrontEnd 위키
                   </ResourceLink>
                 )}
 
@@ -338,7 +357,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                   >
                     <ResourceLinkTag>Docs</ResourceLinkTag>
-                    설계 문서
+                    FrontEnd 설계 문서
                   </ResourceLink>
                 )}
               </ResourceLinks>
