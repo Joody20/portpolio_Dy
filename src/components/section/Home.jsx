@@ -9,6 +9,7 @@ import {
   Title,
   ColoredSpan,
   NextSection,
+  NextSectionContent,
   GitHubLink as StyledGitHubLink,
   SectionTitle,
   Subtitle,
@@ -174,7 +175,7 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              G-mail
+              Mail
             </MailLink>
           </motion.div>
           <SectionTitle>

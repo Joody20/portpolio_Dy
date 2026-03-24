@@ -105,6 +105,20 @@ export const NextSection = styled.section`
   width: 100%;
 `;
 
+export const NextSectionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8vh 2rem;
+  gap: 2rem; // 요소 간 간격 (반응형 가능)
+
+  @media (max-width: 768px) {
+    padding: 5vh 1rem;
+    gap: 1.5rem;
+  }
+`;
+
 export const GitHubLink = styled.a`
   position: absolute;
   top: 70px;
@@ -272,6 +286,8 @@ export const DescriptionLine = styled(motion.p)`
   margin: 0;
   line-height: 1.5;
   text-align: center;
+  padding: 0 1rem; // 좁은 화면에서 텍스트가 너무 붙지 않게
+
   span {
     font-weight: bold;
     color: #2f1f1b;
@@ -282,7 +298,6 @@ export const Photo = styled(motion.img)`
   width: auto;
   max-height: 500px;
   border-radius: 10px;
-  margin-top: 70px;
   position: relative;
   top: 150px;
 `;
