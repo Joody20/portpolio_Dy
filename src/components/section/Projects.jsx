@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   GlobalStyle,
   Section,
@@ -10,6 +10,9 @@ import {
   ModalOverlay,
   ModalContent,
   CloseButton,
+  ResourceLinks,
+  ResourceLink,
+  ResourceLinkTag,
   FeaturesSection,
   FeaturesTitle,
   FeaturessubTitle,
@@ -18,6 +21,33 @@ import {
   WindowInfo,
   WindowTitle,
   ImageContainer,
+  JourneySection,
+  JourneyGrid,
+  JourneyCard,
+  JourneyStep,
+  JourneyCardTitle,
+  JourneySummary,
+  FeatureGroupSection,
+  FeatureGroupGrid,
+  FeatureGroupCard,
+  FeatureGroupTitle,
+  TroubleSection,
+  TroubleCard,
+  TroubleLayout,
+  TroubleVisual,
+  TroubleVisualGrid,
+  TroubleVisualItem,
+  TroubleVisualLabel,
+  TroubleBody,
+  TroubleHeadline,
+  TroubleMeta,
+  TroubleMetaItem,
+  TroubleMetaLabel,
+  TroubleText,
+  ImageLightboxOverlay,
+  ImageLightboxContent,
+  LightboxNavButton,
+  LightboxCloseButton,
 } from "../../styles/Projects/Projects.style";
 import { project1 } from "../../data/ProjectsData/project1";
 import { project2 } from "../../data/ProjectsData/project2";
@@ -25,8 +55,12 @@ import { project3 } from "../../data/ProjectsData/project3";
 import { project4 } from "../../data/ProjectsData/project4";
 import { project5 } from "../../data/ProjectsData/project5"; // Make sure to import project5
 import { project6 } from "../../data/ProjectsData/project6";
+import { project7 } from "../../data/ProjectsData/project7";
+import { project8 } from "../../data/ProjectsData/project8";
 
 const projects = [
+  ...project8,
+  ...project7,
   ...project1,
   ...project2,
   ...project3,
@@ -39,17 +73,197 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showUserFeatures, setShowUserFeatures] = useState(true);
   const [showAdminFeatures, setShowAdminFeatures] = useState(true);
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
+
+  const galleryImages = useMemo(() => {
+    if (!selectedProject) {
+      return [];
+    }
+
+    return [
+      selectedProject.photo1,
+      selectedProject.photo2,
+      selectedProject.photo3,
+      selectedProject.photo4,
+      selectedProject.photo5,
+      selectedProject.photo6,
+      selectedProject.photo7,
+    ].filter(Boolean);
+  }, [selectedProject]);
 
   const openModal = (project) => {
     setSelectedProject(project);
     setShowUserFeatures(true); // Default to showing user features
     setShowAdminFeatures(true); // Default to showing admin features
+    setActiveImageIndex(null);
   };
 
   const closeModal = () => {
     setSelectedProject(null);
     setShowUserFeatures(true);
     setShowAdminFeatures(true);
+    setActiveImageIndex(null);
+  };
+
+  const openImageLightbox = (index) => {
+    setActiveImageIndex(index);
+  };
+
+  const closeImageLightbox = () => {
+    setActiveImageIndex(null);
+  };
+
+  const showPrevImage = () => {
+    setActiveImageIndex((prev) =>
+      prev === null
+        ? null
+        : (prev - 1 + galleryImages.length) % galleryImages.length,
+    );
+  };
+
+  const showNextImage = () => {
+    setActiveImageIndex((prev) =>
+      prev === null ? null : (prev + 1) % galleryImages.length,
+    );
+  };
+
+  useEffect(() => {
+    if (activeImageIndex === null) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeImageLightbox();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevImage();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNextImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeImageIndex, galleryImages.length]);
+
+  const renderJourneySection = () => {
+    if (!selectedProject?.journey_title || !selectedProject?.journey_sections?.length) {
+      return null;
+    }
+
+    return (
+      <JourneySection>
+        <FeaturesTitle>{selectedProject.journey_title}</FeaturesTitle>
+        <JourneyGrid>
+          {selectedProject.journey_sections.map((section) => (
+            <JourneyCard key={`${selectedProject.title}-${section.step}`}>
+              <JourneyStep>{section.step}</JourneyStep>
+              <JourneyCardTitle>{section.title}</JourneyCardTitle>
+              <JourneySummary>{section.summary}</JourneySummary>
+              <FeaturesList>
+                {section.points.map((point, index) => (
+                  <FeatureItem key={`${section.step}-point-${index}`}>{point}</FeatureItem>
+                ))}
+              </FeaturesList>
+            </JourneyCard>
+          ))}
+        </JourneyGrid>
+      </JourneySection>
+    );
+  };
+
+  const renderTroubleshootingSection = () => {
+    if (
+      !selectedProject?.troubleshooting_title ||
+      !selectedProject?.troubleshooting_items?.length
+    ) {
+      return null;
+    }
+
+    return (
+      <TroubleSection>
+        <FeaturesTitle>{selectedProject.troubleshooting_title}</FeaturesTitle>
+        {selectedProject.troubleshooting_items.map((item, index) => (
+          <TroubleCard key={`${selectedProject.title}-trouble-${index}`}>
+            <TroubleLayout $hasVisual={Boolean(item.image || item.images?.length)}>
+              {item.image && (
+                <TroubleVisual>
+                  <img src={item.image} alt={`${item.title} 관련 화면`} />
+                </TroubleVisual>
+              )}
+              {!item.image && item.images?.length > 0 && (
+                <TroubleVisualGrid>
+                  {item.images.map((image, imageIndex) => (
+                    <TroubleVisualItem key={`${item.title}-image-${imageIndex}`}>
+                      <TroubleVisualLabel>{image.label}</TroubleVisualLabel>
+                      <TroubleVisual>
+                        <img src={image.src} alt={`${item.title} ${image.label}`} />
+                      </TroubleVisual>
+                    </TroubleVisualItem>
+                  ))}
+                </TroubleVisualGrid>
+              )}
+              <TroubleBody>
+                <TroubleHeadline>{item.title}</TroubleHeadline>
+                <TroubleMeta>
+                  <TroubleMetaItem>
+                    <TroubleMetaLabel>문제 상황</TroubleMetaLabel>
+                    <TroubleText>{item.problem}</TroubleText>
+                  </TroubleMetaItem>
+                  {item.cause && (
+                    <TroubleMetaItem>
+                      <TroubleMetaLabel>원인 분석</TroubleMetaLabel>
+                      <TroubleText>{item.cause}</TroubleText>
+                    </TroubleMetaItem>
+                  )}
+                  <TroubleMetaItem>
+                    <TroubleMetaLabel>해결 방법</TroubleMetaLabel>
+                    <TroubleText>{item.solution}</TroubleText>
+                  </TroubleMetaItem>
+                  {item.result && (
+                    <TroubleMetaItem>
+                      <TroubleMetaLabel>개선 결과</TroubleMetaLabel>
+                      <TroubleText>{item.result}</TroubleText>
+                    </TroubleMetaItem>
+                  )}
+                </TroubleMeta>
+              </TroubleBody>
+            </TroubleLayout>
+          </TroubleCard>
+        ))}
+      </TroubleSection>
+    );
+  };
+
+  const renderFeatureGroups = () => {
+    if (!selectedProject?.feature_groups_title || !selectedProject?.feature_groups?.length) {
+      return null;
+    }
+
+    return (
+      <FeatureGroupSection>
+        <FeaturesTitle>{selectedProject.feature_groups_title}</FeaturesTitle>
+        <FeatureGroupGrid>
+          {selectedProject.feature_groups.map((group, index) => (
+            <FeatureGroupCard key={`${selectedProject.title}-feature-group-${index}`}>
+              <FeatureGroupTitle>{group.title}</FeatureGroupTitle>
+              <FeaturesList>
+                {group.items.map((item, itemIndex) => (
+                  <FeatureItem key={`${group.title}-item-${itemIndex}`}>{item}</FeatureItem>
+                ))}
+              </FeaturesList>
+            </FeatureGroupCard>
+          ))}
+        </FeatureGroupGrid>
+      </FeatureGroupSection>
+    );
   };
 
   return (
@@ -86,23 +300,48 @@ const Projects = () => {
             {selectedProject.date && <p>{selectedProject.date}</p>}
             <p>{selectedProject.description}</p>
 
-            {selectedProject.github && (
-              <a
-                href={selectedProject.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textDecoration: "none", // Remove underline
-                  color: "inherit", // Keep the default color
-                }}
-              >
-                <img
-                  src={selectedProject.git}
-                  alt="GitHub"
-                  style={{ width: "20px", marginRight: "8px" }}
-                />
-                Github 바로가기
-              </a>
+            {(selectedProject.github ||
+              selectedProject.wiki ||
+              selectedProject.designDoc) && (
+              <ResourceLinks>
+                {selectedProject.github && (
+                  <ResourceLink
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ResourceLinkTag>Code</ResourceLinkTag>
+                    <img
+                      src={selectedProject.git}
+                      alt="GitHub"
+                      style={{ width: "18px", height: "18px" }}
+                    />
+                    Github
+                  </ResourceLink>
+                )}
+
+                {selectedProject.wiki && (
+                  <ResourceLink
+                    href={selectedProject.wiki}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ResourceLinkTag>Wiki</ResourceLinkTag>
+                    프로젝트 위키
+                  </ResourceLink>
+                )}
+
+                {selectedProject.designDoc && (
+                  <ResourceLink
+                    href={selectedProject.designDoc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ResourceLinkTag>Docs</ResourceLinkTag>
+                    설계 문서
+                  </ResourceLink>
+                )}
+              </ResourceLinks>
             )}
 
             {/* Features Section */}
@@ -184,8 +423,7 @@ const Projects = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    {showAdminFeatures ? "▼" : "▶︎"}{" "}
-                    {selectedProject.admin_feat}
+                    {showAdminFeatures ? "▼" : "▶︎"} {selectedProject.admin_feat}
                   </FeaturessubTitle>
 
                   {showAdminFeatures && (
@@ -219,6 +457,8 @@ const Projects = () => {
                 </>
               )}
             </FeaturesSection>
+
+            {renderFeatureGroups()}
 
             {/* Additional Sections for Step Images, Model Descriptions, etc. */}
             {selectedProject.subTitle && (
@@ -264,36 +504,65 @@ const Projects = () => {
               </FeaturesSection>
             )}
 
+            {renderJourneySection()}
+            {renderTroubleshootingSection()}
+
             {/* Additional Screenshots */}
-            <WindowInfo>
+            <WindowInfo $columns={selectedProject.galleryColumns}>
               <WindowTitle>{selectedProject.window}</WindowTitle>
               <div className="image-gallery">
-                {selectedProject.photo1 && (
-                  <img src={selectedProject.photo1} alt="Screenshot 1" />
-                )}
-                {selectedProject.photo2 && (
-                  <img src={selectedProject.photo2} alt="Screenshot 2" />
-                )}
-                {selectedProject.photo3 && (
-                  <img src={selectedProject.photo3} alt="Screenshot 3" />
-                )}
-                {selectedProject.photo4 && (
-                  <img src={selectedProject.photo4} alt="Screenshot 4" />
-                )}
-                {selectedProject.photo5 && (
-                  <img src={selectedProject.photo5} alt="Screenshot 5" />
-                )}
-                {selectedProject.photo6 && (
-                  <img src={selectedProject.photo6} alt="Screenshot 6" />
-                )}
-                {selectedProject.photo7 && (
-                  <img src={selectedProject.photo7} alt="Screenshot 7" />
-                )}
+                {galleryImages.map((image, index) => (
+                  <button
+                    key={`${selectedProject.title}-gallery-${index}`}
+                    type="button"
+                    className="gallery-image-button"
+                    onClick={() => openImageLightbox(index)}
+                  >
+                    <img
+                      src={image}
+                      alt={`${selectedProject.title} Screenshot ${index + 1}`}
+                    />
+                  </button>
+                ))}
               </div>
             </WindowInfo>
           </ModalContent>
         </ModalOverlay>
       )}
+
+      {selectedProject &&
+        activeImageIndex !== null &&
+        galleryImages.length > 0 && (
+          <ImageLightboxOverlay onClick={closeImageLightbox}>
+            <ImageLightboxContent onClick={(e) => e.stopPropagation()}>
+              <LightboxCloseButton type="button" onClick={closeImageLightbox}>
+                ×
+              </LightboxCloseButton>
+              {galleryImages.length > 1 && (
+                <LightboxNavButton
+                  type="button"
+                  $direction="left"
+                  onClick={showPrevImage}
+                >
+                  ‹
+                </LightboxNavButton>
+              )}
+              <img
+                src={galleryImages[activeImageIndex]}
+                alt={`${selectedProject.title} enlarged ${activeImageIndex + 1}`}
+              />
+              {galleryImages.length > 1 && (
+                <LightboxNavButton
+                  type="button"
+                  $direction="right"
+                  onClick={showNextImage}
+                >
+                  ›
+                </LightboxNavButton>
+              )}
+            </ImageLightboxContent>
+          </ImageLightboxOverlay>
+        )}
     </>
   );
 };

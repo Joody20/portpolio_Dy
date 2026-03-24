@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html, body {
@@ -98,24 +98,108 @@ export const StyledImage = styled.img`
 
 export const SkillWrapper = styled.div`
   display: flex;
-  flex-direction: row; /* 가로 정렬 */
-  align-items: center; /* 세로 가운데 정렬 */
-  gap: 60px; /* Title과 Rectangle 사이 간격 */
-  width: 80%;
-  margin-top: 100px; /* 추가 여백 */
-  margin-left: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 120px;
+  padding: 0 40px 40px;
 `;
 
 export const Title2 = styled.h2`
   font-weight: 900;
   font-size: 60px;
   color: #f5f5f5;
-  margin: 0;
+  margin: 0 0 36px 30px;
   white-space: nowrap; /* 제목이 여러 줄로 넘어가지 않도록 설정 */
+`;
 
-  position: absolute; /* ContentWrapper를 기준으로 위치 */
-  bottom: 350px; /* 위로 50px 이동 */
-  right: 30px; /* ContentWrapper 왼쪽으로 정렬 */
+const marqueeScroll = keyframes`
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+`;
+
+const marqueeScrollReverse = keyframes`
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+`;
+
+export const SkillMarquee = styled.div`
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 18px 0;
+  margin-bottom: 18px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 120px;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, #1b1c1d 0%, rgba(27, 28, 29, 0) 100%);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, #1b1c1d 0%, rgba(27, 28, 29, 0) 100%);
+  }
+`;
+
+export const SkillTrack = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: max-content;
+  animation: ${({ $reverse }) =>
+      $reverse ? marqueeScrollReverse : marqueeScroll}
+    28s linear infinite;
+`;
+
+export const SkillChip = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 220px;
+  padding: 24px 34px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #2e3033 0%, #232527 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+`;
+
+export const SkillIcon = styled.img`
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  flex-shrink: 0;
+`;
+
+export const SkillName = styled.span`
+  color: #f5f5f5;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 `;
 
 export const Rectangle2 = styled.div`

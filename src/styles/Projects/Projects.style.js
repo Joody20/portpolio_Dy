@@ -132,12 +132,14 @@ export const ModalContent = styled.div`
 
   h2 {
     margin-top: 10px;
+    font-size: 33px;
+    font-weight: bold;
   }
 
   p {
     font-size: 16px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
     line-height: 25px;
   }
 `;
@@ -171,6 +173,53 @@ export const FeaturesList = styled.ul`
   padding: 10px;
 `;
 
+export const ResourceLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+`;
+
+export const ResourceLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid #d8d8d8;
+  background: #f5f5f5;
+  color: #1b1c1d;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    background: #ededed;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+`;
+
+export const ResourceLinkTag = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #1b1c1d;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+
 export const FeatureItem = styled.li`
   font-size: 17px;
   color: #555;
@@ -188,6 +237,191 @@ export const FeatureItem = styled.li`
   }
 `;
 
+export const JourneySection = styled.div`
+  margin-top: 30px;
+  padding: 1rem;
+  text-align: left;
+  border-top: 2px solid #ddd;
+  padding-top: 30px;
+`;
+
+export const JourneyGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+`;
+
+export const JourneyCard = styled.div`
+  padding: 24px 22px;
+  border-radius: 22px;
+  background: #f8f8f8;
+  border: 1px solid #ececec;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+`;
+
+export const JourneyStep = styled.div`
+  font-size: 13px;
+  font-weight: 800;
+  color: #7b7b7b;
+  letter-spacing: 0.14em;
+  margin-bottom: 12px;
+`;
+
+export const JourneyCardTitle = styled.h3`
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b1c1d;
+  margin: 0 0 12px;
+  line-height: 1.35;
+`;
+
+export const JourneySummary = styled.p`
+  font-size: 16px;
+  color: #4d4d4d;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  padding: 0;
+  text-align: left;
+`;
+
+export const FeatureGroupSection = styled.div`
+  margin-top: 30px;
+  padding: 1rem;
+  text-align: left;
+  border-top: 2px solid #ddd;
+  padding-top: 30px;
+`;
+
+export const FeatureGroupGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+`;
+
+export const FeatureGroupCard = styled.div`
+  padding: 24px 22px;
+  border-radius: 22px;
+  background: #f8f8f8;
+  border: 1px solid #ececec;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+`;
+
+export const FeatureGroupTitle = styled.h3`
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b1c1d;
+  margin: 0 0 12px;
+  line-height: 1.35;
+`;
+
+export const TroubleSection = styled.div`
+  margin-top: 30px;
+  padding: 1rem;
+  text-align: left;
+  border-top: 2px solid #ddd;
+  padding-top: 30px;
+`;
+
+export const TroubleCard = styled.div`
+  padding: 28px;
+  border-radius: 26px;
+  background: #fff;
+  border: 1px solid #ececec;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.06);
+`;
+
+export const TroubleLayout = styled.div`
+  display: grid;
+  grid-template-columns: ${({ $hasVisual }) =>
+    $hasVisual ? "360px minmax(0, 1fr)" : "minmax(0, 1fr)"};
+  gap: 28px;
+  align-items: start;
+`;
+
+export const TroubleVisual = styled.div`
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #ededed;
+  background: #f6f6f6;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const TroubleVisualGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`;
+
+export const TroubleVisualItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const TroubleVisualLabel = styled.div`
+  font-size: 13px;
+  font-weight: 800;
+  color: #767676;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+
+export const TroubleBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+`;
+
+export const TroubleHeadline = styled.h3`
+  font-size: 28px;
+  font-weight: 700;
+  color: #1b1c1d;
+  margin: 0 0 18px;
+  line-height: 1.35;
+`;
+
+export const TroubleMeta = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+`;
+
+export const TroubleMetaItem = styled.div`
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ececec;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+`;
+
+export const TroubleMetaLabel = styled.div`
+  font-size: 14px;
+  font-weight: 800;
+  color: #767676;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+`;
+
+export const TroubleText = styled.p`
+  font-size: 16px;
+  color: #4d4d4d;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+`;
+
 // 추가적인 정보 스타일 (ex: window)
 export const WindowInfo = styled.div`
   padding: 1rem;
@@ -195,16 +429,38 @@ export const WindowInfo = styled.div`
 
   .image-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3개의 동일한 열 */
+    grid-template-columns: repeat(${({ $columns = 3 }) => $columns}, 1fr);
     grid-auto-rows: auto;
     gap: 10px;
     margin-top: 15px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gallery-image-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .gallery-image-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
   }
 
   img {
-    width: 100%; /* 셀의 너비에 맞추기 */
+    width: 92%;
     height: auto;
     border-radius: 10px;
+    margin: 0 auto;
+    display: block;
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); */
   }
 `;
@@ -256,4 +512,74 @@ export const ImageContainer = styled.div`
     height: 100%; /* Make the height fit the container */
     object-fit: contain; /* Ensures the image maintains its aspect ratio */
   }
+`;
+
+export const ImageLightboxOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 40px;
+`;
+
+export const ImageLightboxContent = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(92vw, 1400px);
+  height: min(88vh, 900px);
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+`;
+
+export const LightboxNavButton = styled.button`
+  position: absolute;
+  top: 50%;
+  ${({ $direction }) =>
+    $direction === "left" ? "left: 24px;" : "right: 24px;"}
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #111;
+  font-size: 40px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-50%) scale(1.04);
+  }
+`;
+
+export const LightboxCloseButton = styled.button`
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
 `;

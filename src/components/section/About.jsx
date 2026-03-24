@@ -34,7 +34,7 @@ const About = () => {
         }
       });
     },
-    [controls]
+    [controls],
   ); // ✅ 의존성 배열 추가
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const About = () => {
 
     const observer = new IntersectionObserver(
       handleIntersection,
-      observerOptions
+      observerOptions,
     );
 
     boxRefs.current.forEach((box) => observer.observe(box));
@@ -96,9 +96,9 @@ const About = () => {
           onMouseLeave={() => setIsHovered(false)} // 마우스가 이미지 밖으로 나갈 때 상태 변경
         />
         <Keywords>
-          <span>#2001/10/19</span>
-          <span>#loved123@naver.com</span>
-          <span>#010-8337-2207</span>
+          <span>#성실함</span>
+          <span>#꾸준함</span>
+          <span>#T인척 하는 F</span>
         </Keywords>
 
         <motion.div
@@ -136,7 +136,8 @@ const About = () => {
                   </span>
                   에서 깊은 흥미를 느꼈습니다. 단순한 기능 구현을 넘어, 사용자가{" "}
                   <span>
-                    직관적으로 사용할 수 있는 UI/UX를 고민하고 개발하는 과정{" "}
+                    직관적으로 사용할 수 있는 UI/UX를 고민하고 개발하는
+                    과정{" "}
                   </span>
                   자체가 큰 즐거움이었습니다. 이러한 경험을 계기로 프론트엔드
                   기술에 대한 관심이 더욱 깊어졌으며,{" "}
