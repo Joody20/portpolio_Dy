@@ -25,7 +25,7 @@ import nextJs from "../../assets/images/nextJS.png";
 import mysql from "../../assets/images/mysql.svg";
 import nodejs from "../../assets/images/nodejs.png";
 import notion from "../../assets/images/notion.png";
-import ga from "../../assets/images/ga.png";
+import ga from "../../assets/images/Ga.png";
 import github from "../../assets/images/github.png";
 import figma from "../../assets/images/figma.png";
 import { motion, useAnimation } from "framer-motion";
