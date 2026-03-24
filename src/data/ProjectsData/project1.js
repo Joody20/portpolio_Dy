@@ -1,5 +1,4 @@
 import port from "../../assets/images/port.png";
-import pro1_photo1 from "../../assets/images/port1.png";
 import pro1_photo2 from "../../assets/images/port2.png";
 import pro1_photo3 from "../../assets/images/port3.png";
 import pro1_photo4 from "../../assets/images/port6.png";

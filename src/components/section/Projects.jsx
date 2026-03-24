@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   GlobalStyle,
   Section,
@@ -113,19 +113,19 @@ const Projects = () => {
     setActiveImageIndex(null);
   };
 
-  const showPrevImage = () => {
+  const showPrevImage = useCallback(() => {
     setActiveImageIndex((prev) =>
       prev === null
         ? null
         : (prev - 1 + galleryImages.length) % galleryImages.length,
     );
-  };
+  }, [galleryImages.length]);
 
-  const showNextImage = () => {
+  const showNextImage = useCallback(() => {
     setActiveImageIndex((prev) =>
       prev === null ? null : (prev + 1) % galleryImages.length,
     );
-  };
+  }, [galleryImages.length]);
 
   useEffect(() => {
     if (activeImageIndex === null) {
@@ -151,7 +151,7 @@ const Projects = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeImageIndex, galleryImages.length]);
+  }, [activeImageIndex, showNextImage, showPrevImage]);
 
   const renderJourneySection = () => {
     if (

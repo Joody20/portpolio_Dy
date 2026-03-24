@@ -9,7 +9,6 @@ import {
   Title,
   ColoredSpan,
   NextSection,
-  NextSectionContent,
   GitHubLink as StyledGitHubLink,
   SectionTitle,
   Subtitle,

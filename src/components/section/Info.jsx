@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   GlobalStyle,
   Section,
@@ -35,18 +35,21 @@ const Info = () => {
   const boxRefs = useRef([]);
 
   // Intersection Observer 설정
-  const handleIntersection = (entries, observer) => {
-    entries.forEach((entry) => {
-      const target = entry.target;
-      if (entry.isIntersecting) {
-        target.classList.add("visible");
-        controls.start("visible");
-      } else {
-        target.classList.remove("visible");
-        controls.start("hidden");
-      }
-    });
-  };
+  const handleIntersection = useCallback(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+        if (entry.isIntersecting) {
+          target.classList.add("visible");
+          controls.start("visible");
+        } else {
+          target.classList.remove("visible");
+          controls.start("hidden");
+        }
+      });
+    },
+    [controls],
+  );
 
   useEffect(() => {
     const observerOptions = {
@@ -65,7 +68,7 @@ const Info = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [handleIntersection]);
 
   // refs 배열에 Box 요소 추가
   const addToRefs = (el) => {
