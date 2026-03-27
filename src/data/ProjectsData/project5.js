@@ -7,6 +7,8 @@ import step3 from "../../assets/images/step3.png";
 export const project5 = [
   {
     image: iot,
+    themeColor: "#1c3738",
+    headerLightText: true,
     title: "IoT를 활용한 자율주행자동차",
     date: "2023/03 ~ 2023/06",
     description:

@@ -89,20 +89,262 @@ export const Title = styled(motion.h2)`
   }
 `;
 export const NextSection = styled.section`
-  /*background-image: url("https://i.pinimg.com/474x/85/11/48/851148a276ede2ab8927dab128d6e5e7.jpg"); */
   background-color: #f7f7f7;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding: 0 20px 34px;
+
+  .next-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+
+  .next-nav button {
+    min-width: 140px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: 1.5px solid #1b1c1d;
+    background: #fff;
+    color: #1b1c1d;
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .next-nav button:hover {
+    transform: translateY(-2px);
+    background: #1b1c1d;
+    color: #fff;
+  }
+
+  @media (max-width: 1440px) {
+    padding: 0 18px 30px;
+
+    .next-nav {
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    padding: 0 14px 26px;
+
+    .next-nav {
+      gap: 12px;
+      margin-bottom: 12px;
+      padding-top: 14px;
+    }
+
+    .next-nav button {
+      min-width: 126px;
+      padding: 12px 18px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 18px 16px 84px;
+
+    .next-nav {
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-top: 10px;
+    }
+
+    .next-nav button {
+      min-width: 108px;
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    padding: 24px 24px 88px;
+
+    .next-nav {
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .next-nav button {
+      min-width: 120px;
+      padding: 12px 18px;
+    }
+  }
+`;
+
+export const NextSectionInner = styled.div`
+  width: 100%;
+  max-width: 1420px;
+  margin: 0 auto;
+  min-height: calc(100vh - 126px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 410px);
+  align-items: end;
+  column-gap: clamp(24px, 4vw, 56px);
+  padding-left: 0;
+  padding-right: 0;
+
+  @media (max-width: 1440px) {
+    max-width: 1280px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 370px);
+    column-gap: 34px;
+    min-height: calc(100vh - 118px);
+  }
+
+  @media (max-width: 1200px) {
+    max-width: 1100px;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 330px);
+    column-gap: 24px;
+    padding-left: 0;
+    min-height: calc(100vh - 108px);
+  }
+
+  @media (max-width: 1024px) {
+    max-width: 980px;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 300px);
+    column-gap: 18px;
+  }
+
+  @media (max-width: 900px) {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+    justify-items: center;
+    padding-top: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (max-width: 640px) {
+    row-gap: 22px;
+    padding-top: 18px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+`;
+
+export const SideLinks = styled.div`
+  position: absolute;
+  left: clamp(20px, 2.6vw, 36px);
+  top: 43%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  z-index: 10;
+
+  @media (max-width: 900px) {
+    left: 14px;
+    top: 39%;
+    gap: 28px;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    margin: 0 0 6px;
+  }
+
+  @media (max-width: 640px) {
+    justify-content: flex-start;
+    padding-left: 4px;
+  }
+`;
+
+export const HeroLeft = styled.div`
+  min-width: 0;
+  align-self: end;
+  justify-self: start;
+  position: relative;
+  top: -54px;
+  left: -18px;
+
+  @media (max-width: 1440px) {
+    top: -40px;
+    left: -10px;
+  }
+
+  @media (max-width: 1200px) {
+    top: -22px;
+    left: -2px;
+  }
+
+  @media (max-width: 1024px) {
+    top: -10px;
+    left: 0;
+  }
+
+  @media (max-width: 900px) {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+`;
+
+export const HeroRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: start;
+  gap: 28px;
+  width: 100%;
+  max-width: 430px;
+
+  @media (max-width: 1440px) {
+    max-width: 370px;
+    gap: 22px;
+  }
+
+  @media (max-width: 1200px) {
+    max-width: 330px;
+    gap: 18px;
+  }
+
+  @media (max-width: 900px) {
+    align-items: center;
+    justify-self: center;
+    max-width: min(100%, 420px);
+    order: 1;
+  }
+
+  @media (max-width: 768px) {
+    max-width: min(100%, 360px);
+    gap: 14px;
+  }
+`;
+
+export const IntroText = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+
+  @media (max-width: 1200px) {
+    gap: 14px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 
 export const NextSectionContent = styled.div`
@@ -120,200 +362,337 @@ export const NextSectionContent = styled.div`
 `;
 
 export const GitHubLink = styled.a`
-  position: absolute;
-  top: 70px;
-  left: 100px;
-  gap: 0.25rem;
-  flex-direction: column;
-  z-index: 20;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  color: #2f1f1b;
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: inline-flex;
+  align-items: center;
+  color: #121212;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  letter-spacing: -1.5px;
-  &:hover {
-    color: #fff;
-  }
-  &::before {
-    content: "GitHub 가기";
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #44332e;
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 400;
-    padding: 0.5rem;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    letter-spacing: -0.5px;
-  }
-  &:hover::before {
-    opacity: 1;
-    visibility: visible;
-  }
+  letter-spacing: -0.06em;
+  transition: opacity 0.2s ease;
+  padding-left: 3px;
+
   &::after {
     content: "";
     position: absolute;
-    bottom: -2px;
+    top: 0;
     left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 4px;
-    background-color: #2f1f1b;
-    transition: all 0.3s ease-in-out;
+    width: 3px;
+    height: 52px;
+    background: #121212;
   }
-  &:hover::after {
-    height: 100%;
+
+  &:hover {
+    opacity: 0.6;
   }
-  @media ${(props) => props.theme.tabletMedium} {
-    font-size: 1rem;
+
+  @media (max-width: 900px) {
+    font-size: 16px;
+
+    &::after {
+      width: 3px;
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    writing-mode: initial;
+    transform: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 0;
+    padding-bottom: 6px;
+
+    &::after {
+      top: auto;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+    }
   }
 `;
 
 export const MailLink = styled.a`
-  position: absolute;
-  top: 70px;
-  left: 180px;
-  gap: 0.25rem;
-  flex-direction: column;
-  z-index: 20;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  color: #2f1f1b;
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: inline-flex;
+  align-items: center;
+  color: #121212;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  letter-spacing: -1.5px;
-  &:hover {
-    color: #fff;
-  }
-  &::before {
-    content: "메일 보내기";
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #44332e;
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 400;
-    padding: 0.5rem;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    letter-spacing: -0.5px;
-  }
-  &:hover::before {
-    opacity: 1;
-    visibility: visible;
-  }
+  letter-spacing: -0.06em;
+  transition: opacity 0.2s ease;
+  padding-left: 3px;
+
   &::after {
     content: "";
     position: absolute;
-    bottom: -2px;
+    top: 0;
     left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 4px;
-    background-color: #2f1f1b;
-    transition: all 0.3s ease-in-out;
+    width: 3px;
+    height: 52px;
+    background: #121212;
   }
-  &:hover::after {
-    height: 100%;
+
+  &:hover {
+    opacity: 0.6;
   }
-  @media ${(props) => props.theme.tabletMedium} {
-    font-size: 1rem;
+
+  @media (max-width: 900px) {
+    font-size: 16px;
+
+    &::after {
+      width: 3px;
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    writing-mode: initial;
+    transform: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 0;
+    padding-bottom: 6px;
+
+    &::after {
+      top: auto;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+    }
   }
 `;
 
 export const SectionTitle = styled.h1`
-  font-size: clamp(3rem, 8vw, 6.6rem); /* 화면 크기에 따라 자동 조절 */
-  font-weight: 900;
-  color: #f7f7f7;
-  position: absolute;
+  font-size: clamp(5.8rem, 13.8vw, 12.8rem);
+  font-weight: 400;
+  color: #121212;
   margin: 0;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%); /* X축 기준으로만 중앙 정렬 */
-  z-index: 0;
-  white-space: nowrap;
-  letter-spacing: -2px;
-  -webkit-text-stroke: 1px #121212;
+  line-height: 0.84;
+  letter-spacing: -0.08em;
+  white-space: pre-line;
 
-  span.b {
-    -webkit-text-stroke: 2px #0487d9;
+  @media (max-width: 1440px) {
+    font-size: clamp(5rem, 12vw, 10.2rem);
   }
-  span.s {
-    -webkit-text-stroke: 2px #f28705;
+
+  @media (max-width: 1200px) {
+    font-size: clamp(4.1rem, 10vw, 8.2rem);
+    line-height: 0.88;
   }
-  span.e {
-    -webkit-text-stroke: 2px #f21628;
+
+  @media (max-width: 1024px) {
+    font-size: clamp(3.8rem, 9.2vw, 7rem);
+  }
+
+  @media (max-width: 900px) {
+    font-size: clamp(4.2rem, 17vw, 7rem);
+    line-height: 0.92;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    font-size: clamp(3.2rem, 16vw, 5.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.07em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: clamp(2.8rem, 15vw, 4.6rem);
   }
 `;
 
 export const Subtitle = styled.h1`
-  font-size: clamp(2rem, 4vw, 48px); /* 반응형 크기 조절 */
-  font-weight: 400;
+  font-size: clamp(22px, 1.9vw, 28px);
+  font-weight: 600;
   color: #121212;
-  position: absolute;
-  top: 15%; /* 겹치는 정도 조정 */
-  left: 50%;
-  transform: translateX(-50%); /* X축 기준으로만 중앙 정렬 */
-  z-index: 1;
+  margin: 0;
+  line-height: 1.55;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
   span {
-    font-weight: bold;
-    color: #2f1f1b;
+    display: block;
+    width: 100%;
+  }
+
+  span:nth-child(odd) {
+    text-align: left;
+  }
+
+  span:nth-child(even) {
+    text-align: right;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: clamp(20px, 1.8vw, 24px);
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 19px;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 24px;
+
+    span {
+      text-align: left !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 1.45;
+    gap: 2px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
   }
 `;
 export const DescriptionWrapper = styled.div`
-  position: relative;
-  top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+  width: min(100%, 320px);
+  margin: 0 auto;
+
+  @media (max-width: 1440px) {
+    width: min(100%, 290px);
+  }
+
+  @media (max-width: 1200px) {
+    width: min(100%, 260px);
+    gap: 4px;
+  }
+
+  @media (max-width: 900px) {
+    width: min(100%, 320px);
+  }
+
+  @media (max-width: 768px) {
+    width: min(100%, 280px);
+  }
+
+  @media (max-width: 480px) {
+    width: min(100%, 240px);
+  }
 `;
 
 export const DescriptionLine = styled(motion.p)`
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: ${(props) => (props.$strong ? 700 : 400)};
   color: #121212;
   margin: 0;
-  line-height: 1.5;
-  text-align: center;
-  padding: 0 1rem; // 좁은 화면에서 텍스트가 너무 붙지 않게
+  line-height: 1.45;
+  text-align: ${(props) => props.$align || "left"};
+  padding: 0;
+  width: fit-content;
+  max-width: 100%;
+  align-self: ${(props) =>
+    props.$align === "right" ? "flex-end" : "flex-start"};
 
-  span {
-    font-weight: bold;
-    color: #2f1f1b;
+  @media (max-width: 1440px) {
+    font-size: 17px;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 900px) {
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
   }
 `;
 
 export const Photo = styled(motion.img)`
-  width: auto;
-  max-height: 500px;
-  border-radius: 10px;
+  width: min(100%, 410px);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  margin-left: 0;
   position: relative;
-  top: 150px;
+  top: -72px;
+
+  @media (max-width: 1440px) {
+    width: min(100%, 340px);
+    top: -48px;
+  }
+
+  @media (max-width: 1200px) {
+    width: min(100%, 300px);
+    top: -18px;
+  }
+
+  @media (max-width: 1024px) {
+    width: min(100%, 260px);
+    top: 0;
+  }
+
+  @media (max-width: 900px) {
+    width: min(72vw, 280px);
+    align-self: center;
+    top: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: min(68vw, 240px);
+    top: 0;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 480px) {
+    width: min(72vw, 210px);
+    margin-top: 10px;
+  }
 `;
 
 export const ScrollDownArrow = styled.div`
   position: absolute;
-  bottom: 60px;
+  bottom: 42px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   cursor: pointer;
   animation: bounce 2s infinite;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
   img {
-    width: 30px; /* Adjust the size as needed */
+    width: 30px;
     height: auto;
+  }
+
+  &::after {
+    content: "scroll down";
+    font-size: 18px;
+    color: #121212;
+    letter-spacing: -0.04em;
   }
 
   @keyframes bounce {
@@ -335,6 +714,30 @@ export const ScrollDownArrow = styled.div`
   &:hover img {
     filter: brightness(1.2); /* Add a hover effect for the image */
   }
+
+  @media (max-width: 1200px) {
+    bottom: 30px;
+
+    &::after {
+      font-size: 16px;
+    }
+
+    img {
+      width: 24px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    bottom: 32px;
+
+    &::after {
+      font-size: 14px;
+    }
+
+    img {
+      width: 22px;
+    }
+  }
 `;
 
 // ScrollToTopButton 스타일 수정
@@ -354,7 +757,9 @@ export const ScrollToTopButton = styled.button`
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // 그림자 효과 추가
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 
   img {
     width: 25px; // 이미지 크기 설정
@@ -379,7 +784,9 @@ export const ScrollToTopButton = styled.button`
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
   }
 
   &:hover::after {
@@ -401,7 +808,9 @@ export const ScrollToTopButton = styled.button`
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
   }
 
   &:hover::before {
@@ -453,7 +862,9 @@ export const CircleButton = styled.div`
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
   }
 
   &:hover::before {

@@ -60,10 +60,9 @@ export const ProjectCard = styled.div`
   align-items: left;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   text-align: left;
-  transition: transform 0.3s ease-in-out;
+  transition: box-shadow 0.12s ease-out;
   cursor: pointer;
   &:hover {
-    transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
   }
   .image-container {
@@ -121,7 +120,7 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   background: white;
-  padding: 20px;
+  padding: 0 20px 20px;
   border-radius: 10px;
   width: 80%;
   max-height: 90vh; /* 최대 높이 설정 */
@@ -131,7 +130,6 @@ export const ModalContent = styled.div`
   position: relative; /* 닫기 버튼 위치 조정 */
 
   h2 {
-    margin-top: 10px;
     font-size: 33px;
     font-weight: bold;
   }
@@ -144,14 +142,34 @@ export const ModalContent = styled.div`
   }
 `;
 
+export const ModalHeader = styled.div`
+  margin: 0 -20px 18px;
+  padding: 28px 80px 24px 28px;
+  background: ${(props) => props.$color || "#f1f3f5"};
+  border-radius: 10px 10px 24px 24px;
+  text-align: left;
+
+  h2 {
+    margin: 0;
+    color: ${(props) => (props.$lightText ? "#ffffff" : "#121212")};
+  }
+
+  p {
+    margin: 10px 0 0;
+    padding: 0;
+    color: ${(props) =>
+      props.$lightText ? "rgba(255, 255, 255, 0.86)" : "rgba(18, 18, 18, 0.8)"};
+    line-height: 1.65;
+  }
+`;
+
 // 기능 섹션 스타일
 export const FeaturesSection = styled.div`
-  margin-top: 30px;
   padding: 1rem;
   /* background: #f8f9fa; */
   /* border-radius: 10px; */
   text-align: left;
-  border-top: 2px solid #ddd; // ✅ 위쪽에 선 추가
+  /* border-top: 2px solid #ddd; // ✅ 위쪽에 선 추가 */
   padding-top: 30px; // ✅ 선과 내용 사이 간격 추가
 `;
 
@@ -286,34 +304,444 @@ export const JourneySummary = styled.p`
 `;
 
 export const FeatureGroupSection = styled.div`
-  margin-top: 30px;
-  padding: 1rem;
+  margin-top: 24px;
+  padding: 0.5rem 0.75rem;
   text-align: left;
   border-top: 2px solid #ddd;
-  padding-top: 30px;
+  padding-top: 24px;
 `;
 
 export const FeatureGroupGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 18px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 14px;
+  margin-top: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(27, 28, 29, 0.25);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 999px;
+  }
 `;
 
 export const FeatureGroupCard = styled.div`
-  padding: 24px 22px;
-  border-radius: 22px;
+  flex: 0 0 280px;
+  padding: 18px 16px;
+  border-radius: 18px;
   background: #f8f8f8;
   border: 1px solid #ececec;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+  scroll-snap-align: start;
 `;
 
 export const FeatureGroupTitle = styled.h3`
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
   color: #1b1c1d;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   line-height: 1.35;
+`;
+
+export const ImprovementSection = styled.div`
+  margin-top: 30px;
+  padding: 32px 28px;
+  text-align: left;
+  border-top: 2px solid #ddd;
+`;
+
+export const ImprovementGrid = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  margin-top: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(27, 28, 29, 0.25);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 999px;
+  }
+`;
+
+export const ImprovementCard = styled.button`
+  flex: 0 0 280px;
+  aspect-ratio: 1 / 1;
+  text-align: left;
+  padding: 22px;
+  border-radius: 26px;
+  background: #2b2b2e;
+  border: 1px solid #2b2b2e;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 34px rgba(0, 0, 0, 0.18);
+    background: #232326;
+  }
+`;
+
+export const ImprovementCardNumber = styled.div`
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+`;
+
+export const ImprovementCardTitle = styled.h3`
+  margin: 84px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.22;
+  color: #fff;
+  letter-spacing: -0.03em;
+`;
+
+export const ImprovementSummary = styled.p`
+  font-size: 14px;
+  color: inherit;
+  line-height: 1.75;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  opacity: 0.88;
+`;
+
+export const ImprovementLead = styled.div`
+  padding: 20px 22px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #f8f8f8 0%, #f1f1f1 100%);
+  border: 1px solid #e9e9e9;
+  color: #2f2f2f;
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: left;
+`;
+
+export const ImprovementKeywords = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+`;
+
+export const ImprovementKeyword = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+`;
+
+export const ImprovementAction = styled.div`
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: #1b1c1d;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 16px 28px rgba(27, 28, 29, 0.22);
+`;
+
+export const ImprovementVisualFrame = styled.div`
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background: #f7f7f7;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const ImprovementOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1150;
+`;
+
+export const ImprovementModal = styled.div`
+  position: relative;
+  width: min(980px, 94vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
+`;
+
+export const ImprovementModalClose = styled.button`
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  border: none;
+  background: transparent;
+  color: #1b1c1d;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+`;
+
+export const ImprovementModalHeader = styled.div`
+  padding: 36px 40px 30px;
+  border-bottom: 1px solid #ececec;
+
+  h3 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.2;
+    color: #111;
+    text-align: left;
+  }
+`;
+
+export const ImprovementModalSubtext = styled.p`
+  margin: 14px 0 0;
+  color: #5b6677;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: left;
+`;
+
+export const ImprovementCompareSection = styled.div`
+  padding: 28px 40px 12px;
+`;
+
+export const ImprovementViewTabs = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 8px;
+  border-radius: 999px;
+  background: #efeff3;
+`;
+
+export const ImprovementViewTab = styled.button`
+  border: none;
+  background: ${({ $active }) => ($active ? "#fff" : "transparent")};
+  color: #111;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: ${({ $active }) =>
+    $active ? "0 6px 16px rgba(0, 0, 0, 0.08)" : "none"};
+`;
+
+export const ImprovementCompareGrid = styled.div`
+  display: grid;
+  grid-template-columns: ${({ $single }) =>
+    $single ? "minmax(0, 520px)" : "repeat(auto-fit, minmax(320px, 320px))"};
+  gap: 18px;
+  margin-top: 18px;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const ImprovementCompareCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const ImprovementCompareBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+`;
+
+export const ImprovementMajorSection = styled.div`
+  padding: 20px 40px 40px;
+`;
+
+export const ImprovementCategoryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+`;
+
+export const ImprovementCategoryIcon = styled.div`
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: #eaf0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-size: 28px;
+  flex-shrink: 0;
+`;
+
+export const ImprovementCategoryTitle = styled.div`
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+`;
+
+export const ImprovementCategoryCount = styled.div`
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #d8dce4;
+  background: #fff;
+  color: #222;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+export const ImprovementTimeline = styled.div`
+  position: relative;
+  margin-top: 22px;
+  padding-left: 26px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 999px;
+    background: #e5e7ee;
+  }
+`;
+
+export const ImprovementStoryCard = styled.div`
+  margin-bottom: 18px;
+  padding: 24px 24px 22px;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #dfe3eb;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.04);
+`;
+
+export const ImprovementStoryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+`;
+
+export const ImprovementStoryCheck = styled.div`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid
+    ${({ $variant }) => ($variant === "result" ? "#3b82f6" : "#10c45a")};
+  color: ${({ $variant }) => ($variant === "result" ? "#3b82f6" : "#10c45a")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  flex-shrink: 0;
+`;
+
+export const ImprovementStoryBody = styled.div`
+  padding-left: 50px;
+`;
+
+export const ImprovementDetailCard = styled.div`
+  padding: 22px 20px;
+  border-radius: 22px;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  text-align: left;
+`;
+
+export const ImprovementDetailTitle = styled.h4`
+  margin: 0 0 12px;
+  color: #1b1c1d;
+  font-size: 19px;
+  font-weight: 700;
+`;
+
+export const ImprovementDetailList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const ImprovementDetailItem = styled.li`
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 10px;
+  color: #4d4d4d;
+  line-height: 1.75;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1b1c1d;
+  }
 `;
 
 export const TroubleSection = styled.div`

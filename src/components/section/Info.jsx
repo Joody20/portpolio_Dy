@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef } from "react";
 import {
   GlobalStyle,
   Section,
@@ -28,76 +27,20 @@ import notion from "../../assets/images/notion.png";
 import ga from "../../assets/images/googleAnalytics.png";
 import github from "../../assets/images/github.png";
 import figma from "../../assets/images/figma.png";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Info = () => {
-  const controls = useAnimation(); // animation control
-  const boxRefs = useRef([]);
-
-  // Intersection Observer 설정
-  const handleIntersection = useCallback(
-    (entries) => {
-      entries.forEach((entry) => {
-        const target = entry.target;
-        if (entry.isIntersecting) {
-          target.classList.add("visible");
-          controls.start("visible");
-        } else {
-          target.classList.remove("visible");
-          controls.start("hidden");
-        }
-      });
-    },
-    [controls],
-  );
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null, // 뷰포트 기준
-      rootMargin: "0px",
-      threshold: 0, // 0%라도 보이면 트리거
-    };
-
-    const observer = new IntersectionObserver(
-      handleIntersection,
-      observerOptions,
-    );
-
-    boxRefs.current.forEach((box) => observer.observe(box));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [handleIntersection]);
-
-  // refs 배열에 Box 요소 추가
-  const addToRefs = (el) => {
-    if (el && !boxRefs.current.includes(el)) {
-      boxRefs.current.push(el);
-    }
-  };
-
-  // Variants 정의
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.3,
-        staggerChildren: 0.5,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
+  const blockVariants = {
+    hidden: { y: 36, opacity: 0 },
+    visible: (index = 0) => ({
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.55,
+        delay: index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
       },
-    },
+    }),
   };
 
   const skillItems = [
@@ -122,16 +65,16 @@ const Info = () => {
     <>
       <GlobalStyle />
       <Section>
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          animate={controls}
-          className="flex flex-col"
-          style={{ marginRight: "20px" }}
-        >
+        <div className="flex flex-col" style={{ marginRight: "20px" }}>
           <EduWrapper>
             <Title>Education</Title>
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={0}
+              variants={blockVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.22, margin: "0px 0px -10% 0px" }}
+            >
               <Rectangle>
                 <StyledImage src={Kwlogo} alt="Kwangwoon University Logo" />
                 <p>2020.02 ~ 2025.02</p>
@@ -156,7 +99,13 @@ const Info = () => {
                 </p> */}
               </Rectangle>
             </motion.div>
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={1}
+              variants={blockVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.22, margin: "0px 0px -10% 0px" }}
+            >
               <Rectangle>
                 <StyledImage src={kakaoboot} alt="카카오테크 부트캠프" />
                 <p>2025.09 ~ 2026.03</p>
@@ -180,7 +129,13 @@ const Info = () => {
 
           <SkillWrapper>
             <Title2>Skills</Title2>
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={2}
+              variants={blockVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.18, margin: "0px 0px -8% 0px" }}
+            >
               <SkillMarquee>
                 <SkillTrack>
                   {[...firstRowSkills, ...firstRowSkills].map(
@@ -213,7 +168,7 @@ const Info = () => {
               </SkillMarquee>
             </motion.div>
           </SkillWrapper>
-        </motion.div>
+        </div>
       </Section>
     </>
   );

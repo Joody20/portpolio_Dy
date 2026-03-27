@@ -12,6 +12,7 @@ import unic5 from "../../assets/images/unic5.png";
 export const project2 = [
   {
     image: council,
+    themeColor: "#4376ab",
     title: "학생회 및 학부생 웹 서비스",
     date: "2024/03 ~ 2024/11",
     description:

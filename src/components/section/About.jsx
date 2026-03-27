@@ -1,87 +1,37 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState } from "react";
 import {
   GlobalStyle,
   Section,
   Title,
+  AboutInner,
+  ProfileColumn,
   ProfileImage,
   Keywords,
   InterViewTitle,
   InterViewWrapper,
+  InterviewColumn,
   Box,
   InTitle,
   InDescription,
 } from "../../styles/About/About.style";
 import myIcon from "../../assets/images/icon-1.png";
 import myIconHover from "../../assets/images/icon-3.png";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const controls = useAnimation(); // animation control
-  const boxRefs = useRef([]);
-
-  // Intersection Observer 설정 (useCallback 사용)
-  const handleIntersection = useCallback(
-    (entries) => {
-      entries.forEach((entry) => {
-        const target = entry.target;
-        if (entry.isIntersecting) {
-          target.classList.add("visible");
-          controls.start("visible");
-        } else {
-          target.classList.remove("visible");
-          controls.start("hidden");
-        }
-      });
-    },
-    [controls],
-  ); // ✅ 의존성 배열 추가
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(
-      handleIntersection,
-      observerOptions,
-    );
-
-    boxRefs.current.forEach((box) => observer.observe(box));
-
-    return () => observer.disconnect();
-  }, [handleIntersection]); // ✅ `handleIntersection` 추가
-
-  // refs 배열에 Box 요소 추가
-  const addToRefs = (el) => {
-    if (el && !boxRefs.current.includes(el)) {
-      boxRefs.current.push(el);
-    }
-  };
-
-  // Variants 정의
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.2,
-        staggerChildren: 0.5,
-      },
-    },
-  };
 
   const itemVariants = {
-    hidden: { y: -50, opacity: 0 },
-    visible: {
+    hidden: { y: -40, opacity: 0 },
+    visible: (index = 0) => ({
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.7,
+        delay: index * 0.12,
+        ease: [0.16, 1, 0.3, 1],
       },
-    },
+    }),
   };
 
   return (
@@ -89,29 +39,32 @@ const About = () => {
       <GlobalStyle />
       <Section>
         <Title>About Me</Title>
-        <ProfileImage
-          src={isHovered ? myIconHover : myIcon} // 상태에 따라 이미지 변경
-          alt="내 임티"
-          onMouseEnter={() => setIsHovered(true)} // 마우스가 이미지 위로 올 때 상태 변경
-          onMouseLeave={() => setIsHovered(false)} // 마우스가 이미지 밖으로 나갈 때 상태 변경
-        />
-        <Keywords>
-          <span>#성실함</span>
-          <span>#꾸준함</span>
-          <span>#T인척 하는 F</span>
-        </Keywords>
+        <AboutInner>
+          <ProfileColumn>
+            <ProfileImage
+              src={isHovered ? myIconHover : myIcon}
+              alt="내 임티"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            />
+            <Keywords>
+              <span>#성실함</span>
+              <span>#꾸준함</span>
+              <span>#T인척 하는 F</span>
+            </Keywords>
+          </ProfileColumn>
 
-        <motion.div
-          variants={sectionVariants}
-          initial="visible" // 바로 나타나게끔 설정
-          animate={controls}
-          className="flex flex-col gap-6"
-          style={{ marginLeft: "630px" }}
-        >
+          <InterviewColumn>
           <InterViewWrapper>
             <InterViewTitle>Interview.</InterViewTitle>
 
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={0}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
+            >
               <Box>
                 <InTitle>Q. 자신의 성격은 어떠하다고 생각하는지?</InTitle>
                 <InDescription>
@@ -126,7 +79,13 @@ const About = () => {
               </Box>
             </motion.div>
 
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={1}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
+            >
               <Box>
                 <InTitle>Q. 개발자가 되고자 하는 이유는?</InTitle>
                 <InDescription>
@@ -149,7 +108,13 @@ const About = () => {
               </Box>
             </motion.div>
 
-            <motion.div ref={addToRefs} variants={itemVariants}>
+            <motion.div
+              custom={2}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
+            >
               <Box>
                 <InTitle>Q. 어떤 개발자가 되고자 노력할 것 인지?</InTitle>
                 <InDescription>
@@ -168,7 +133,8 @@ const About = () => {
               </Box>
             </motion.div>
           </InterViewWrapper>
-        </motion.div>
+          </InterviewColumn>
+        </AboutInner>
       </Section>
     </>
   );

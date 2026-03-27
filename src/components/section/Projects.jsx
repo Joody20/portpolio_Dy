@@ -9,6 +9,7 @@ import {
   ProjectDate,
   ModalOverlay,
   ModalContent,
+  ModalHeader,
   CloseButton,
   ResourceLinks,
   ResourceLink,
@@ -31,6 +32,38 @@ import {
   FeatureGroupGrid,
   FeatureGroupCard,
   FeatureGroupTitle,
+  ImprovementSection,
+  ImprovementGrid,
+  ImprovementCard,
+  ImprovementCardNumber,
+  ImprovementCardTitle,
+  ImprovementSummary,
+  ImprovementOverlay,
+  ImprovementModal,
+  ImprovementModalClose,
+  ImprovementModalHeader,
+  ImprovementModalSubtext,
+  ImprovementCompareSection,
+  ImprovementViewTabs,
+  ImprovementViewTab,
+  ImprovementCompareGrid,
+  ImprovementCompareCard,
+  ImprovementCompareBadge,
+  ImprovementMajorSection,
+  ImprovementCategoryHeader,
+  ImprovementCategoryIcon,
+  ImprovementCategoryTitle,
+  ImprovementCategoryCount,
+  ImprovementTimeline,
+  ImprovementStoryCard,
+  ImprovementStoryHeader,
+  ImprovementStoryCheck,
+  ImprovementStoryBody,
+  ImprovementLead,
+  ImprovementDetailTitle,
+  ImprovementDetailList,
+  ImprovementDetailItem,
+  ImprovementVisualFrame,
   TroubleSection,
   TroubleCard,
   TroubleLayout,
@@ -57,6 +90,7 @@ import { project5 } from "../../data/ProjectsData/project5"; // Make sure to imp
 import { project6 } from "../../data/ProjectsData/project6";
 import { project7 } from "../../data/ProjectsData/project7";
 import { project8 } from "../../data/ProjectsData/project8";
+import { motion } from "framer-motion";
 
 const projects = [
   ...project8,
@@ -69,11 +103,43 @@ const projects = [
   ...project6,
 ];
 
+const ProjectMotionCard = ({ project, index, onOpen }) => {
+  return (
+    <ProjectCard
+      as={motion.div}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{
+        scale: 1.03,
+        transition: { duration: 0.16, ease: "easeOut" },
+      }}
+      viewport={{ once: false, amount: 0.22, margin: "0px 0px -10% 0px" }}
+      transition={{
+        duration: 0.55,
+        delay: (index % 4) * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      onClick={() => onOpen(project)}
+    >
+      <div className="image-container">
+        <img src={project.image} alt={project.title} />
+      </div>
+      <div className="content">
+        <ProjectTitle>{project.title}</ProjectTitle>
+        {project.date && <ProjectDate>{project.date}</ProjectDate>}
+      </div>
+    </ProjectCard>
+  );
+};
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showUserFeatures, setShowUserFeatures] = useState(true);
   const [showAdminFeatures, setShowAdminFeatures] = useState(true);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const [selectedImprovement, setSelectedImprovement] = useState(null);
+  const [selectedImprovementView, setSelectedImprovementView] =
+    useState("compare");
 
   const galleryImages = useMemo(() => {
     if (!selectedProject) {
@@ -88,6 +154,8 @@ const Projects = () => {
       selectedProject.photo5,
       selectedProject.photo6,
       selectedProject.photo7,
+      selectedProject.photo8,
+      selectedProject.photo9,
     ].filter(Boolean);
   }, [selectedProject]);
 
@@ -96,6 +164,8 @@ const Projects = () => {
     setShowUserFeatures(true); // Default to showing user features
     setShowAdminFeatures(true); // Default to showing admin features
     setActiveImageIndex(null);
+    setSelectedImprovement(null);
+    setSelectedImprovementView("compare");
   };
 
   const closeModal = () => {
@@ -103,6 +173,8 @@ const Projects = () => {
     setShowUserFeatures(true);
     setShowAdminFeatures(true);
     setActiveImageIndex(null);
+    setSelectedImprovement(null);
+    setSelectedImprovementView("compare");
   };
 
   const openImageLightbox = (index) => {
@@ -285,6 +357,37 @@ const Projects = () => {
     );
   };
 
+  const renderImprovements = () => {
+    if (
+      !selectedProject?.improvements_title ||
+      !selectedProject?.improvements?.length
+    ) {
+      return null;
+    }
+
+    return (
+      <ImprovementSection>
+        <FeaturesTitle>{selectedProject.improvements_title}</FeaturesTitle>
+        <ImprovementGrid>
+          {selectedProject.improvements.map((item, index) => (
+            <ImprovementCard
+              key={`${selectedProject.title}-improvement-${index}`}
+              onClick={() => {
+                setSelectedImprovement(item);
+                setSelectedImprovementView("compare");
+              }}
+            >
+              <ImprovementCardNumber>
+                {String(index + 1).padStart(2, "0")}
+              </ImprovementCardNumber>
+              <ImprovementCardTitle>{item.title}</ImprovementCardTitle>
+            </ImprovementCard>
+          ))}
+        </ImprovementGrid>
+      </ImprovementSection>
+    );
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -292,15 +395,12 @@ const Projects = () => {
         <Title>Projects</Title>
         <ProjectContainer>
           {projects.map((project, index) => (
-            <ProjectCard key={index} onClick={() => openModal(project)}>
-              <div className="image-container">
-                <img src={project.image} alt={project.title} />
-              </div>
-              <div className="content">
-                <ProjectTitle>{project.title}</ProjectTitle>
-                {project.date && <ProjectDate>{project.date}</ProjectDate>}
-              </div>
-            </ProjectCard>
+            <ProjectMotionCard
+              key={index}
+              index={index}
+              project={project}
+              onOpen={openModal}
+            />
           ))}
         </ProjectContainer>
       </Section>
@@ -315,53 +415,57 @@ const Projects = () => {
                 className="close-icon"
               />
             </CloseButton>
-            <h2>{selectedProject.title}</h2>
-            {selectedProject.date && <p>{selectedProject.date}</p>}
-            <p>{selectedProject.description}</p>
+            <ModalHeader
+              $color={selectedProject.themeColor}
+              $lightText={selectedProject.headerLightText}
+            >
+              <h2>{selectedProject.title}</h2>
+              {selectedProject.date && <p>{selectedProject.date}</p>}
+              <p>{selectedProject.description}</p>
+              {(selectedProject.github ||
+                selectedProject.wiki ||
+                selectedProject.designDoc) && (
+                <ResourceLinks>
+                  {selectedProject.github && (
+                    <ResourceLink
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ResourceLinkTag>Code</ResourceLinkTag>
+                      <img
+                        src={selectedProject.git}
+                        alt="GitHub"
+                        style={{ width: "18px", height: "18px" }}
+                      />
+                      Github
+                    </ResourceLink>
+                  )}
 
-            {(selectedProject.github ||
-              selectedProject.wiki ||
-              selectedProject.designDoc) && (
-              <ResourceLinks>
-                {selectedProject.github && (
-                  <ResourceLink
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ResourceLinkTag>Code</ResourceLinkTag>
-                    <img
-                      src={selectedProject.git}
-                      alt="GitHub"
-                      style={{ width: "18px", height: "18px" }}
-                    />
-                    Github
-                  </ResourceLink>
-                )}
+                  {selectedProject.wiki && (
+                    <ResourceLink
+                      href={selectedProject.wiki}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ResourceLinkTag>Wiki</ResourceLinkTag>
+                      FrontEnd 위키
+                    </ResourceLink>
+                  )}
 
-                {selectedProject.wiki && (
-                  <ResourceLink
-                    href={selectedProject.wiki}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ResourceLinkTag>Wiki</ResourceLinkTag>
-                    FrontEnd 위키
-                  </ResourceLink>
-                )}
-
-                {selectedProject.designDoc && (
-                  <ResourceLink
-                    href={selectedProject.designDoc}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ResourceLinkTag>Docs</ResourceLinkTag>
-                    FrontEnd 설계 문서
-                  </ResourceLink>
-                )}
-              </ResourceLinks>
-            )}
+                  {selectedProject.designDoc && (
+                    <ResourceLink
+                      href={selectedProject.designDoc}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ResourceLinkTag>Docs</ResourceLinkTag>
+                      FrontEnd 설계 문서
+                    </ResourceLink>
+                  )}
+                </ResourceLinks>
+              )}
+            </ModalHeader>
 
             {/* Features Section */}
             <FeaturesSection>
@@ -478,6 +582,7 @@ const Projects = () => {
             </FeaturesSection>
 
             {renderFeatureGroups()}
+            {renderImprovements()}
 
             {/* Additional Sections for Step Images, Model Descriptions, etc. */}
             {selectedProject.subTitle && (
@@ -547,6 +652,162 @@ const Projects = () => {
             </WindowInfo>
           </ModalContent>
         </ModalOverlay>
+      )}
+
+      {selectedProject && selectedImprovement && (
+        <ImprovementOverlay onClick={() => setSelectedImprovement(null)}>
+          <ImprovementModal onClick={(e) => e.stopPropagation()}>
+            <ImprovementModalClose
+              type="button"
+              onClick={() => setSelectedImprovement(null)}
+            >
+              ×
+            </ImprovementModalClose>
+            <ImprovementModalHeader>
+              <h3>
+                {selectedImprovement.detailTitle || selectedImprovement.title}
+              </h3>
+              <ImprovementModalSubtext>
+                {selectedImprovement.summary}
+              </ImprovementModalSubtext>
+            </ImprovementModalHeader>
+
+            {selectedImprovement.images?.length > 0 && (
+              <ImprovementCompareSection>
+                <ImprovementDetailTitle>Before & After</ImprovementDetailTitle>
+                {selectedImprovement.imageViewMode !== "compare-only" && (
+                  <ImprovementViewTabs>
+                    {(selectedImprovement.imageTabs || [
+                      "compare",
+                      "before",
+                      "after1",
+                      "after2",
+                    ]).map((tab) => (
+                      <ImprovementViewTab
+                        key={`${selectedImprovement.title}-${tab}`}
+                        type="button"
+                        $active={selectedImprovementView === tab}
+                        onClick={() => setSelectedImprovementView(tab)}
+                      >
+                        {tab === "compare" && "비교"}
+                        {tab === "before" && "개선 전"}
+                        {tab === "after1" && "개선 후"}
+                        {tab === "after2" && "최종 개선"}
+                      </ImprovementViewTab>
+                    ))}
+                  </ImprovementViewTabs>
+                )}
+
+                {selectedImprovement.imageViewMode === "compare-only" ||
+                selectedImprovementView === "compare" ? (
+                  <ImprovementCompareGrid>
+                    {selectedImprovement.images.map((image, index) => (
+                      <ImprovementCompareCard
+                        key={`${selectedImprovement.title}-visual-${index}`}
+                      >
+                        <ImprovementCompareBadge>
+                          {image.label}
+                        </ImprovementCompareBadge>
+                        <ImprovementVisualFrame>
+                          <img
+                            src={image.src}
+                            alt={`${selectedImprovement.title} ${image.label}`}
+                          />
+                        </ImprovementVisualFrame>
+                      </ImprovementCompareCard>
+                    ))}
+                  </ImprovementCompareGrid>
+                ) : (
+                  <ImprovementCompareGrid $single>
+                    {selectedImprovement.images
+                      .filter((image) => {
+                        if (selectedImprovementView === "before") {
+                          return image.label === "Before";
+                        }
+
+                        if (selectedImprovementView === "after1") {
+                          return image.label === "After 1";
+                        }
+
+                        return image.label === "After 2";
+                      })
+                      .map((image, index) => (
+                        <ImprovementCompareCard
+                          key={`${selectedImprovement.title}-single-${index}`}
+                        >
+                          <ImprovementCompareBadge>
+                            {image.label}
+                          </ImprovementCompareBadge>
+                          <ImprovementVisualFrame>
+                            <img
+                              src={image.src}
+                              alt={`${selectedImprovement.title} ${image.label}`}
+                            />
+                          </ImprovementVisualFrame>
+                        </ImprovementCompareCard>
+                      ))}
+                  </ImprovementCompareGrid>
+                )}
+              </ImprovementCompareSection>
+            )}
+
+            <ImprovementMajorSection>
+              <ImprovementDetailTitle>주요 개선사항</ImprovementDetailTitle>
+              <ImprovementCategoryHeader>
+                <ImprovementCategoryIcon>◔</ImprovementCategoryIcon>
+                <ImprovementCategoryTitle>
+                  {selectedImprovement.detailCategory || "개선 사항"}
+                </ImprovementCategoryTitle>
+                <ImprovementCategoryCount>
+                  {selectedImprovement.detailSections?.length || 0}개 항목
+                </ImprovementCategoryCount>
+              </ImprovementCategoryHeader>
+              <ImprovementLead>
+                {selectedImprovement.detailLead ||
+                  selectedImprovement.detailBody ||
+                  selectedImprovement.summary}
+              </ImprovementLead>
+              <ImprovementTimeline>
+                {selectedImprovement.detailSections?.map((section, index) => (
+                  <ImprovementStoryCard
+                    key={`${selectedImprovement.title}-section-${index}`}
+                  >
+                    <ImprovementStoryHeader>
+                      <ImprovementStoryCheck>✓</ImprovementStoryCheck>
+                      <ImprovementDetailTitle>{section.title}</ImprovementDetailTitle>
+                    </ImprovementStoryHeader>
+                    <ImprovementStoryBody>
+                      <ImprovementDetailList>
+                        {section.items.map((item, itemIndex) => (
+                          <ImprovementDetailItem
+                            key={`${section.title}-item-${itemIndex}`}
+                          >
+                            {item}
+                          </ImprovementDetailItem>
+                        ))}
+                      </ImprovementDetailList>
+                    </ImprovementStoryBody>
+                  </ImprovementStoryCard>
+                ))}
+                {selectedImprovement.result && (
+                  <ImprovementStoryCard>
+                    <ImprovementStoryHeader>
+                      <ImprovementStoryCheck $variant="result">
+                        ↗
+                      </ImprovementStoryCheck>
+                      <ImprovementDetailTitle>결과</ImprovementDetailTitle>
+                    </ImprovementStoryHeader>
+                    <ImprovementStoryBody>
+                      <ImprovementSummary style={{ fontSize: "18px", lineHeight: "1.9" }}>
+                        {selectedImprovement.result}
+                      </ImprovementSummary>
+                    </ImprovementStoryBody>
+                  </ImprovementStoryCard>
+                )}
+              </ImprovementTimeline>
+            </ImprovementMajorSection>
+          </ImprovementModal>
+        </ImprovementOverlay>
       )}
 
       {selectedProject &&

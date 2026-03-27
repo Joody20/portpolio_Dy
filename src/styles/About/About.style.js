@@ -14,12 +14,13 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   background-color: #1b1c1d;
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding: 120px 24px 56px;
 `;
 
 export const Header = styled.header`
@@ -39,24 +40,66 @@ export const Title = styled.h2`
   font-weight: 900;
   font-size: 60px;
   color: #f5f5f5;
-  position: absolute; /* 절대 위치 지정 */
-  top: 30px; /* 상단 여백 */
-  left: 30px; /* 좌측 여백 */
-  margin: 0; /* 기본 여백 제거 */
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  margin: 0;
+`;
+
+export const AboutInner = styled.div`
+  width: 100%;
+  max-width: 1380px;
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 92px);
+  align-items: start;
+
+  @media (max-width: 1180px) {
+    grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+`;
+
+export const ProfileColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  position: sticky;
+  top: 120px;
+
+  @media (max-width: 900px) {
+    position: static;
+  }
+`;
+
+export const InterviewColumn = styled.div`
+  min-width: 0;
 `;
 
 export const ProfileImage = styled.img`
-  width: 400px; /* 이미지 크기 조정 */
-  height: 400px;
-  border-radius: 50%; /* 원형으로 만들기 */
-  object-fit: cover; /* 이미지 비율 유지 */
-  position: absolute; /* 절대 위치 지정 */
-  top: 280px; /* 원하는 위치 설정 */
-  left: 140px; /* 왼쪽 정렬 */
-  transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+  width: min(100%, 360px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 1180px) {
+    width: min(100%, 300px);
+  }
+
+  @media (max-width: 900px) {
+    width: min(100%, 260px);
   }
 `;
 
@@ -64,10 +107,8 @@ export const Keywords = styled.p`
   font-size: 15px;
   font-weight: 600;
   color: #fff;
-  position: absolute; /* 절대 위치 지정 */
-  top: 690px; /* 원하는 위치 설정 */
-  left: 140px;
-  width: 400px;
+  margin: 0;
+  width: min(100%, 360px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,53 +124,59 @@ export const Keywords = styled.p`
 
 export const InterViewWrapper = styled.div`
   display: flex;
-  flex-direction: column; /* 세로로 나열 */
-  align-items: flex-end; /* 전체를 오른쪽 정렬 */
-  width: 100%; /* 화면 크기에 맞게 조정 */
-  padding: 20px; /* 내부 여백 추가 */
-  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 `;
 
 export const InterViewTitle = styled.h2`
   font-size: 40px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 20px; /* 간격 조정 */
-  margin-right: 130px;
+  margin: 0 0 20px;
+  text-align: left;
 `;
 
 export const Box = styled.div`
-  width: 800px; /* 내용에 맞게 너비 조정 */
-  max-width: 800px; /* 최대 너비 설정 */
+  width: min(100%, 840px);
   background-color: #2a2a2b;
   border-top-right-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* 세로 배치 */
+  flex-direction: column;
   justify-content: flex-start;
-  /* align-items: flex-end; Box 내부 요소도 오른쪽 정렬 */
-  padding: 20px; /* 패딩 추가 */
+  padding: 20px;
   color: #2f1f1b;
   font-size: 20px;
-  margin-bottom: 20px; /* 아래 요소와 간격 */
-  align-self: flex-end; /* 부모 기준으로 오른쪽 정렬 */
-  margin-right: 130px;
+  margin-bottom: 20px;
+  align-self: stretch;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    padding: 18px;
+  }
 `;
 
 export const InTitle = styled.p`
   color: #fff;
   position: relative;
-  text-align: left; /* 왼쪽 정렬 */
+  text-align: left;
   margin-top: 15px;
   font-size: 25px;
   font-weight: 600;
+
+  @media (max-width: 900px) {
+    font-size: 22px;
+  }
 `;
 
 export const InDescription = styled.p`
   color: #fff;
   position: relative;
   text-align: left;
-  margin-top: 10px; /* Add more space from the title */
+  margin-top: 10px;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.6;
@@ -137,5 +184,10 @@ export const InDescription = styled.p`
 
   span {
     font-weight: bold;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 16px;
+    line-height: 1.7;
   }
 `;
