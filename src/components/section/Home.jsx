@@ -27,8 +27,6 @@ import {
 } from "../../styles/Home/Home.style";
 import { motion } from "framer-motion";
 // import photo from "../../assets/images/dayeong_img.webp";
-import photo2 from "../../assets/images/me.PNG";
-import photo1 from "../../assets/images/my.PNG";
 import photo from "../../assets/images/new_me.JPG";
 import DownArrowImage from "../../assets/images/down-arrow.png";
 import UpArrowImage from "../../assets/images/arrow.png";
