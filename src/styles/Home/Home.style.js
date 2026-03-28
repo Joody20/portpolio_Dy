@@ -673,7 +673,7 @@ export const Photo = styled(motion.img)`
 
 export const ScrollDownArrow = styled.div`
   position: absolute;
-  bottom: 42px;
+  bottom: 72px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -716,7 +716,7 @@ export const ScrollDownArrow = styled.div`
   }
 
   @media (max-width: 1200px) {
-    bottom: 30px;
+    bottom: 52px;
 
     &::after {
       font-size: 16px;
@@ -728,7 +728,7 @@ export const ScrollDownArrow = styled.div`
   }
 
   @media (max-width: 900px) {
-    bottom: 32px;
+    bottom: 44px;
 
     &::after {
       font-size: 14px;
