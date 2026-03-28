@@ -16,6 +16,7 @@ import trouble4 from "../../assets/images/pr7_trou_4.png";
 export const project7 = [
   {
     image: katelog,
+    themeColor: "#239b5d",
     title: "Katelog(카테부 소통 커뮤니티)",
     date: "2025/11 ~ 2025/12",
     description:
@@ -80,7 +81,7 @@ export const project7 = [
         cause:
           "renderApp()에서 첫 렌더링과 이후 업데이트를 구분하지 않아 상태 변경마다 기존 내용을 비우지 않고 appendChild()가 반복 실행되었습니다. 또한 HTML에 이미 존재하는 #login_container를 mount 타겟으로 사용하면서, App() 내부에서도 동일한 ID를 가진 루트를 다시 생성해 VDOM과 실제 DOM 구조가 어긋났습니다.",
         solution:
-          "첫 렌더링에서는 root.innerHTML = \"\" 이후 appendChild()를 수행하고, 이후 렌더링부터는 updateElement()가 동작하도록 Mount / Update 흐름을 분리했습니다. 동시에 App() 내부의 중복 루트 컨테이너 ID를 제거해 외부 mount 타겟과 렌더링 구조를 일치시켰습니다.",
+          '첫 렌더링에서는 root.innerHTML = "" 이후 appendChild()를 수행하고, 이후 렌더링부터는 updateElement()가 동작하도록 Mount / Update 흐름을 분리했습니다. 동시에 App() 내부의 중복 루트 컨테이너 ID를 제거해 외부 mount 타겟과 렌더링 구조를 일치시켰습니다.',
         image: trouble1,
       },
       {

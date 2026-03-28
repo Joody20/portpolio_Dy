@@ -9,6 +9,7 @@ import dash4 from "../../assets/images/dash4.png";
 export const project6 = [
   {
     image: dashboard,
+    themeColor: "#e3f0ff",
     title: "파킨슨병환자 대시보드",
     date: "2024/09 ~ 2024/12",
     description:

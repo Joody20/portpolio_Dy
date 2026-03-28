@@ -10,6 +10,7 @@ import photo5 from "../../assets/images/my5.png";
 export const project4 = [
   {
     image: myintro,
+    themeColor: "#fecdbe",
     title: "자기소개 및 방명록 작성 개인프로젝트",
     date: "2024/03 ~ 2024/06",
     description:

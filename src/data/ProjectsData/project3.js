@@ -12,6 +12,7 @@ import alba7 from "../../assets/images/alba7.png";
 export const project3 = [
   {
     image: alba,
+    themeColor: "#ffd358",
     title: "아르바이트생들의 후기 작성 플랫폼",
     date: "2023/09 ~ 2023/12",
     description:

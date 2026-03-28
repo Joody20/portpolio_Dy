@@ -9,6 +9,11 @@ import {
   Title,
   ColoredSpan,
   NextSection,
+  NextSectionInner,
+  SideLinks,
+  HeroLeft,
+  HeroRight,
+  IntroText,
   GitHubLink as StyledGitHubLink,
   SectionTitle,
   Subtitle,
@@ -22,7 +27,7 @@ import {
 } from "../../styles/Home/Home.style";
 import { motion } from "framer-motion";
 // import photo from "../../assets/images/dayeong_img.webp";
-import photo1 from "../../assets/images/my.PNG";
+import photo from "../../assets/images/new_me.JPG";
 import DownArrowImage from "../../assets/images/down-arrow.png";
 import UpArrowImage from "../../assets/images/arrow.png";
 import feedback from "../../assets/images/feedback.png";
@@ -45,7 +50,7 @@ const Home = () => {
         event.preventDefault();
       }
     },
-    [isAnimating]
+    [isAnimating],
   );
 
   useEffect(() => {
@@ -128,6 +133,14 @@ const Home = () => {
     }
   };
 
+  const scrollToSection = (index) => {
+    const sections = document.querySelectorAll("main > section");
+    const target = sections[index];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -154,63 +167,94 @@ const Home = () => {
       </Section>
       <motion.div
         initial={{ scale: 1 }}
-        animate={{ scale: 1.1 }}
+        animate={{ scale: 1.03 }}
         transition={{ duration: 5, ease: "easeInOut" }}
         style={{ width: "100%", height: "100%" }}
       >
         <NextSection id="next-section">
-          <motion.div animate={githubLinkControls} initial={{ opacity: 0 }}>
-            <StyledGitHubLink
-              href="https://github.com/Joody20"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </StyledGitHubLink>
-          </motion.div>
-          <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
-            <MailLink
-              href="mailto:judayeong10@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Mail
-            </MailLink>
-          </motion.div>
-          <SectionTitle>
-            <span className="b">B</span>usiness <span className="s">S</span>
-            ystem <span className="e">E</span>ngineer
-          </SectionTitle>
-          <Subtitle>
-            미래의 올네인{" "}
-            <ColoredSpan>
-              <span className="char-1">주</span>
-              <span className="char-2">다</span>
-              <span className="char-3">영</span>
-            </ColoredSpan>{" "}
-            입니다.
-          </Subtitle>
-          <DescriptionWrapper>
-            <DescriptionLine
-              animate={descriptionLine1Controls}
-              initial={{ opacity: 0, y: 50 }}
-            >
-              <span>끊임없는 도전</span>과 <span>자기 혁신</span>으로,
-              <span> IT 기술</span>과 <span>비즈니스</span>를 연결하여
-            </DescriptionLine>
-            <DescriptionLine
-              animate={descriptionLine2Controls}
-              initial={{ opacity: 0, y: 50 }}
-            >
-              고객에게 <span>최상의 경험</span>을 제공하는 개발자입니다.
-            </DescriptionLine>
-          </DescriptionWrapper>
-          <Photo
-            src={photo1}
-            alt="Profile"
-            animate={photoControls}
-            initial={{ scale: 1 }}
-          />
+          <div className="next-nav">
+            <button type="button" onClick={() => scrollToSection(1)}>
+              about me
+            </button>
+            <button type="button" onClick={() => scrollToSection(2)}>
+              skills
+            </button>
+            <button type="button" onClick={() => scrollToSection(3)}>
+              projects
+            </button>
+            <button type="button" onClick={() => scrollToSection(4)}>
+              contacts
+            </button>
+          </div>
+          <NextSectionInner>
+            <SideLinks>
+              <motion.div animate={githubLinkControls} initial={{ opacity: 0 }}>
+                <StyledGitHubLink
+                  href="https://github.com/Joody20"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  github
+                </StyledGitHubLink>
+              </motion.div>
+              <motion.div animate={mailLinkControls} initial={{ opacity: 0 }}>
+                <MailLink
+                  href="mailto:judayeong10@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  g-mail
+                </MailLink>
+              </motion.div>
+            </SideLinks>
+
+            <HeroLeft>
+              <SectionTitle>
+                Frontend
+                <br />
+                Engineer
+              </SectionTitle>
+            </HeroLeft>
+
+            <HeroRight>
+              <Photo
+                src={photo}
+                alt="Profile"
+                animate={photoControls}
+                initial={{ scale: 1 }}
+              />
+              <IntroText>
+                <Subtitle>
+                  <span>사용자와 가장 가까운 곳에서,</span>
+                  <span>서비스의 가치를 전달하는</span>
+                  <span>프론트엔드 개발자입니다.</span>
+                </Subtitle>
+                <DescriptionWrapper>
+                  <DescriptionLine
+                    animate={descriptionLine2Controls}
+                    initial={{ opacity: 0, y: 50 }}
+                    $align="left"
+                  >
+                    I&apos;m a frontend developer
+                  </DescriptionLine>
+                  <DescriptionLine
+                    animate={descriptionLine2Controls}
+                    initial={{ opacity: 0, y: 50 }}
+                    $align="right"
+                  >
+                    who connects users
+                  </DescriptionLine>
+                  <DescriptionLine
+                    animate={descriptionLine2Controls}
+                    initial={{ opacity: 0, y: 50 }}
+                    $align="left"
+                  >
+                    with the true value of a service.
+                  </DescriptionLine>
+                </DescriptionWrapper>
+              </IntroText>
+            </HeroRight>
+          </NextSectionInner>
           <ScrollDownArrow onClick={scrollToNextSection}>
             <img src={DownArrowImage} alt="Scroll Down" />
           </ScrollDownArrow>

@@ -10,6 +10,7 @@ import git from "../../assets/images/github.png";
 export const project1 = [
   {
     image: port,
+    themeColor: "#d5d6d9",
     title: "주다영 개인포트폴리오",
     date: "2024/12 ~ 진행중",
     des: "프론트엔드 개발자 포트폴리오",
