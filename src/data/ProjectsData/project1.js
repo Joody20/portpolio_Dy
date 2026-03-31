@@ -1,9 +1,9 @@
-import port from "../../assets/images/port.png";
-import pro1_photo2 from "../../assets/images/port2.png";
-import pro1_photo3 from "../../assets/images/port3.png";
-import pro1_photo4 from "../../assets/images/port6.png";
-import pro1_photo5 from "../../assets/images/port7.png";
-import pro1_photo6 from "../../assets/images/port5.png";
+import port from "../../assets/images/port_1.png";
+import pro1_photo2 from "../../assets/images/port_2.png";
+import pro1_photo3 from "../../assets/images/port_3.png";
+import pro1_photo4 from "../../assets/images/port_4.png";
+import pro1_photo5 from "../../assets/images/port_5.png";
+import pro1_photo6 from "../../assets/images/port_6.png";
 import close_btn from "../../assets/images/close.png";
 import git from "../../assets/images/github.png";
 
@@ -12,7 +12,7 @@ export const project1 = [
     image: port,
     themeColor: "#d5d6d9",
     title: "주다영 개인포트폴리오",
-    date: "2024/12 ~ 진행중",
+    date: "2025/11 ~ 진행중",
     des: "프론트엔드 개발자 포트폴리오",
     description:
       "개발자로 취업을 준비하며, 저의 스펙, 프로젝트, 기술 스택 등 핵심 정보를 한눈에 확인할 수 있도록 제작한 포트폴리오입니다. 사용자가 직관적으로 빠르게 내용을 파악할 수 있도록 설계했으며, 애니메이션 효과를 활용해 디자인적인 완성도를 높이는 데 집중했습니다.",

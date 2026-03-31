@@ -290,7 +290,7 @@ export const project8 = [
             title: "메시지 전송 및 이미지 처리",
             items: [
               "메시지 전송 시 Optimistic UI 적용. 서버 응답 전 즉시 UI 반영.",
-              "이미지는 Presigned URL 발급 → S3 업로드 → imageObjectKey 획득 → STOMP SEND 구조 적용.",
+              "이미지는 Presigned URL 발급 → S3 업로드 → imageObjectKey 획득",
             ],
           },
           {
@@ -298,14 +298,12 @@ export const project8 = [
             items: [
               "읽음 상태는 /topic/chat/rooms/{roomId}/read-state 채널로 분리 관리.",
               "participants snapshot, 단건 read event 두 형태 모두 처리. lastReadMessageId 상태 유지.",
-              "초기 메시지는 REST API, 실시간 메시지는 WebSocket, 과거 메시지는 cursor 기반 infinite scroll로 역할 분리.",
             ],
           },
           {
             title: "안읽음 수(Unread Count) 클라이언트 계산",
             items: [
               "서버는 메시지별 unread count 대신 참여자별 lastReadMessageId만 전달. unread count는 클라이언트에서 직접 계산.",
-              "예시: 메시지 ID 7, A=10, B=8, C=5라면 A·B는 읽음, C는 안읽음.",
               "발신자를 제외한 참여자 중 lastReadMessageId >= messageId 조건으로 readCount 계산.",
               "totalOtherParticipants - readCount 방식으로 unreadCount 계산.",
               "계산 결과는 messageId → unreadCount 맵으로 저장.",
@@ -342,12 +340,6 @@ export const project8 = [
             items: [
               "/revalidate/post/[postId] 전용 엔드포인트 구축. revalidateTag와 revalidatePath 병행 호출.",
               "update는 특정 게시글 상세 중심 무효화, delete는 홈·검색·프로필 피드까지 무효화 범위 확장.",
-            ],
-          },
-          {
-            title: "클라이언트 호출 안정성",
-            items: [
-              "무효화 API 호출 시 keepalive = true 적용. 페이지 이동·브라우저 종료 상황에서도 요청 유실 방지.",
             ],
           },
         ],

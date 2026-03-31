@@ -311,15 +311,15 @@ export const HeroRight = styled.div`
   justify-self: start;
   gap: 28px;
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
 
   @media (max-width: 1440px) {
-    max-width: 320px;
+    max-width: 360px;
     gap: 22px;
   }
 
   @media (max-width: 1200px) {
-    max-width: 290px;
+    max-width: 320px;
     gap: 18px;
   }
 
@@ -633,7 +633,7 @@ export const DescriptionLine = styled(motion.p)`
 `;
 
 export const Photo = styled(motion.img)`
-  width: min(100%, 320px);
+  width: min(100%, 360px);
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -644,34 +644,34 @@ export const Photo = styled(motion.img)`
   top: -72px;
 
   @media (max-width: 1440px) {
-    width: min(100%, 280px);
+    width: min(100%, 320px);
     top: -32px;
   }
 
   @media (max-width: 1200px) {
-    width: min(100%, 240px);
+    width: min(100%, 280px);
     top: -8px;
   }
 
   @media (max-width: 1024px) {
-    width: min(100%, 220px);
+    width: min(100%, 240px);
     top: 0;
   }
 
   @media (max-width: 900px) {
-    width: min(62vw, 210px);
+    width: min(64vw, 240px);
     align-self: center;
     top: 0;
   }
 
   @media (max-width: 768px) {
-    width: min(58vw, 180px);
+    width: min(60vw, 210px);
     top: 0;
     margin-top: 6px;
   }
 
   @media (max-width: 480px) {
-    width: min(54vw, 150px);
+    width: min(58vw, 180px);
     margin-top: 10px;
   }
 `;
