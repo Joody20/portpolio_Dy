@@ -165,12 +165,9 @@ export const ModalHeader = styled.div`
 
 // 기능 섹션 스타일
 export const FeaturesSection = styled.div`
-  padding: 1rem;
-  /* background: #f8f9fa; */
-  /* border-radius: 10px; */
+  padding: ${(props) => (props.$unstyled ? "0" : "1rem")};
   text-align: left;
-  /* border-top: 2px solid #ddd; // ✅ 위쪽에 선 추가 */
-  padding-top: 30px; // ✅ 선과 내용 사이 간격 추가
+  padding-top: ${(props) => (props.$unstyled ? "0" : "30px")};
 `;
 
 export const FeaturesTitle = styled.h2`
@@ -421,7 +418,7 @@ export const ImprovementCardNumber = styled.div`
 export const ImprovementCardTitle = styled.h3`
   margin: 84px 0 0;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.22;
   color: #fff;
   letter-spacing: -0.03em;
@@ -537,7 +534,7 @@ export const ImprovementModalHeader = styled.div`
 
   h3 {
     margin: 0;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1.2;
     color: #111;
     text-align: left;

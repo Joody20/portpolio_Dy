@@ -1,5 +1,5 @@
 /*CJ올리브네트웍스 포트폴리오 */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useAnimation } from "framer-motion";
 import {
   GlobalStyle,
@@ -27,7 +27,7 @@ import {
 } from "../../styles/Home/Home.style";
 import { motion } from "framer-motion";
 // import photo from "../../assets/images/dayeong_img.webp";
-import photo from "../../assets/images/new_me.JPG";
+import photo from "../../assets/images/my_photo.JPG";
 import DownArrowImage from "../../assets/images/down-arrow.png";
 import UpArrowImage from "../../assets/images/arrow.png";
 import feedback from "../../assets/images/feedback.png";
@@ -40,6 +40,7 @@ const Home = () => {
   const photoControls = useAnimation();
   const githubLinkControls = useAnimation();
   const mailLinkControls = useAnimation();
+  const nextSectionRef = useRef(null);
 
   const [isAnimating, setIsAnimating] = useState(true);
 
@@ -67,55 +68,78 @@ const Home = () => {
   }, [isAnimating, handleWheel]);
 
   useEffect(() => {
-    Promise.all([
-      titleNameControls.start({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 },
-      }),
-      titleControls.start({
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.8, delay: 0.6 },
-      }),
-    ])
-      .then(() => {
-        setTimeout(() => {
-          const nextSection = document.querySelector("#next-section");
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: "smooth" });
-          }
-          setTimeout(() => {
-            descriptionLine1Controls.start({
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5 },
+    let scrollTimeoutId;
+    let contentTimeoutId;
+
+    const runIntro = async () => {
+      await Promise.all([
+        titleNameControls.start({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45 },
+        }),
+        titleControls.start({
+          opacity: 1,
+          scale: 1,
+          transition: { duration: 0.7, delay: 0.4 },
+        }),
+      ]);
+
+      const nextSection = nextSectionRef.current;
+      if (nextSection) {
+        await new Promise((resolve) => {
+          scrollTimeoutId = window.setTimeout(() => {
+            nextSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
-            descriptionLine2Controls.start({
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5, delay: 0.5 },
-            });
-            githubLinkControls.start({
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5, delay: 1 },
-            });
-            mailLinkControls.start({
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5, delay: 1 },
-            });
+            resolve();
           }, 500);
-        }, 500);
-      })
-      .then(() => {
-        photoControls.start({
-          scale: 1.2,
-          transition: { duration: 0.8, delay: 1.1 },
         });
-        setIsAnimating(false); // 애니메이션 완료 후 스크롤 활성화
-      });
+      }
+
+      contentTimeoutId = window.setTimeout(async () => {
+        await Promise.all([
+          descriptionLine1Controls.start({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.35 },
+          }),
+          descriptionLine2Controls.start({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.35, delay: 0.12 },
+          }),
+          githubLinkControls.start({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3, delay: 0.18 },
+          }),
+          mailLinkControls.start({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3, delay: 0.18 },
+          }),
+          photoControls.start({
+            scale: 1.06,
+            transition: { duration: 0.45, delay: 0.1 },
+          }),
+        ]);
+
+        setIsAnimating(false);
+      }, 800);
+    };
+
+    runIntro();
+
+    return () => {
+      if (scrollTimeoutId) {
+        window.clearTimeout(scrollTimeoutId);
+      }
+      if (contentTimeoutId) {
+        window.clearTimeout(contentTimeoutId);
+      }
+    };
   }, [
     titleControls,
     titleNameControls,
@@ -150,7 +174,7 @@ const Home = () => {
             animate={titleNameControls}
             initial={{ opacity: 0, y: 50 }}
           >
-            안녕하세요, 미래의 올네인{" "}
+            안녕하세요, 준비된 프론트엔드 개발자{" "}
             <ColoredSpan>
               <span className="char-1">주</span>
               <span className="char-2">다</span>
@@ -159,19 +183,14 @@ const Home = () => {
             입니다:)
           </TitleName>
           <Title animate={titleControls} initial={{ opacity: 0, scale: 0.8 }}>
-            <span className="cj">CJ</span> <span className="o">O</span>LIVE
+            <span className="cj">CJ</span> <span className="o">C</span>HEIL
             <br />
-            <span className="n">N</span>ET<span className="w">W</span>ORKS
+            <span className="n">J</span>E<span className="w">D</span>ANG
           </Title>
         </TitleWrapper>
       </Section>
-      <motion.div
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.03 }}
-        transition={{ duration: 5, ease: "easeInOut" }}
-        style={{ width: "100%", height: "100%" }}
-      >
-        <NextSection id="next-section">
+      <div style={{ width: "100%", height: "100%" }}>
+        <NextSection id="next-section" ref={nextSectionRef}>
           <div className="next-nav">
             <button type="button" onClick={() => scrollToSection(1)}>
               about me
@@ -259,7 +278,7 @@ const Home = () => {
             <img src={DownArrowImage} alt="Scroll Down" />
           </ScrollDownArrow>
         </NextSection>
-      </motion.div>
+      </div>
       <ScrollToTopButton onClick={scrollToNextSection}>
         <img src={UpArrowImage} alt="Scroll Up" />
       </ScrollToTopButton>

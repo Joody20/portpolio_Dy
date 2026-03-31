@@ -48,7 +48,7 @@ export const Title = styled.h2`
 
 export const AboutInner = styled.div`
   width: 100%;
-  max-width: 1380px;
+  max-width: 1500px;
   display: grid;
   grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
   gap: clamp(40px, 5vw, 92px);

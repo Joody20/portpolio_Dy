@@ -61,12 +61,12 @@ export const ColoredSpan = styled.span`
 
 export const Title = styled(motion.h2)`
   font-weight: 700;
-  font-size: 220px;
+  font-size: 248px;
   color: #f7f7f7;
   margin: 0;
   line-height: 1;
   position: absolute;
-  top: 10px;
+  top: -20px;
   z-index: 0;
   white-space: nowrap;
   -webkit-text-stroke: 1px #121212;
@@ -84,8 +84,8 @@ export const Title = styled(motion.h2)`
   }
 
   @media ${(props) => props.theme.tabletMedium} {
-    font-size: 350px;
-    top: -280px;
+    font-size: 390px;
+    top: -320px;
   }
 `;
 export const NextSection = styled.section`
@@ -117,15 +117,20 @@ export const NextSection = styled.section`
     letter-spacing: -0.03em;
     cursor: pointer;
     transition:
-      transform 0.2s ease,
-      background 0.2s ease,
-      color 0.2s ease;
+      transform 0.28s ease,
+      background-color 0.28s ease,
+      color 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
 
   .next-nav button:hover {
     transform: translateY(-2px);
-    background: #1b1c1d;
+    background: #121212;
+    border-color: #121212;
     color: #fff;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
   }
 
   @media (max-width: 1440px) {

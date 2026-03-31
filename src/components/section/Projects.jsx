@@ -86,7 +86,7 @@ import { project1 } from "../../data/ProjectsData/project1";
 import { project2 } from "../../data/ProjectsData/project2";
 import { project3 } from "../../data/ProjectsData/project3";
 import { project4 } from "../../data/ProjectsData/project4";
-import { project5 } from "../../data/ProjectsData/project5"; // Make sure to import project5
+// import { project5 } from "../../data/ProjectsData/project5"; // Make sure to import project5
 import { project6 } from "../../data/ProjectsData/project6";
 import { project7 } from "../../data/ProjectsData/project7";
 import { project8 } from "../../data/ProjectsData/project8";
@@ -99,7 +99,6 @@ const projects = [
   ...project2,
   ...project3,
   ...project4,
-  ...project5, // Add project5 here
   ...project6,
 ];
 
@@ -468,7 +467,7 @@ const Projects = () => {
             </ModalHeader>
 
             {/* Features Section */}
-            <FeaturesSection>
+            <FeaturesSection $unstyled={selectedProject.noFeatureSectionStyle}>
               <FeaturesTitle>{selectedProject.features}</FeaturesTitle>
 
               <FeaturesList>
@@ -677,12 +676,14 @@ const Projects = () => {
                 <ImprovementDetailTitle>Before & After</ImprovementDetailTitle>
                 {selectedImprovement.imageViewMode !== "compare-only" && (
                   <ImprovementViewTabs>
-                    {(selectedImprovement.imageTabs || [
-                      "compare",
-                      "before",
-                      "after1",
-                      "after2",
-                    ]).map((tab) => (
+                    {(
+                      selectedImprovement.imageTabs || [
+                        "compare",
+                        "before",
+                        "after1",
+                        "after2",
+                      ]
+                    ).map((tab) => (
                       <ImprovementViewTab
                         key={`${selectedImprovement.title}-${tab}`}
                         type="button"
@@ -774,7 +775,9 @@ const Projects = () => {
                   >
                     <ImprovementStoryHeader>
                       <ImprovementStoryCheck>✓</ImprovementStoryCheck>
-                      <ImprovementDetailTitle>{section.title}</ImprovementDetailTitle>
+                      <ImprovementDetailTitle>
+                        {section.title}
+                      </ImprovementDetailTitle>
                     </ImprovementStoryHeader>
                     <ImprovementStoryBody>
                       <ImprovementDetailList>
@@ -798,7 +801,9 @@ const Projects = () => {
                       <ImprovementDetailTitle>결과</ImprovementDetailTitle>
                     </ImprovementStoryHeader>
                     <ImprovementStoryBody>
-                      <ImprovementSummary style={{ fontSize: "18px", lineHeight: "1.9" }}>
+                      <ImprovementSummary
+                        style={{ fontSize: "18px", lineHeight: "1.9" }}
+                      >
                         {selectedImprovement.result}
                       </ImprovementSummary>
                     </ImprovementStoryBody>
