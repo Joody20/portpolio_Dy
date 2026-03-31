@@ -50,89 +50,108 @@ const About = () => {
             <Keywords>
               <span>#성실함</span>
               <span>#꾸준함</span>
-              <span>#T인척 하는 F</span>
+              <span>#꼼꼼함</span>
             </Keywords>
           </ProfileColumn>
 
           <InterviewColumn>
-          <InterViewWrapper>
-            <InterViewTitle>Interview.</InterViewTitle>
+            <InterViewWrapper>
+              <InterViewTitle>Interview.</InterViewTitle>
 
-            <motion.div
-              custom={0}
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
-            >
-              <Box>
-                <InTitle>Q. 자신의 성격은 어떠하다고 생각하는지?</InTitle>
-                <InDescription>
-                  저는 <span>계획적이며 효율성을 중요시 하는 사람</span>입니다.
-                  매사에 체계적으로 계획을 세우고, 그 계획을 적극적으로 실행해
-                  나갑니다. 저는 효율성에 중점을 두기에{" "}
-                  <span>고객의 기대를 충족</span>하며
-                  <span> 안정적인 솔루션을 제공</span>하는 동시에 급변하는
-                  요구사항과 기술에 대응하는 능력을 지속적으로 향상시킬 수
-                  있습니다.
-                </InDescription>
-              </Box>
-            </motion.div>
+              <motion.div
+                custom={0}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: false,
+                  amount: 0.18,
+                  margin: "0px 0px -6% 0px",
+                }}
+              >
+                <Box>
+                  <InTitle>Q. 자신의 성격은 어떠하다고 생각하는지?</InTitle>
+                  <InDescription>
+                    저는 <span>사람을 좋아하고</span> 주변 사람들을 밝게
+                    만들어주는
+                    <span> 선한 영향력을 가진 사람</span>입니다. 이러한 성격
+                    덕분에 협업 과정에서{" "}
+                    <span>자연스럽게 소통을 이끌어내고</span>, 팀원들이{" "}
+                    <span>편하게 의견을 나눌 수 있는 분위기를 만드는 역할</span>
+                    을 맡아왔습니다. 실제로 프로젝트를 진행하면서 팀원들 간의
+                    의견을 조율하고 문제를 함께 해결하는 과정에서 이러한 강점이
+                    큰 도움이 되었습니다.
+                  </InDescription>
+                </Box>
+              </motion.div>
 
-            <motion.div
-              custom={1}
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
-            >
-              <Box>
-                <InTitle>Q. 개발자가 되고자 하는 이유는?</InTitle>
-                <InDescription>
-                  웹 서비스 개발 팀 프로젝트를 진행하며,{" "}
-                  <span>
-                    사용자를 위한 서비스를 직접 설계하고 구현하는 과정
-                  </span>
-                  에서 깊은 흥미를 느꼈습니다. 단순한 기능 구현을 넘어, 사용자가{" "}
-                  <span>
-                    직관적으로 사용할 수 있는 UI/UX를 고민하고 개발하는
-                    과정{" "}
-                  </span>
-                  자체가 큰 즐거움이었습니다. 이러한 경험을 계기로 프론트엔드
-                  기술에 대한 관심이 더욱 깊어졌으며,{" "}
-                  <span>
-                    더 나은 사용자 경험을 제공하기 위해 지속적으로 학습하고 성장
-                  </span>
-                  하고 있습니다.
-                </InDescription>
-              </Box>
-            </motion.div>
+              <motion.div
+                custom={1}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: false,
+                  amount: 0.18,
+                  margin: "0px 0px -6% 0px",
+                }}
+              >
+                <Box>
+                  <InTitle>
+                    Q. 엔지니어가 되기 위해 어떤 노력을 하고 있는지?
+                  </InTitle>
+                  <InDescription>
+                    저는 엔지니어로 성장하기 위해{" "}
+                    <span>개발 역량뿐만 아니라</span>
+                    <span> 문제 해결 능력과 커뮤니케이션 역량</span>을 함께
+                    발전시키고 있습니다. 팀 프로젝트에서{" "}
+                    <span>프론트엔드를 맡아</span> 기능 구현을 넘어 사용자
+                    경험을 개선하기 위한 기술 선택과 구조 설계를 고민해왔습니다.
+                    문제 상황에서는{" "}
+                    <span>
+                      원인을 분석하고 해결 과정을 정리하며 학습하는 습관
+                    </span>
+                    을 통해 지속적으로 성장하고 있습니다. 특히{" "}
+                    <span>상대방의 말을 끝까지 경청하고</span>, 누구나 이해할 수
+                    있도록 <span> 명확하게 전달하는 것</span>을 중요하게
+                    생각합니다. 이러한 소통 방식은 협업 과정에서 오해를 줄이고,
+                    팀원들과의 원활한 의견 조율로 더 나은 결과를 만드는 데 기여
+                    하고 있습니다.
+                  </InDescription>
+                </Box>
+              </motion.div>
 
-            <motion.div
-              custom={2}
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.18, margin: "0px 0px -6% 0px" }}
-            >
-              <Box>
-                <InTitle>Q. 어떤 개발자가 되고자 노력할 것 인지?</InTitle>
-                <InDescription>
-                  저는
-                  <span> 사용자의 입장에서 생각하며 최상의 경험을 제공</span>
-                  하는 개발자가 되고 싶습니다. 직관적이고 편리한 인터페이스를
-                  구현하는 것은 물론, <span>새로운 기술과 아이디어</span>를
-                  접목하여 <span>창의적인 솔루션을 개발</span>하는 것에 가치를
-                  두고 있습니다. 또한, 끊임없이 변화하는 IT 환경 속에서 다양한
-                  도전을 기회로 삼아,{" "}
-                  <span>
-                    유연한 사고와 도전 정신으로 지속적으로 성장하는 개발자
-                  </span>
-                  로 나아가고 싶습니다.
-                </InDescription>
-              </Box>
-            </motion.div>
-          </InterViewWrapper>
+              <motion.div
+                custom={2}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{
+                  once: false,
+                  amount: 0.18,
+                  margin: "0px 0px -6% 0px",
+                }}
+              >
+                <Box>
+                  <InTitle>Q. 앞으로 어떤 엔지니어로 성장하고 싶은지?</InTitle>
+                  <InDescription>
+                    저는 사용자와 가장 가까운 곳에서{" "}
+                    <span>서비스의 가치를</span>
+                    <span> 전달하는 엔지니어</span>로 성장하고 싶습니다.
+                    사용자가 서비스에 처음 진입해 마주하는 화면부터, 작은{" "}
+                    <span>인터랙션 하나까지 꼼꼼하게</span> 고민하며 사용자
+                    경험을 만들어내는 것이 프론트엔드 엔지니어의 역할이라고
+                    생각합니다. 디자이너가 설계한 경험을 단순히 구현하는 것을
+                    넘어,{" "}
+                    <span>
+                      사용자가 자연스럽게 몰입하고 긍정적인 경험을 이어갈 수
+                      있도록 만드는 엔지니어
+                    </span>
+                    로 성장하고 싶습니다.
+                  </InDescription>
+                </Box>
+              </motion.div>
+            </InterViewWrapper>
           </InterviewColumn>
         </AboutInner>
       </Section>
