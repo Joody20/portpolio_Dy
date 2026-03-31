@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# 주다영 포트폴리오
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React, Styled Components, Framer Motion 기반으로 제작한 프론트엔드 포트폴리오입니다.  
+`Home`, `About`, `Info`, `Projects`, `Footer` 섹션으로 구성되어 있으며, 프로젝트 상세 모달과 개선 기록 UI까지 포함하고 있습니다.
 
-## Available Scripts
+## 실행 방법
 
-In the project directory, you can run:
+### 1. 패키지 설치
 
-### `npm start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. 개발 서버 실행
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm run start
+```
 
-### `npm test`
+실행 후 브라우저에서 아래 주소로 접속합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+http://localhost:3000
+```
 
-### `npm run build`
+### 3. 프로덕션 빌드
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+빌드 결과물은 `build/` 폴더에 생성됩니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 기술 스택
 
-### `npm run eject`
+- React 18
+- Styled Components
+- Framer Motion
+- React Scripts (Create React App)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 주요 구성
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `Home`
+  첫 화면 인트로, 자동 스크롤, 네비게이션, 소개 문구
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `About`
+  이모티콘, 키워드, 인터뷰 형식 자기소개
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `Info`
+  학력, 기술 스택, 마키 애니메이션
 
-## Learn More
+- `Projects`
+  프로젝트 카드, 상세 모달, 주요 화면 갤러리, 개선 기록, 트러블 슈팅
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `Footer`
+  연락처 및 마무리 영역
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 프로젝트 구조
 
-### Code Splitting
+```bash
+src
+├── assets
+│   └── images
+├── components
+│   ├── Layout.js
+│   └── section
+│       ├── Home.jsx
+│       ├── About.jsx
+│       ├── Info.jsx
+│       ├── Projects.jsx
+│       └── Footer.jsx
+├── data
+│   └── ProjectsData
+└── styles
+    ├── Home
+    ├── About
+    ├── Info
+    ├── Projects
+    └── Footer
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 주요 특징
 
-### Analyzing the Bundle Size
+- 섹션 단위 포트폴리오 구성
+- 프로젝트별 상세 모달 UI
+- 주요 화면 이미지 확대 보기
+- 프로젝트별 개선 기록 정리
+- 반응형 레이아웃
+- Framer Motion 기반 애니메이션
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 배포
 
-### Making a Progressive Web App
+Vercel 기준으로 정적 배포가 가능합니다.  
+프로덕션 배포 전에는 아래 항목을 확인하는 것을 권장합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm run build` 정상 동작 여부
+- 이미지 크기 및 반응형 레이아웃 확인
+- 프로젝트 모달 동작 확인
