@@ -504,6 +504,9 @@ const Projects = () => {
                 {selectedProject.feat4 && (
                   <FeatureItem>{selectedProject.feat4}</FeatureItem>
                 )}
+                {selectedProject.feat5 && (
+                  <FeatureItem>{selectedProject.feat5}</FeatureItem>
+                )}
               </FeaturesList>
 
               {/* User Features */}
