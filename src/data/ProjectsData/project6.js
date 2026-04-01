@@ -17,6 +17,8 @@ export const project6 = [
     close: close_btn,
     git: git,
     github: "https://github.com/kw-ic-info/24-team-team10?tab=readme-ov-file",
+    techStackTitle: "▷ 기술 스택",
+    techStack: ["React", "JavaScript", "Chart.js", "REST API", "CSS"],
     features: "주요 기능 및 특징",
     feat1: "각 검사에 대한 환자 리스트 및 환자 데이터 시각화",
     feat2:

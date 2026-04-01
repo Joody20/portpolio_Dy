@@ -25,7 +25,7 @@ export const project8 = [
     image: fitcheckMain,
     themeColor: "#353535",
     headerLightText: true,
-    title: "FitCheck 패션 SNS",
+    title: "FitCheck(패션 SNS)",
     date: "2025/12 ~ 2026/03",
     description:
       "패션 SNS에 해당하는 '핏체크(Fit Check)'는 나에게 어울리는 스타일을 찾기 어려워하는 사용자를 위한 서비스입니다. 불특정 다수의 착장만 보여주는 기존 SNS나 판매 목적의 쇼핑몰과 달리, 개인의 신체 정보와 선호 데이터(키, 몸무게, 선호 패션)를 기반으로 유사 사용자 매칭과 실시간 투표 기능을 제공하며 사용자가 다른 유저와 소통하면서 '어울림의 기준'을 함께 만들어갈 수 있도록 돕습니다.",
@@ -35,6 +35,19 @@ export const project8 = [
     wiki: "https://github.com/100-hours-a-week/16-team-katopia-fe/wiki",
     designDoc:
       "https://github.com/100-hours-a-week/16-team-katopia-fe/wiki/Front%E2%80%90end-Architecture",
+    techStackTitle: "▷ 기술 스택",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "TanStack Query",
+      "Zustand",
+      "Zod",
+      "React Hook Form",
+      "Tailwind CSS",
+      "Figma",
+      "Discord",
+    ],
+    improvementModalVariant: "project8",
     noFeatureSectionStyle: true,
     // features: "▷ 주요 특징 및 기능",
     // feat1:
@@ -112,36 +125,31 @@ export const project8 = [
         title: "홈피드 LCP 개선 및 렌더링 전략",
         summary:
           "홈피드 초기 렌더링 구조 재설계. LCP 병목 제거. 첫 화면 체감 속도 개선.",
-        keywords: [
-          "서버-클라이언트 역할 분리",
-          "Prefetching을 통한 초기 데이터 주입",
-          "인터랙션 최적화",
-        ],
+
         detailCategory: "성능 개선",
         detailTitle: "홈피드 LCP 개선 및 렌더링 전략",
         detailLead:
-          "리팩토링 이후 점수는 개선됐지만 기대했던 수준의 향상은 제한적. 단순 구조 변경이 아니라 실제 LCP 병목 재분석, 로딩 우선순위 재설계 진행.",
+          "리팩토링 이후 점수는 개선됐지만 기대했던 수준의 향상은 제한적이였으므로 단순 구조 변경이 아니라 실제 LCP 병목 재분석, 로딩 우선순위 재설계 진행.",
         detailSections: [
           {
             title: "구조 리팩토링",
             items: [
               "Server Component는 레이아웃 렌더링, Client Component는 무한 스크롤과 React Query 기반 상호작용 처리로 역할 분리.",
-              "서버에서 prefetchInfiniteQuery로 초기 데이터 주입, HydrationBoundary로 클라이언트 캐시 연결.",
-              "좋아요·북마크는 클라이언트 캐시 기반 즉시 반영 구조 적용.",
+              "좋아요 및 북마크는 클라이언트 캐시 기반 즉시 반영 구조 적용.",
             ],
           },
           {
             title: "LCP 저하 원인 분석",
             items: [
-              "인증 완료(ready) 이후에만 데이터 페칭 시작. 핵심 이미지 요청 지연.",
-              '모든 이미지에 loading="lazy" 일괄 적용. viewport 내 LCP 이미지까지 지연 로딩.',
-              "기존 <img> 태그와 원본 이미지 전송 구조. 네트워크 비용 증가, LCP 저하.",
+              "인증 완료 이후에만 데이터 fetching 시작하게 되면서 핵심 이미지 요청 지연.",
+              '모든 이미지에 loading="lazy" 일괄 적용하여 viewport 내 LCP 이미지까지 지연 로딩.',
+              "기존 <img> 태그와 원본 이미지 전송 구조로 네트워크 비용 증가하게 되면서 LCP 저하.",
             ],
           },
           {
             title: "개선 전략",
             items: [
-              "인증 여부와 무관하게 초기 데이터 요청 선실행. 데이터 페칭 시점 분리.",
+              "인증 여부와 무관하게 초기 데이터 요청 선실행 하여 데이터 페칭 시점 분리.",
               '첫 번째 LCP 이미지에 priority, loading="eager", fetchPriority="high" 적용.',
               "next/image 도입, sizes 기반 반응형 이미지, quality=70 적용.",
             ],
@@ -158,13 +166,8 @@ export const project8 = [
       {
         title: "홈 피드 리스트 가상 리스트 적용",
         summary:
-          "무한스크롤 홈 피드에 가상 리스트 도입. DOM 수 축소. 스크롤 성능과 렌더링 비용 최적화.",
-        keywords: [
-          "@tanstack/react-virtual",
-          "Window Virtualizer",
-          "WeakMap 캐싱",
-          "React.memo",
-        ],
+          "무한스크롤 홈 피드에 가상 리스트 도입하여 DOM 수 축소. 스크롤 성능과 렌더링 비용 최적화.",
+
         detailCategory: "성능 개선",
         detailTitle: "홈 피드 리스트 가상 리스트 적용",
         detailLead:
@@ -181,17 +184,16 @@ export const project8 = [
           {
             title: "구현 전략",
             items: [
-              "Window Virtualizer 적용. 현재 보이는 영역과 overscan 범위만 렌더링.",
-              "scrollMargin 적용. 페이지 중간 시작 지점에서도 translateY 계산 보정.",
-              "onChange와 loaderIndex 연동. 끝에 닿기 직전 다음 데이터 선로딩.",
+              "Window Virtualizer 적용하여 현재 보이는 영역과 overscan 범위만 렌더링.",
+              "scrollMargin 적용하여 페이지 중간 시작 지점에서도 translateY 계산 보정.",
+              "onChange와 loaderIndex 연동하여 끝에 닿기 직전 다음 데이터 먼저 로딩.",
             ],
           },
           {
             title: "리렌더링 최소화 전략",
             items: [
-              "WeakMap 캐싱 전략 적용. 동일 API 원본에 대해 HomePost 객체 주소 고정.",
-              "원본 객체 해제 시 캐시도 함께 정리되도록 설계. 메모리 누수 부담 축소.",
-              "HomePostCard에 memo와 커스텀 비교 함수 적용. 기존 카드의 Virtual DOM 비교 생략.",
+              "WeakMap 캐싱 전략 적용하여 동일 API 원본에 대해 HomePost 객체 주소 고정.",
+              "HomePostCard에 memo와 커스텀 비교 함수 적용하여 기존 카드의 Virtual DOM 비교 생략.",
             ],
           },
         ],
@@ -229,7 +231,7 @@ export const project8 = [
           {
             title: "반응형 및 동적 크기 계산",
             items: [
-              "부모 컨테이너 너비를 실시간 추적. 기기 환경에 맞는 유연한 레이아웃 구성.",
+              "부모 컨테이너 너비를 실시간 추적하여 기기 환경에 맞는 유연한 레이아웃 구성.",
               "카드 3:4 비율 적용, 각 행 높이 동적 계산.",
             ],
           },
@@ -269,14 +271,14 @@ export const project8 = [
         detailCategory: "실시간 처리",
         detailTitle: "실시간 채팅 WebSocket 연동",
         detailLead:
-          "메시지 전송, 읽음 상태, 안읽음 수 변화의 즉시 반영이 필요. 이를 위해 WebSocket 기반 실시간 통신 도입, 연결 관리·채널 구독·메시지 상태 관리 로직 분리.",
+          "메시지 전송, 읽음 상태, 안읽음 수 변화의 즉시 반영이 필요. 이를 위해 WebSocket 기반 실시간 통신 도입",
         detailSections: [
           {
             title: "WebSocket 연결 관리",
             items: [
               "WebSocket 연결은 useChatSocketConnection 훅에서 관리.",
               "STOMP Client 생성, /ws/chat 엔드포인트 연결.",
-              "Authorization: Bearer JWT 인증 헤더 포함, 연결 상태 동시 관리.",
+              "Authorization: Bearer JWT 인증 헤더 포함하여 연결 상태 동시 관리.",
             ],
           },
           {
@@ -395,6 +397,7 @@ export const project8 = [
       },
     ],
     window: "▷ 주요 화면",
+    galleryImageWidth: "82%",
     photo1: project8Img1,
     photo2: project8Img2,
     photo3: project8Img3,

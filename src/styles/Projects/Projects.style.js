@@ -235,6 +235,34 @@ export const ResourceLinkTag = styled.span`
   text-transform: uppercase;
 `;
 
+export const TechStackSection = styled.div`
+  margin-top: 14px;
+  text-align: left;
+`;
+
+export const TechStackList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+export const TechStackChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: ${({ $lightText }) =>
+    $lightText ? "rgba(255, 255, 255, 0.18)" : "rgba(18, 18, 18, 0.08)"};
+  border: 1px solid
+    ${({ $lightText }) =>
+      $lightText ? "rgba(255, 255, 255, 0.26)" : "rgba(18, 18, 18, 0.14)"};
+  color: ${({ $lightText }) => ($lightText ? "#ffffff" : "#121212")};
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+`;
+
 export const FeatureItem = styled.li`
   font-size: 17px;
   color: #555;
@@ -508,9 +536,10 @@ export const ImprovementOverlay = styled.div`
 
 export const ImprovementModal = styled.div`
   position: relative;
-  width: min(980px, 94vw);
+  width: min(1160px, 96vw);
   max-height: 88vh;
   overflow-y: auto;
+  padding-bottom: 32px;
   background: #fff;
   border-radius: 28px;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
@@ -526,27 +555,6 @@ export const ImprovementModalClose = styled.button`
   font-size: 32px;
   line-height: 1;
   cursor: pointer;
-`;
-
-export const ImprovementModalHeader = styled.div`
-  padding: 36px 40px 30px;
-  border-bottom: 1px solid #ececec;
-
-  h3 {
-    margin: 0;
-    font-size: 30px;
-    line-height: 1.2;
-    color: #111;
-    text-align: left;
-  }
-`;
-
-export const ImprovementModalSubtext = styled.p`
-  margin: 14px 0 0;
-  color: #5b6677;
-  font-size: 18px;
-  line-height: 1.7;
-  text-align: left;
 `;
 
 export const ImprovementCompareSection = styled.div`
@@ -609,7 +617,9 @@ export const ImprovementCompareBadge = styled.div`
 `;
 
 export const ImprovementMajorSection = styled.div`
-  padding: 20px 40px 40px;
+  padding: ${({ $variant }) =>
+    $variant === "project8" ? "44px 40px 40px" : "20px 40px 40px"};
+  background: transparent;
 `;
 
 export const ImprovementCategoryHeader = styled.div`
@@ -652,10 +662,18 @@ export const ImprovementCategoryCount = styled.div`
 export const ImprovementTimeline = styled.div`
   position: relative;
   margin-top: 22px;
-  padding-left: 26px;
+  padding-left: ${({ $variant }) => ($variant === "project8" ? "0" : "26px")};
+  display: ${({ $variant }) => ($variant === "project8" ? "grid" : "block")};
+  grid-template-columns: ${({ $variant, $columns = 0 }) =>
+    $variant === "project8"
+      ? $columns >= 5
+        ? "repeat(3, minmax(0, 1fr))"
+        : "repeat(auto-fit, minmax(240px, 1fr))"
+      : "none"};
+  gap: ${({ $variant }) => ($variant === "project8" ? "18px" : "0")};
 
   &::before {
-    content: "";
+    content: ${({ $variant }) => ($variant === "project8" ? "none" : '""')};
     position: absolute;
     left: 0;
     top: 0;
@@ -664,22 +682,33 @@ export const ImprovementTimeline = styled.div`
     border-radius: 999px;
     background: #e5e7ee;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: ${({ $variant }) =>
+      $variant === "project8" ? "1fr" : "none"};
+  }
 `;
 
 export const ImprovementStoryCard = styled.div`
-  margin-bottom: 18px;
-  padding: 24px 24px 22px;
-  border-radius: 24px;
-  background: #fff;
-  border: 1px solid #dfe3eb;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.04);
+  margin-bottom: ${({ $variant }) => ($variant === "project8" ? "0" : "18px")};
+  padding: ${({ $variant }) =>
+    $variant === "project8" ? "34px 34px 30px" : "24px 24px 22px"};
+  border-radius: ${({ $variant }) => ($variant === "project8" ? "28px" : "24px")};
+  background: ${({ $variant }) => ($variant === "project8" ? "#2f3130" : "#fff")};
+  border: ${({ $variant }) =>
+    $variant === "project8" ? "none" : "1px solid #dfe3eb"};
+  box-shadow: ${({ $variant }) =>
+    $variant === "project8"
+      ? "0 16px 34px rgba(0, 0, 0, 0.14)"
+      : "0 10px 22px rgba(0, 0, 0, 0.04)"};
 `;
 
 export const ImprovementStoryHeader = styled.div`
   display: flex;
-  align-items: center;
+  align-items: ${({ $variant }) => ($variant === "project8" ? "flex-start" : "center")};
   gap: 14px;
   margin-bottom: 14px;
+  flex-direction: ${({ $variant }) => ($variant === "project8" ? "column" : "row")};
 `;
 
 export const ImprovementStoryCheck = styled.div`
@@ -695,10 +724,11 @@ export const ImprovementStoryCheck = styled.div`
   font-size: 18px;
   font-weight: 800;
   flex-shrink: 0;
+  display: ${({ $variant }) => ($variant === "project8" ? "none" : "flex")};
 `;
 
 export const ImprovementStoryBody = styled.div`
-  padding-left: 50px;
+  padding-left: ${({ $variant }) => ($variant === "project8" ? "0" : "50px")};
 `;
 
 export const ImprovementDetailCard = styled.div`
@@ -711,9 +741,10 @@ export const ImprovementDetailCard = styled.div`
 
 export const ImprovementDetailTitle = styled.h4`
   margin: 0 0 12px;
-  color: #1b1c1d;
-  font-size: 19px;
+  color: ${({ $variant }) => ($variant === "project8" ? "#ffffff" : "#1b1c1d")};
+  font-size: ${({ $variant }) => ($variant === "project8" ? "18px" : "19px")};
   font-weight: 700;
+  line-height: 1.45;
 `;
 
 export const ImprovementDetailList = styled.ul`
@@ -724,20 +755,105 @@ export const ImprovementDetailList = styled.ul`
 
 export const ImprovementDetailItem = styled.li`
   position: relative;
-  padding-left: 16px;
+  padding-left: ${({ $variant }) => ($variant === "project8" ? "0" : "16px")};
   margin-bottom: 10px;
-  color: #4d4d4d;
+  color: ${({ $variant }) => ($variant === "project8" ? "#f1f3f2" : "#4d4d4d")};
   line-height: 1.75;
 
   &::before {
-    content: "";
+    content: ${({ $variant }) => ($variant === "project8" ? "none" : '""')};
     position: absolute;
     top: 11px;
     left: 0;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #1b1c1d;
+    background: ${({ $variant }) =>
+      $variant === "project8" ? "#2ccfc0" : "#1b1c1d"};
+  }
+`;
+
+export const ImprovementGoalBlock = styled.div`
+  max-width: 780px;
+  margin-bottom: 120px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 40px;
+  }
+`;
+
+export const ImprovementGoalLabel = styled.div`
+  margin-bottom: 18px;
+  color: #2ccfc0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+`;
+
+export const ImprovementGoalText = styled.p`
+  margin: 0;
+  color: #1c1f1e;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: -0.03em;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 1.6;
+  }
+`;
+
+export const ImprovementSolutionLabel = styled.div`
+  color: #2ccfc0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+`;
+
+export const ImprovementResultBox = styled.div`
+  position: relative;
+  margin: 56px auto 0;
+  width: min(100%, 980px);
+  padding: 0 92px;
+  background: transparent;
+  color: #1c1f1e;
+  font-size: 28px;
+  line-height: 1.65;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: -0.03em;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: -8px;
+    color: #111;
+    font-size: 108px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  &::before {
+    content: "“";
+    left: 0;
+  }
+
+  &::after {
+    content: "”";
+    right: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 42px;
+    font-size: 20px;
+
+    &::before,
+    &::after {
+      top: -2px;
+      font-size: 64px;
+    }
   }
 `;
 
@@ -881,7 +997,7 @@ export const WindowInfo = styled.div`
   }
 
   img {
-    width: 92%;
+    width: ${({ $imageWidth = "92%" }) => $imageWidth};
     height: auto;
     border-radius: 10px;
     margin: 0 auto;

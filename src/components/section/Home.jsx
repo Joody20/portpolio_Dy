@@ -231,7 +231,7 @@ const Home = () => {
               <SectionTitle>
                 Frontend
                 <br />
-                Engineer
+                Developer
               </SectionTitle>
             </HeroLeft>
 

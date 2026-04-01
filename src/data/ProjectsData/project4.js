@@ -11,13 +11,15 @@ export const project4 = [
   {
     image: myintro,
     themeColor: "#fecdbe",
-    title: "자기소개 및 방명록 작성 개인프로젝트",
+    title: "Introduction(자기소개 페이지)",
     date: "2024/03 ~ 2024/06",
     description:
       "방문자가 나에 대해 알 수 있도록 자기소개 페이지를 만들고, 방명록 기능을 추가.",
     close: close_btn,
     git: git,
     github: "https://github.com/Joody20/PortFolio",
+    techStackTitle: "▷ 기술 스택",
+    techStack: ["HTML", "CSS", "JavaScript"],
     features: "주요 기능 및 특징",
     feat1: "글자 타이핑 효과",
     feat2: "방명록을 남길 수 있음.",

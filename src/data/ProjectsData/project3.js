@@ -13,13 +13,15 @@ export const project3 = [
   {
     image: alba,
     themeColor: "#ffd358",
-    title: "아르바이트생들의 후기 작성 플랫폼",
+    title: "알바닷컴(아르바이트 커뮤니티)",
     date: "2023/09 ~ 2023/12",
     description:
       "아르바이트생들의 아르바이트 후기를 작성할 수 있으며, 로그인 후 이용 가능합니다. 자유게시판에서 자유롭게 글을 작성하고 볼 수 있으며 마이페이지에서는 비밀번호 변경 및 자신이 작성한 글을 볼 수 있습니다.",
     github: "https://github.com/kw-ic-web/23-teampjt-webssulme",
     git: git,
     close: close_btn,
+    techStackTitle: "▷ 기술 스택",
+    techStack: ["HTML", "CSS", "JavaScript", "MySQL", "GitHub"],
     features: "주요 기능 및 특징",
     feat1:
       "사용자가 웹사이트를 이용 시 사용자들은 자신이 아르바이트를 했었던, 혹은 아르바이트를 하고 있는 경험의 후기들을 자유롭게 작성할 수 있다. ",

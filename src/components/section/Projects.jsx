@@ -14,6 +14,9 @@ import {
   ResourceLinks,
   ResourceLink,
   ResourceLinkTag,
+  TechStackSection,
+  TechStackList,
+  TechStackChip,
   FeaturesSection,
   FeaturesTitle,
   FeaturessubTitle,
@@ -41,8 +44,6 @@ import {
   ImprovementOverlay,
   ImprovementModal,
   ImprovementModalClose,
-  ImprovementModalHeader,
-  ImprovementModalSubtext,
   ImprovementCompareSection,
   ImprovementViewTabs,
   ImprovementViewTab,
@@ -64,6 +65,11 @@ import {
   ImprovementDetailList,
   ImprovementDetailItem,
   ImprovementVisualFrame,
+  ImprovementGoalBlock,
+  ImprovementGoalLabel,
+  ImprovementGoalText,
+  ImprovementSolutionLabel,
+  ImprovementResultBox,
   TroubleSection,
   TroubleCard,
   TroubleLayout,
@@ -139,6 +145,7 @@ const Projects = () => {
   const [selectedImprovement, setSelectedImprovement] = useState(null);
   const [selectedImprovementView, setSelectedImprovementView] =
     useState("compare");
+  const improvementModalVariant = selectedProject?.improvementModalVariant;
 
   const galleryImages = useMemo(() => {
     if (!selectedProject) {
@@ -420,6 +427,20 @@ const Projects = () => {
             >
               <h2>{selectedProject.title}</h2>
               {selectedProject.date && <p>{selectedProject.date}</p>}
+              {selectedProject.techStack?.length > 0 && (
+                <TechStackSection>
+                  <TechStackList>
+                    {selectedProject.techStack.map((stack) => (
+                      <TechStackChip
+                        key={`${selectedProject.title}-tech-${stack}`}
+                        $lightText={selectedProject.headerLightText}
+                      >
+                        {stack}
+                      </TechStackChip>
+                    ))}
+                  </TechStackList>
+                </TechStackSection>
+              )}
               <p>{selectedProject.description}</p>
               {(selectedProject.github ||
                 selectedProject.wiki ||
@@ -631,7 +652,10 @@ const Projects = () => {
             {renderTroubleshootingSection()}
 
             {/* Additional Screenshots */}
-            <WindowInfo $columns={selectedProject.galleryColumns}>
+            <WindowInfo
+              $columns={selectedProject.galleryColumns}
+              $imageWidth={selectedProject.galleryImageWidth}
+            >
               <WindowTitle>{selectedProject.window}</WindowTitle>
               <div className="image-gallery">
                 {galleryImages.map((image, index) => (
@@ -662,14 +686,124 @@ const Projects = () => {
             >
               ×
             </ImprovementModalClose>
-            <ImprovementModalHeader>
-              <h3>
-                {selectedImprovement.detailTitle || selectedImprovement.title}
-              </h3>
-              <ImprovementModalSubtext>
-                {selectedImprovement.summary}
-              </ImprovementModalSubtext>
-            </ImprovementModalHeader>
+
+            <ImprovementMajorSection $variant={improvementModalVariant}>
+              {improvementModalVariant === "project8" ? (
+                <>
+                  <ImprovementGoalBlock>
+                    <ImprovementGoalLabel>
+                      {selectedImprovement.detailCategory || "Project Goal"}
+                    </ImprovementGoalLabel>
+                    <ImprovementGoalText>
+                      {selectedImprovement.detailLead ||
+                        selectedImprovement.detailBody ||
+                        selectedImprovement.summary}
+                    </ImprovementGoalText>
+                  </ImprovementGoalBlock>
+
+                  <ImprovementTimeline
+                    $variant={improvementModalVariant}
+                    $columns={selectedImprovement.detailSections?.length || 0}
+                  >
+                    {selectedImprovement.detailSections?.map((section, index) => (
+                      <ImprovementStoryCard
+                        key={`${selectedImprovement.title}-section-${index}`}
+                        $variant={improvementModalVariant}
+                      >
+                        <ImprovementStoryHeader $variant={improvementModalVariant}>
+                          <ImprovementSolutionLabel>
+                            {`Solution ${index + 1}`}
+                          </ImprovementSolutionLabel>
+                          <ImprovementDetailTitle
+                            $variant={improvementModalVariant}
+                          >
+                            {section.title}
+                          </ImprovementDetailTitle>
+                        </ImprovementStoryHeader>
+                        <ImprovementStoryBody $variant={improvementModalVariant}>
+                          <ImprovementDetailList>
+                            {section.items.map((item, itemIndex) => (
+                              <ImprovementDetailItem
+                                key={`${section.title}-item-${itemIndex}`}
+                                $variant={improvementModalVariant}
+                              >
+                                {item}
+                              </ImprovementDetailItem>
+                            ))}
+                          </ImprovementDetailList>
+                        </ImprovementStoryBody>
+                      </ImprovementStoryCard>
+                    ))}
+                  </ImprovementTimeline>
+
+                  {selectedImprovement.result && (
+                    <ImprovementResultBox>
+                      {selectedImprovement.result}
+                    </ImprovementResultBox>
+                  )}
+                </>
+              ) : (
+                <>
+                  <ImprovementDetailTitle>주요 개선사항</ImprovementDetailTitle>
+                  <ImprovementCategoryHeader>
+                    <ImprovementCategoryIcon>◔</ImprovementCategoryIcon>
+                    <ImprovementCategoryTitle>
+                      {selectedImprovement.detailCategory || "개선 사항"}
+                    </ImprovementCategoryTitle>
+                    <ImprovementCategoryCount>
+                      {selectedImprovement.detailSections?.length || 0}개 항목
+                    </ImprovementCategoryCount>
+                  </ImprovementCategoryHeader>
+                  <ImprovementLead>
+                    {selectedImprovement.detailLead ||
+                      selectedImprovement.detailBody ||
+                      selectedImprovement.summary}
+                  </ImprovementLead>
+                  <ImprovementTimeline>
+                    {selectedImprovement.detailSections?.map((section, index) => (
+                      <ImprovementStoryCard
+                        key={`${selectedImprovement.title}-section-${index}`}
+                      >
+                        <ImprovementStoryHeader>
+                          <ImprovementStoryCheck>✓</ImprovementStoryCheck>
+                          <ImprovementDetailTitle>
+                            {section.title}
+                          </ImprovementDetailTitle>
+                        </ImprovementStoryHeader>
+                        <ImprovementStoryBody>
+                          <ImprovementDetailList>
+                            {section.items.map((item, itemIndex) => (
+                              <ImprovementDetailItem
+                                key={`${section.title}-item-${itemIndex}`}
+                              >
+                                {item}
+                              </ImprovementDetailItem>
+                            ))}
+                          </ImprovementDetailList>
+                        </ImprovementStoryBody>
+                      </ImprovementStoryCard>
+                    ))}
+                    {selectedImprovement.result && (
+                      <ImprovementStoryCard>
+                        <ImprovementStoryHeader>
+                          <ImprovementStoryCheck $variant="result">
+                            ↗
+                          </ImprovementStoryCheck>
+                          <ImprovementDetailTitle>결과</ImprovementDetailTitle>
+                        </ImprovementStoryHeader>
+                        <ImprovementStoryBody>
+                          <ImprovementSummary
+                            style={{ fontSize: "18px", lineHeight: "1.9" }}
+                          >
+                            {selectedImprovement.result}
+                          </ImprovementSummary>
+                        </ImprovementStoryBody>
+                      </ImprovementStoryCard>
+                    )}
+                  </ImprovementTimeline>
+                </>
+              )}
+            </ImprovementMajorSection>
 
             {selectedImprovement.images?.length > 0 && (
               <ImprovementCompareSection>
@@ -751,66 +885,6 @@ const Projects = () => {
                 )}
               </ImprovementCompareSection>
             )}
-
-            <ImprovementMajorSection>
-              <ImprovementDetailTitle>주요 개선사항</ImprovementDetailTitle>
-              <ImprovementCategoryHeader>
-                <ImprovementCategoryIcon>◔</ImprovementCategoryIcon>
-                <ImprovementCategoryTitle>
-                  {selectedImprovement.detailCategory || "개선 사항"}
-                </ImprovementCategoryTitle>
-                <ImprovementCategoryCount>
-                  {selectedImprovement.detailSections?.length || 0}개 항목
-                </ImprovementCategoryCount>
-              </ImprovementCategoryHeader>
-              <ImprovementLead>
-                {selectedImprovement.detailLead ||
-                  selectedImprovement.detailBody ||
-                  selectedImprovement.summary}
-              </ImprovementLead>
-              <ImprovementTimeline>
-                {selectedImprovement.detailSections?.map((section, index) => (
-                  <ImprovementStoryCard
-                    key={`${selectedImprovement.title}-section-${index}`}
-                  >
-                    <ImprovementStoryHeader>
-                      <ImprovementStoryCheck>✓</ImprovementStoryCheck>
-                      <ImprovementDetailTitle>
-                        {section.title}
-                      </ImprovementDetailTitle>
-                    </ImprovementStoryHeader>
-                    <ImprovementStoryBody>
-                      <ImprovementDetailList>
-                        {section.items.map((item, itemIndex) => (
-                          <ImprovementDetailItem
-                            key={`${section.title}-item-${itemIndex}`}
-                          >
-                            {item}
-                          </ImprovementDetailItem>
-                        ))}
-                      </ImprovementDetailList>
-                    </ImprovementStoryBody>
-                  </ImprovementStoryCard>
-                ))}
-                {selectedImprovement.result && (
-                  <ImprovementStoryCard>
-                    <ImprovementStoryHeader>
-                      <ImprovementStoryCheck $variant="result">
-                        ↗
-                      </ImprovementStoryCheck>
-                      <ImprovementDetailTitle>결과</ImprovementDetailTitle>
-                    </ImprovementStoryHeader>
-                    <ImprovementStoryBody>
-                      <ImprovementSummary
-                        style={{ fontSize: "18px", lineHeight: "1.9" }}
-                      >
-                        {selectedImprovement.result}
-                      </ImprovementSummary>
-                    </ImprovementStoryBody>
-                  </ImprovementStoryCard>
-                )}
-              </ImprovementTimeline>
-            </ImprovementMajorSection>
           </ImprovementModal>
         </ImprovementOverlay>
       )}

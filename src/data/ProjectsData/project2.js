@@ -13,13 +13,15 @@ export const project2 = [
   {
     image: council,
     themeColor: "#4376ab",
-    title: "학생회 및 학부생 웹 서비스",
+    title: "UNIC(학생회 및 학부생 포털 시스템)",
     date: "2024/03 ~ 2024/11",
     description:
       "UNIC은 학부생들이 학교 내 생활을 편리하게 관리할 수 있도록 지원하고, 학생회의 업무 효율을 높이는 것을 목표로 하여 학사 운영과 학생 간 소통을 디지털화하여 학생들이 필요한 정보와 서비스에 더 쉽게 접근할 수 있도록 기획하였습니다. 학생 편의성을 증대하기 위해 공지사항, 설문조사, 물품대여, 커뮤니티 등을 통합하여 학교 내 생활에 자주 필요한 기능을 한 곳에 모았으며 학생회 운영을 효율적으로 하기 위해 공지글 작성, 설문 관리, 물품대여 로그, 학생회비 확인 등의 기능을 통해 학생회가 더 체계적인 운영을 관리할 수 있도록 하였습니다.",
     github: "https://github.com/kw-infoconv-program/unic",
     git: git,
     close: close_btn,
+    techStackTitle: "▷ 기술 스택",
+    techStack: ["React", "JavaScript", "CSS", "REST API", "Figma"],
     features: "▷ 주요 특징 및 기능",
     user_feat: " 사용자(학생)모드",
     user_feat1: "공지사항 : 학과 , 학생회 관련 중요 공지 확인 가능",

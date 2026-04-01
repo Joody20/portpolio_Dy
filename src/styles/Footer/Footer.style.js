@@ -67,6 +67,7 @@ export const Title = styled(motion.h2)`
   white-space: nowrap;
   -webkit-text-stroke: 1px #121212;
   letter-spacing: -5px;
+
   @media ${(props) => props.theme.tabletMedium} {
     font-size: 220px;
     top: -170px;

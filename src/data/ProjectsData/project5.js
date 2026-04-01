@@ -14,6 +14,14 @@ export const project5 = [
     description:
       "이는 Arduino, ESP8266, Raspberry Pi 기반의 마이크로컨트롤러를 사용하여 기본적인 IoT 프로그래밍 방법을 소개합니다. 이를 통해  마이크로컨트롤러에 연결된 센서를 모니터링하고 액추에이터를 로컬 및 원격으로 제어하며 자율주행자동차를 개발하였습니다.",
     close: close_btn,
+    techStackTitle: "▷ 기술 스택",
+    techStack: [
+      "Arduino",
+      "ESP8266",
+      "Raspberry Pi",
+      "TensorFlow",
+      "OpenCV",
+    ],
     features: "주요 기능 및 특징",
     feat1: "센서를 로컬 및 원격으로 모니터링할 수 있습니다.",
     feat2: "액추에이터를 로컬 및 원격으로 제어할 수 있습니다.",

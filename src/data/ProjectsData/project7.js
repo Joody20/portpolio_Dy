@@ -10,8 +10,6 @@ import per6 from "../../assets/images/per_6.png";
 import trouble1 from "../../assets/images/pr_7_trouble_1.png";
 import trouble2Before from "../../assets/images/pr7_trou_2_before.png";
 import trouble2After from "../../assets/images/pr7_trou_2_after.png";
-import trouble3 from "../../assets/images/pr7_trou3.png";
-import trouble4 from "../../assets/images/pr7_trou_4.png";
 
 export const project7 = [
   {
@@ -24,6 +22,8 @@ export const project7 = [
     close: close_btn,
     git: git,
     github: "https://github.com/100-hours-a-week/joody_front",
+    techStackTitle: "▷ 기술 스택",
+    techStack: ["HTML", "CSS", "JavaScript", "React.js", "Figma"],
     features: "▷ 주요 특징 및 기능",
     feat1:
       "카카오테크 부트캠프 구성원들이 경험과 일상을 자유롭게 공유할 수 있는 커뮤니티 서비스를 구현했습니다.",
@@ -39,9 +39,8 @@ export const project7 = [
         step: "01",
         title: "Vanilla JS의 한계 인식",
         summary:
-          "초기 구현 단계에서는 기능 자체는 빠르게 붙일 수 있었지만, 상태와 UI가 커질수록 구조적인 한계가 분명해졌습니다.",
+          "초기 구현 단계에서는 기능 자체는 빠르게 개발할 수 있었지만, 상태와 UI가 커질수록 구조적인 한계가 분명해졌습니다.",
         points: [
-          "컴포넌트 단위 상태 관리 시스템이 없어 UI 상태와 DOM을 직접 동기화해야 했습니다.",
           "querySelector, innerHTML, appendChild 중심의 직접 DOM 조작이 반복되며 유지보수 비용이 커졌습니다.",
           "컴포넌트 개념 부재로 UI 재사용성과 파일 구조 확장성에 한계가 있었습니다.",
         ],
@@ -61,9 +60,9 @@ export const project7 = [
       },
       {
         step: "03",
-        title: "React로 마이그레이션하며 실서비스 품질 강화",
+        title: "React로 마이그레이션하며 렌더링 구조와 상태 관리 방식을 개선",
         summary:
-          "이후 React로 옮기면서 구조적 안정성 위에 실제 사용성을 높이는 기능들을 추가해 사용자 경험과 인증 안정성을 개선했습니다.",
+          "이후 React로 마이그레이션하면서 구조적 안정성 위에 실제 사용성을 높이는 기능들을 추가해 사용자 경험과 안정성을 개선했습니다.",
         points: [
           "Axios 인터셉터로 401 응답 시 Access Token 자동 재발급 및 대기 요청 순차 재시도 로직을 구현했습니다.",
           "JWT 자동 재발급 기반 인증 흐름으로 로그인 세션이 끊기지 않도록 안정화했습니다.",
@@ -107,7 +106,6 @@ export const project7 = [
           "페이지 진입 시 컨테이너를 비우고 이전 VDOM 노드 기록을 초기화해 항상 새 렌더링이 일어나도록 제어했습니다. 또한 프로필 이미지 등 헤더에 필요한 데이터를 먼저 로드한 뒤 레이아웃을 렌더링하도록 순서를 재설계해, DOM 접근 시점과 렌더링 타이밍을 맞췄습니다. 페이지를 떠날 때는 IntersectionObserver와 이벤트 리스너를 명시적으로 해제해 메모리 누수와 중복 바인딩을 방지했습니다.",
         result:
           "재진입 시 이전 상태가 섞이는 문제가 줄어들었고, 검색 결과와 페이지 상태가 안정적으로 초기화되도록 개선했습니다. 렌더링 흐름과 이벤트 생명주기를 분리하면서 SPA 환경에서도 보다 예측 가능한 게시글 리스트 동작을 확보했습니다.",
-        image: trouble3,
       },
       {
         title: "데이터 - UI 불일치 문제 해결 : 댓글 목록 렌더링 오류",
@@ -119,14 +117,13 @@ export const project7 = [
           "여러 가능한 데이터 경로를 안전하게 확인하도록 댓글 파싱 로직을 수정했습니다. commentsRes.data?.data?.content ?? commentsRes.data?.content ?? [] 형태로 순차 확인하여, 실제 댓글 배열이 들어오는 경로를 우선적으로 읽고 두 경로 모두 데이터가 없을 때만 빈 배열을 사용하도록 보완했습니다.",
         result:
           "백엔드에서 전달된 댓글 데이터가 안정적으로 UI와 연결되면서 댓글 목록이 정상 렌더링되었고, 데이터는 존재하지만 화면에는 보이지 않던 불일치 문제를 해소했습니다.",
-        image: trouble4,
       },
       {
         title: "닉네임 수정 필드 최적화",
         problem:
           "닉네임 수정 입력 필드에서 한글 입력 시 심한 지연과 버벅임이 발생했고, 심한 경우 한 글자를 입력한 뒤 입력 필드가 멈추는 현상까지 나타났습니다.",
         cause:
-          "React 제어 컴포넌트와 useRef를 함께 사용하는 안티패턴이 원인이었습니다. value={nicknameRef.current} 구조 때문에 한글 IME 조합 중 onChange로 리렌더링이 발생할 때마다 input 값이 이전 값으로 강제로 덮어써졌고, 그 과정에서 조합 중 상태가 깨지며 글자가 분리되거나 커서가 초기화되는 현상이 반복되었습니다.",
+          "React 제어 컴포넌트와 useRef를 함께 사용했던 것이 원인이었습니다. value={nicknameRef.current} 구조 때문에 한글 IME 조합 중 onChange로 리렌더링이 발생할 때마다 input 값이 이전 값으로 강제로 덮어써졌고, 그 과정에서 조합 중 상태가 깨지며 글자가 분리되거나 커서가 초기화되는 현상이 반복되었습니다.",
         solution:
           "해당 입력 필드를 제어 컴포넌트에서 비제어 컴포넌트로 전환했습니다. value 속성을 defaultValue로 변경해 초기 값만 설정하고, 이후 입력 상태 관리는 실제 DOM에 위임하도록 수정해 React 리렌더링과 IME 입력이 충돌하지 않도록 정리했습니다.",
         result:
