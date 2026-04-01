@@ -71,7 +71,7 @@ export const project7 = [
         ],
       },
     ],
-    troubleshooting_title: "▷ 트러블 슈팅",
+    troubleshooting_title: "▷ 개선사항 및 트러블 슈팅",
     troubleshooting_items: [
       {
         title: "렌더링 루트 중복 및 DOM 중첩 이슈",
