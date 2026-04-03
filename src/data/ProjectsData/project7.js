@@ -54,8 +54,8 @@ export const project7 = [
           "createDom / updateElement 구조로 초기 마운트와 업데이트 로직 분리.",
           "Virtual DOM Diffing으로 변경된 영역만 실제 DOM에 반영해 전체 리렌더링을 최소화.",
           "initState / getState / setState / subscribe / watch 기반 전역 Store 패턴 도입",
-          "Observer 패턴과 페이지별 상태 초기화 전략으로 필요한 컴포넌트만 라렌더링하고 상태 오염을 방지.",
-          "hashchange 기반 라우팅과 Route Guard를 구현해 보호 라우트 접근 제어 처리.",
+          "Observer 패턴과 페이지별 상태 초기화 전략으로 필요한 컴포넌트만 리렌더링하고 상태 오염을 방지.",
+          "hash 기반 라우팅과 Route Guard를 구현해 보호 라우트 접근 제어 처리.",
         ],
       },
       {

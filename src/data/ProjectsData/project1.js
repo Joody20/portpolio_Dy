@@ -2,7 +2,7 @@ import port from "../../assets/images/port_1.png";
 import pro1_photo2 from "../../assets/images/port_2.png";
 import pro1_photo3 from "../../assets/images/port_3.png";
 import pro1_photo4 from "../../assets/images/port_4.png";
-import pro1_photo5 from "../../assets/images/port_5.png";
+import pro1_photo5 from "../../assets/images/port5.png";
 import pro1_photo6 from "../../assets/images/port_6.png";
 import close_btn from "../../assets/images/close.png";
 import git from "../../assets/images/github.png";
